@@ -1,54 +1,273 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    {block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
-    <title>
-      {block:TagPage}{Tag} - {/block:TagPage} 
-      {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}
-      {block:PostSummary}{PostSummary} - {/block:PostSummary}
-      {Title}
-    </title>
+<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+    <head>
+        {block:Description}
+        <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+        <title>
+            {block:TagPage}{Tag} - {/block:TagPage} 
+            {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}
+            {block:PostSummary}{PostSummary} - {/block:PostSummary}
+            {Title}
+        </title>
 
-    <link rel="shortcut icon" href="{Favicon}"/>
-    <link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}"/>
-    <link rel="stylesheet" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />
+        <link rel="shortcut icon" href="{Favicon}"/>
+        <link rel="alternate" type="application/rss+xml" title="{Title} RSS" href="{RSS}"/>
+        <!-- Normalize is optional -->
+        <!--<link rel="stylesheet" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />-->
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-    <style>
+        <style>
+            html {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                padding: 100px 0;
+            }
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
+            .header {
+                position: absolute;
+                background: -webkit-linear-gradient( right, #55c0a4, #49909c);
+                background:    -moz-linear-gradient( right, #55c0a4, #49909c);
+                background:     -ms-linear-gradient( right, #55c0a4, #49909c);
+                background:      -o-linear-gradient( right, #55c0a4, #49909c);
+                background:         linear-gradient( to left, #55c0a4, #49909c);
+                height: 100px;
+                width: 100%;
+                margin: -100px 0;
+            }
+            .header-inner {
+                margin: 0 130px;
+                height: 100px;
+                /* TODO: ONLY IF FEATURED POST*/
+                border-bottom: 1px solid #333;
+            }
+            .header-logo {
+                display: inline-block;
+                position: relative;
+                float: left;
+            }
+            .header-learn-button, .header-learn-text {
+                display: inline-block;
+                position: relative;
+                float: right;
+                text-align: center;
+                margin-left: 20px;
+                margin-top: 31px;
+            }
+            .header-learn-button a {
+                height: 38px;
+                color: #55c0a4;
+                padding: 7px 12px;
+            }
+            .header-learn-text {
+                color: #fff;
+            }
+            .header-logo img {
+                height: 54px;
+                margin-top: 23px;
+            }
+            
+            .content {
+                margin: 60px 130px;
+                text-align: center;
+            }
+        </style>
 
-    </style>
+    </head>
 
-  </head>
+    <body>
+        <header id="masthead" class="header">
+            <div class="header-inner">
+                <div class="header-logo">
+                    <a href="{BlogURL}" title="{lang:Home}">
+                        <img src="http://static.tumblr.com/h4oybik/2gonflfq0/digit-logo-temp.png"/>
+                        <h1 class="sr-only">{Title}</h1>
+                    </a>
+                </div>
+                <div class="header-learn-button">
+                    <a href="https://digit.co/" class="btn btn-default">Learn More</a>
+                </div>
+                <div class="header-learn-text">
+                    <p>
+                        <strong>Automate your savings</strong>
+                        <br>for the rest of your life
+                    </p>
+                </div>
+            </div>
+        </header>
 
-  <body>
-    <header id="masthead">
-      <img src="{PortraitURL-128}"/>
-      <h1>
-        <a href="/" title="{lang:Home}">{Title}</a>
-      </h1>
-    </header>
+        <!-- <aside id="sidebar">
+            <div class="item">
+                <h2>Sidebar item</h2>
+                <p>We'll add HTML to our sidebar later.</p>
+            </div>
+        </aside> -->
+         
+        {block:Posts}
+        <div id="content" class="content">
+            <article>
+                {block:Text}
+                <div class="text inner">
+                    {block:Title}
+                    <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
+                    {/block:Title}
+                    {Body}
+                </div>
+                {/block:Text}
 
-    <aside id="sidebar">
-      <div class="item">
-        <h2>Sidebar item</h2>
-        <p>We'll add HTML to our sidebar later.</p>
-      </div>
-    </aside>
-     
-    <div id="content">
-      {block:Posts}
-      <article>
-          <!--Post markup to be added here-->
-       </article>
-      {/block:Posts}
-      
-      {block:Pagination}
-      <nav id="pagination">
-        <ul>
-          {block:NextPage}<li><a href="{NextPage}">Next page</a></li>{/block:NextPage}
-          {block:PreviousPage}<li><a href="{PreviousPage}">Previous page</a></li>{/block:PreviousPage}
-        </ul>
-      </nav>
-      {/block:Pagination}
-    </div>
-  </body>
+                {block:Photo}
+                <div class="photo inner">
+                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
+                    {block:Caption}{Caption}{/block:Caption}
+                </div>
+                {/block:Photo}
+                
+                {block:Photoset}
+                <div class="photoset inner">
+                    {Photoset-700}
+                    {block:Caption}{Caption}{/block:Caption}
+                </div>
+                {/block:Photoset}
+                
+                {block:Quote}
+                <div class="quote inner">
+                    <blockquote>{Quote}</blockquote>
+                    {block:Source}<cite> {Source} </cite>{/block:Source}
+                </div>
+                {/block:Quote}
+                
+                {block:Link}
+                <div class="link inner">
+                    <h1 class="title"><a href="{URL}">{Name}</a></h1>
+                    {block:Description}{Description}{/block:Description}
+                </div>
+                {/block:Link}
+                
+                {block:Chat}
+                <div class="chat inner">
+                    <ul>
+                        {block:Lines}
+                        <li class="{Alt}">
+                            <p>{block:Label}<strong>{Label}</strong>{/block:Label} {Line} </p>
+                        </li>
+                        {/block:Lines}
+                    </ul>
+                </div>
+                {/block:Chat}
+                
+                {block:Audio}
+                <div class="audio inner">
+                    {block:TrackName}
+                    <h1 class="title"><a href="{Permalink}">{TrackName}</a></h1>
+                    {/block:TrackName}
+                    {block:AlbumArt}
+                    <img src="{AlbumArtURL}" width="500" height="500"/>
+                    {/block:AlbumArt}
+                    {AudioPlayerBlack}
+                    {block:Caption}{Caption}{/block:Caption}
+                </div>
+                {/block:Audio}
+                
+                {block:Video}
+                <div class="video inner">
+                    {Video-700}
+                    {block:Caption}{Caption}{/block:Caption}
+                </div>
+                {/block:Video}
+                
+                {block:Answer}
+                <div class="answer inner">
+                    <h1 class="title">
+                        {Question}
+                    </h1>
+                    <div class="user">
+                        <img src="{AskerPortraitURL-96}"/>
+                        <p>{Asker}</p>
+                    </div>
+                    {Answer}
+                </div>
+                {/block:Answer}
+              
+
+                {block:Date}
+                <footer class="metadata">
+                    <ul class="index">
+                        <li>
+                            <a href="{Permalink}">
+                                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth} {Month} {Year}</time> 
+                            </a>
+                        </li>
+
+                        {block:NoteCount}
+                        <li>
+                            <a class="notecount" href="{Permalink}#notes">{NoteCountWithLabel}</a>
+                        </li>
+                        {/block:NoteCount}
+                    
+                        {block:ContentSource}
+                        <li>
+                            <a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                            {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}"height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}</a>
+                        </li>
+                        {/block:ContentSource} 
+                    </ul>
+
+                    {block:PermalinkPage}
+                        {block:HasTags}
+                        <ul class="tags">
+                            {block:Tags}
+                            <li><a href="{TagURL}">{Tag}</a> 
+                            </li>
+                            {/block:Tags}
+                        </ul>
+                        {/block:HasTags}
+                    
+                        {block:PostNotes}
+                        <div id="notes">
+                            {PostNotes}
+                        </div>
+                        {/block:PostNotes} 
+                  
+                    {/block:PermalinkPage} 
+                </footer>
+                {/block:Date}
+
+            </article>
+        </div>
+        {/block:Posts}
+          
+        {block:Pagination}
+        <nav id="pagination">
+            <ul>
+                {block:NextPage}
+                <li>
+                    <a href="{NextPage}">Next page</a>
+                </li>
+                {/block:NextPage}
+                {block:PreviousPage}
+                <li>
+                    <a href="{PreviousPage}">Previous page</a>
+                </li>
+                {/block:PreviousPage}
+            </ul>
+        </nav>
+        {/block:Pagination}
+
+    </body>
 </html>
