@@ -21,14 +21,16 @@
         <!--<link rel="stylesheet" href="http://static.tumblr.com/hznqxps/ivOmgjf8v/normalize.css" />-->
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        
         <style>
             html {
                 width: 100%;
                 height: 100%;
             }
-            body {
-                padding: 100px 0;
+            html body {
+                padding: 116px 0 0;
+                font-family: 'Open Sans', sans-serif;
             }
             .sr-only {
                 position: absolute;
@@ -41,19 +43,20 @@
                 border: 0;
             }
             .header {
-                position: absolute;
-                background: -webkit-linear-gradient( right, #55c0a4, #49909c);
-                background:    -moz-linear-gradient( right, #55c0a4, #49909c);
-                background:     -ms-linear-gradient( right, #55c0a4, #49909c);
-                background:      -o-linear-gradient( right, #55c0a4, #49909c);
-                background:         linear-gradient( to left, #55c0a4, #49909c);
-                height: 100px;
+                position: fixed;
+                background: -webkit-linear-gradient( right, #58c9a9, #488c9b);
+                background:    -moz-linear-gradient( right, #58c9a9, #488c9b);
+                background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
+                background:      -o-linear-gradient( right, #58c9a9, #488c9b);
+                background:         linear-gradient( to left, #58c9a9, #488c9b);
+                height: 116px;
                 width: 100%;
-                margin: -100px 0;
+                margin: -116px 0;
             }
             .header-inner {
-                margin: 0 130px;
-                height: 100px;
+                width: 1032px;
+                height: 116px;
+                margin: 0 auto;
                 /* TODO: ONLY IF FEATURED POST*/
                 border-bottom: 1px solid #333;
             }
@@ -68,7 +71,7 @@
                 float: right;
                 text-align: center;
                 margin-left: 20px;
-                margin-top: 31px;
+                margin-top: 39px;
             }
             .header-learn-button a {
                 height: 38px;
@@ -80,12 +83,38 @@
             }
             .header-logo img {
                 height: 54px;
-                margin-top: 23px;
+                margin-top: 32px;
             }
             
             .content {
-                margin: 60px 130px;
-                text-align: center;
+                /*padding: 60px 130px;*/
+                /*text-align: center;*/
+                width: 100%;
+                height: 100%;
+            }
+            .content-inner {
+                width: 1032px;
+                /*height: 116px;*/
+                margin: 40px auto;
+            }
+            .inner {
+                /*width: 326px;*/
+                /*height: 362px;*/
+            }
+            .item {
+                width: 325px;
+                height: 360px;
+                border: solid 1px Red;
+                display: inline-block;
+                overflow: hidden;
+                margin-right: 24px;
+                margin-bottom: 24px;
+            }
+            .item:nth-child(3n+3) {
+                margin-right: 0;
+            }
+            .photo img {
+                width: 200px;
             }
         </style>
 
@@ -96,7 +125,7 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <img src="http://static.tumblr.com/h4oybik/2gonflfq0/digit-logo-temp.png"/>
+                        <img src="http://static.tumblr.com/h4oybik/G9Qnflo9o/digit-logo-temp.png"/>
                         <h1 class="sr-only">{Title}</h1>
                     </a>
                 </div>
@@ -111,146 +140,143 @@
                 </div>
             </div>
         </header>
-
-        <!-- <aside id="sidebar">
-            <div class="item">
-                <h2>Sidebar item</h2>
-                <p>We'll add HTML to our sidebar later.</p>
-            </div>
-        </aside> -->
-         
-        {block:Posts}
+        
         <div id="content" class="content">
-            <article>
-                {block:Text}
-                <div class="text inner">
-                    {block:Title}
-                    <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
-                    {/block:Title}
-                    {Body}
-                </div>
-                {/block:Text}
-
-                {block:Photo}
-                <div class="photo inner">
-                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
-                    {block:Caption}{Caption}{/block:Caption}
-                </div>
-                {/block:Photo}
-                
-                {block:Photoset}
-                <div class="photoset inner">
-                    {Photoset-700}
-                    {block:Caption}{Caption}{/block:Caption}
-                </div>
-                {/block:Photoset}
-                
-                {block:Quote}
-                <div class="quote inner">
-                    <blockquote>{Quote}</blockquote>
-                    {block:Source}<cite> {Source} </cite>{/block:Source}
-                </div>
-                {/block:Quote}
-                
-                {block:Link}
-                <div class="link inner">
-                    <h1 class="title"><a href="{URL}">{Name}</a></h1>
-                    {block:Description}{Description}{/block:Description}
-                </div>
-                {/block:Link}
-                
-                {block:Chat}
-                <div class="chat inner">
-                    <ul>
-                        {block:Lines}
-                        <li class="{Alt}">
-                            <p>{block:Label}<strong>{Label}</strong>{/block:Label} {Line} </p>
-                        </li>
-                        {/block:Lines}
-                    </ul>
-                </div>
-                {/block:Chat}
-                
-                {block:Audio}
-                <div class="audio inner">
-                    {block:TrackName}
-                    <h1 class="title"><a href="{Permalink}">{TrackName}</a></h1>
-                    {/block:TrackName}
-                    {block:AlbumArt}
-                    <img src="{AlbumArtURL}" width="500" height="500"/>
-                    {/block:AlbumArt}
-                    {AudioPlayerBlack}
-                    {block:Caption}{Caption}{/block:Caption}
-                </div>
-                {/block:Audio}
-                
-                {block:Video}
-                <div class="video inner">
-                    {Video-700}
-                    {block:Caption}{Caption}{/block:Caption}
-                </div>
-                {/block:Video}
-                
-                {block:Answer}
-                <div class="answer inner">
-                    <h1 class="title">
-                        {Question}
-                    </h1>
-                    <div class="user">
-                        <img src="{AskerPortraitURL-96}"/>
-                        <p>{Asker}</p>
-                    </div>
-                    {Answer}
-                </div>
-                {/block:Answer}
-              
-
-                {block:Date}
-                <footer class="metadata">
-                    <ul class="index">
-                        <li>
-                            <a href="{Permalink}">
-                                <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth} {Month} {Year}</time> 
-                            </a>
-                        </li>
-
-                        {block:NoteCount}
-                        <li>
-                            <a class="notecount" href="{Permalink}#notes">{NoteCountWithLabel}</a>
-                        </li>
-                        {/block:NoteCount}
-                    
-                        {block:ContentSource}
-                        <li>
-                            <a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
-                            {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}"height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}</a>
-                        </li>
-                        {/block:ContentSource} 
-                    </ul>
-
-                    {block:PermalinkPage}
-                        {block:HasTags}
-                        <ul class="tags">
-                            {block:Tags}
-                            <li><a href="{TagURL}">{Tag}</a> 
-                            </li>
-                            {/block:Tags}
-                        </ul>
-                        {/block:HasTags}
-                    
-                        {block:PostNotes}
-                        <div id="notes">
-                            {PostNotes}
+            <div class="content-inner">
+                {block:Posts}
+                <div class="item">
+                    <article>
+                        {block:Text}
+                        <div class="text inner">
+                            {block:Title}
+                            <h1 class="title"><a href="{Permalink}">{Title}</a></h1>
+                            {/block:Title}
+                            {Body}
                         </div>
-                        {/block:PostNotes} 
-                  
-                    {/block:PermalinkPage} 
-                </footer>
-                {/block:Date}
-
-            </article>
+                        {/block:Text}
+        
+                        {block:Photo}
+                        <div class="photo inner">
+                            {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
+                            {block:Caption}{Caption}{/block:Caption}
+                        </div>
+                        {/block:Photo}
+                        
+                        {block:Photoset}
+                        <div class="photoset inner">
+                            {Photoset}
+                            {block:Caption}{Caption}{/block:Caption}
+                        </div>
+                        {/block:Photoset}
+                        
+                        {block:Quote}
+                        <div class="quote inner">
+                            <blockquote>{Quote}</blockquote>
+                            {block:Source}<cite> {Source} </cite>{/block:Source}
+                        </div>
+                        {/block:Quote}
+                        
+                        {block:Link}
+                        <div class="link inner">
+                            <h1 class="title"><a href="{URL}">{Name}</a></h1>
+                            {block:Description}{Description}{/block:Description}
+                        </div>
+                        {/block:Link}
+                        
+                        {block:Chat}
+                        <div class="chat inner">
+                            <ul>
+                                {block:Lines}
+                                <li class="{Alt}">
+                                    <p>{block:Label}<strong>{Label}</strong>{/block:Label} {Line} </p>
+                                </li>
+                                {/block:Lines}
+                            </ul>
+                        </div>
+                        {/block:Chat}
+                        
+                        {block:Audio}
+                        <div class="audio inner">
+                            {block:TrackName}
+                            <h1 class="title"><a href="{Permalink}">{TrackName}</a></h1>
+                            {/block:TrackName}
+                            {block:AlbumArt}
+                            <img src="{AlbumArtURL}" width="500" height="500"/>
+                            {/block:AlbumArt}
+                            {AudioPlayerBlack}
+                            {block:Caption}{Caption}{/block:Caption}
+                        </div>
+                        {/block:Audio}
+                        
+                        {block:Video}
+                        <div class="video inner">
+                            {Video-250}
+                            {block:Caption}{Caption}{/block:Caption}
+                        </div>
+                        {/block:Video}
+                        
+                        {block:Answer}
+                        <div class="answer inner">
+                            <h1 class="title">
+                                {Question}
+                            </h1>
+                            <div class="user">
+                                <img src="{AskerPortraitURL-96}"/>
+                                <p>{Asker}</p>
+                            </div>
+                            {Answer}
+                        </div>
+                        {/block:Answer}
+                      
+        
+                        {block:Date}
+                        <footer class="metadata">
+                            <ul class="index">
+                                <li>
+                                    <a href="{Permalink}">
+                                        <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{DayOfMonth} {Month} {Year}</time> 
+                                    </a>
+                                </li>
+        
+                                {block:NoteCount}
+                                <li>
+                                    <a class="notecount" href="{Permalink}#notes">{NoteCountWithLabel}</a>
+                                </li>
+                                {/block:NoteCount}
+                            
+                                {block:ContentSource}
+                                <li>
+                                    <a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                                    {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}"height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}</a>
+                                </li>
+                                {/block:ContentSource} 
+                            </ul>
+        
+                            {block:PermalinkPage}
+                                {block:HasTags}
+                                <ul class="tags">
+                                    {block:Tags}
+                                    <li><a href="{TagURL}">{Tag}</a> 
+                                    </li>
+                                    {/block:Tags}
+                                </ul>
+                                {/block:HasTags}
+                            
+                                {block:PostNotes}
+                                <div id="notes">
+                                    {PostNotes}
+                                </div>
+                                {/block:PostNotes} 
+                          
+                            {/block:PermalinkPage} 
+                        </footer>
+                        {/block:Date}
+        
+                    </article>
+                </div>
+                {/block:Posts}
+            </div>
         </div>
-        {/block:Posts}
           
         {block:Pagination}
         <nav id="pagination">
@@ -269,5 +295,10 @@
         </nav>
         {/block:Pagination}
 
+
+        <!--Links to jQuery library, Masonry, infinite scroll and imagesLoaded-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <!--<script src="http://static.tumblr.com/wgijwsy/Ebfm2v4gy/jquery.masonry.min.js"></script>-->
+        <!--<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>-->
     </body>
 </html>
