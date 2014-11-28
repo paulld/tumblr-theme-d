@@ -24,6 +24,8 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         
         <style>
+            /* >>> GENERAL LAYOUT <<< */
+            
             html {
                 width: 100%;
                 height: 100%;
@@ -42,6 +44,9 @@
                 clip: rect(0,0,0,0);
                 border: 0;
             }
+            
+            /* >>> HEADER <<< */
+            
             .header {
                 position: fixed;
                 background-color: #488c9b;
@@ -55,7 +60,7 @@
                 margin: -116px 0;
             }
             .header-inner {
-                width: 1032px;
+                width: 1030px;
                 height: 116px;
                 margin: 0 auto;
             }
@@ -85,40 +90,55 @@
                 margin-top: 28px;
             }
             
+            /* >>> LIST OF POSTS <<< */
+            
             .content {
                 width: 100%;
                 height: 100%;
             }
             .content-inner {
-                width: 1032px;
+                width: 1030px;
                 margin: 40px auto;
             }
             .inner {
                 /*width: 326px;*/
                 /*height: 362px;*/
             }
-            .item {
+            .item-outer {
                 width: 325px;
                 height: 360px;
                 display: inline-block;
                 overflow: hidden;
-                margin-right: 24px;
-                margin-bottom: 24px;
+                margin-right: 23px;
+                margin-bottom: 23px;
                 border-radius: 5px;
-                /*background-image: url({PhotoURL-HighRes});*/
+                position: relative;
             }
-            .item:nth-child(3n+3) {
+            .item-outer:nth-child(3n+3) {
                 margin-right: 0;
             }
+            .item-inner {
+                background: -webkit-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                background:    -moz-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                background:     -ms-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                background:      -o-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                background:         linear-gradient( to bottom, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
             .photo-item img {
-                min-width: 325px;
-                min-height: 360px;
+                /*min-width: 325px;*/
+                /*min-height: 360px;*/
             }
             .photo-post img {
-                max-width: 1032px;
+                max-width: 1030px;
             }
             
-            /* CTA BANNER*/
+            /* >>> CTA BANNER <<< */
+            
             .advert {
                 width: 100%;
                 height: 180px;
@@ -154,13 +174,15 @@
                 color: #fff;
             }
             
+            /* >>> FOOTER <<< */
+            
             .footer {
                 width: 100%;
                 height: 100px;
                 background-color: #3e5a6a;
             }
             .footer-inner {
-                width: 1032px;
+                width: 1030px;
                 margin: 0 auto;
             }
             .footer-social {
@@ -219,15 +241,16 @@
                 {block:Posts}
                     {block:Photo}
                         {block:IndexPage}
-                            <article class="item photo-item">
-                                    <a href="{Permalink}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" /></a>
+                            <article class="item-outer photo-item" style="background-image: url({PhotoURL-HighRes});">
+                                <div class="item-inner">
+                                    <!--<a href="{Permalink}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" /></a>-->
                                     
                                     {block:HasTags}
                                         {block:Tags}
                                             <a href="{Permalink}"><p class="main-tag">{Tag}</p></a>
                                         {/block:Tags}
                                     {/block:HasTags}
-                                
+                                </div>
                             </article>
                         {/block:IndexPage}
                         
