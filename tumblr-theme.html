@@ -58,6 +58,7 @@
                 height: 116px;
                 width: 100%;
                 margin: -116px 0;
+                z-index: 1001;
             }
             .header-inner {
                 width: 1030px;
@@ -69,7 +70,7 @@
                 position: relative;
                 float: left;
             }
-            .header-learn-button, .header-learn-text {
+            .header-subscribe, .header-learn-text {
                 display: inline-block;
                 position: relative;
                 float: right;
@@ -77,18 +78,68 @@
                 margin-left: 20px;
                 margin-top: 39px;
             }
-            .header-learn-button a {
-                height: 38px;
-                color: #55c0a4;
-                padding: 7px 12px;
-            }
+            
             .header-learn-text {
                 color: #fff;
+                font-size: 14px;
+                text-align: right;
             }
             .header-logo img {
                 height: 66px;
                 margin-top: 28px;
             }
+            .header-logo img:hover {
+                opacity: .75;
+            }
+            .header-subscribe input {
+                width: 141px;
+                height: 36px;
+                border-radius: 5px;
+                margin-right: 0;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border: 1px solid #fff;
+                background: transparent;
+                font-size: 13px;
+                font-weight: 300;
+                padding: 0 11px;
+                color: #fff;
+            }
+            .header-subscribe input::-webkit-input-placeholder {
+               color: #fff;
+               font-weight: 300;
+            }
+            .header-subscribe input:-moz-placeholder { /* Firefox 18- */
+               color: #fff;  
+               font-weight: 300;
+            }
+            .header-subscribe input::-moz-placeholder {  /* Firefox 19+ */
+               color: #fff;  
+               font-weight: 300;
+            }
+            .header-subscribe input:-ms-input-placeholder {  
+               color: #fff;  
+               font-weight: 300;
+            }
+            .header-subscribe button {
+                height: 36px;
+                width: 96px;
+                padding: 7px 12px;
+                border-radius: 5px;
+                margin-left: 0;
+                background-color: #fff;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border: 1px solid #fff;
+                font-size: 13px;
+                font-weight: 600;
+                color: #58c8a9;
+                text-align: center;
+            }
+            .header-subscribe button:hover {
+                color: #999;
+            }
+            
             
             /* >>> LIST OF POSTS <<< */
             
@@ -99,10 +150,6 @@
             .content-inner {
                 width: 1030px;
                 margin: 40px auto;
-            }
-            .inner {
-                /*width: 326px;*/
-                /*height: 362px;*/
             }
             .item-outer {
                 width: 325px;
@@ -128,7 +175,62 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
+                color: #fff;
             }
+            .item-inner:hover {
+                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+            }
+            .main-tag {
+                height: 52px;
+                padding: 21px;
+                text-align: center;
+            }
+            .main-tag p {
+                display: none;
+            }
+            .main-tag p:first-child {
+                display: block;
+                font-size: 9.3px;
+                text-transform: uppercase;
+                opacity: .5;
+                font-weight: 600;
+                letter-spacing: 2px;
+            }
+            .main-separation {
+                height: 1px;
+                width: 48px;
+                border-bottom: 1px solid rgba(255,255,255,.3);
+                margin: 0 auto;
+            }
+            .main-caption {
+                padding: 20px 10px 0;
+            }
+            .main-caption a {
+                font-size: 32px;
+                margin-top: 30px;
+                font-weight: 300;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+            }
+            .main-link {
+                position:absolute; 
+                width:100%;
+                height:100%;
+                top:0;
+                left: 0;
+                z-index: 1;
+            }
+            
+            
+            
+            
+            
+            
             .photo-item img {
                 /*min-width: 325px;*/
                 /*min-height: 360px;*/
@@ -210,6 +312,19 @@
             .footer-terms a:hover {
                 color: #1c313d;
             }
+            
+            .header-learn-more {
+                text-align: left;
+                margin: -28px 0 10px;
+            }
+            .header-learn-more a {
+                font-size: 12px;
+                color: rgba(255,255,255,.5);
+                text-decoration: none;
+            }
+            .header-learn-more a:hover {
+                color: rgba(255,255,255,1);
+            }
         </style>
 
     </head>
@@ -224,13 +339,19 @@
                         <h1 class="sr-only">{Title}</h1>
                     </a>
                 </div>
-                <div class="header-learn-button">
-                    <a href="https://digit.co/" class="btn btn-default">Learn More</a>
+                <div class="header-subscribe">
+                    <div class="header-learn-more">
+                        <a href="http://digit.co">Learn more  about digit &rsaquo;</a>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Email">
+                        <button type="button">Subscribe</button>
+                        <!--<a href="https://digit.co/" class="btn btn-default">Subscribe</a>-->
+                    </div>
                 </div>
                 <div class="header-learn-text">
                     <p>
-                        <strong>Automate your savings</strong>
-                        <br>for the rest of your life
+                        <strong>Receive weekly updates</strong> from the digit blog,<br>direct to your inbox
                     </p>
                 </div>
             </div>
@@ -245,11 +366,21 @@
                                 <div class="item-inner">
                                     <!--<a href="{Permalink}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" /></a>-->
                                     
-                                    {block:HasTags}
-                                        {block:Tags}
-                                            <a href="{Permalink}"><p class="main-tag">{Tag}</p></a>
-                                        {/block:Tags}
-                                    {/block:HasTags}
+                                    <div class="main-tag">
+                                        {block:HasTags}
+                                            {block:Tags}
+                                                <p>{Tag}</p>
+                                            {/block:Tags}
+                                        {/block:HasTags}
+                                    </div>
+                                    <div class="main-separation">
+                                    </div>
+                                    <div class="main-caption">
+                                        {block:Caption}
+                                            <a href="{Permalink}">{Caption}</a>
+                                        {/block:Caption}
+                                    </div>
+                                    <a href="{Permalink}"><span class="main-link"></span></a>
                                 </div>
                             </article>
                         {/block:IndexPage}
