@@ -506,6 +506,10 @@
             }
             ol.notes li {
                 margin: 4px 0;
+                visibility: hidden;
+            }
+            ol.notes li:nth-child(-n+6) {
+                visibility: visible;
             }
             ol.notes a {
                 font-weight: 400;
@@ -525,7 +529,16 @@
                 margin-right: 10px;
                 border: 0;
             }
-            
+            .show-more-notes {
+                font-size: 14px;
+                color: #33b8fa;
+                line-height: 19px;
+                margin: 20px 0 0 30px;
+                cursor: pointer;
+            }
+            .show-more-notes:hover {
+                color: #0e7bb2;
+            }
             
         </style>
         <!--<script type="text/javascript" src="http://codysherman.com/tools/infinite-scrolling/code" ></script>-->
@@ -676,6 +689,7 @@
                                         <div id="notes" class="post-notes">
                                             <h2>Notes</h2>
                                             {PostNotes}
+                                            <p class="show-more-notes">Show more notes...<p>
                                         </div>
                                     {/block:PostNotes}
                                 </div>
@@ -723,6 +737,10 @@
             $(function() {
                 $(".action").html(function () {
                     return $(this).html().replace("and added:", ""); 
+                });
+                $(".show-more-notes").click(function() {
+                  $('ol.notes li').css("visibility", "visible");
+                  $(".show-more-notes").css("visibility", "hidden");
                 });
             });
         </script>
