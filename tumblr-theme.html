@@ -24,7 +24,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         
         <style>
-            /* >>> GENERAL LAYOUT <<< */
+            /* >>>>>>>>>>> GENERAL LAYOUT <<<<<<<<<<< */
             
             html {
                 width: 100%;
@@ -45,7 +45,8 @@
                 border: 0;
             }
             
-            /* >>> HEADER <<< */
+            
+            /* >>>>>>>>>>> HEADER <<<<<<<<<<< */
             
             .header {
                 position: fixed;
@@ -98,7 +99,7 @@
                 margin-right: 0;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
-                border: 1px solid #fff;
+                border: 1px solid rgba(255,255,255,.5);
                 background: transparent;
                 font-size: 13px;
                 font-weight: 300;
@@ -121,6 +122,23 @@
                color: #fff;  
                font-weight: 300;
             }
+            .header-subscribe input:focus {
+                outline: 0;
+                border-color: rgba(255,255,255,1);
+            }
+            .header-subscribe input:focus::-webkit-input-placeholder {
+               opacity: .1;
+            }
+            .header-subscribe input:focus:-moz-placeholder { /* Firefox 18- */
+               opacity: .1;
+            }
+            .header-subscribe input:focus::-moz-placeholder {  /* Firefox 19+ */
+               opacity: .1;
+            }
+            .header-subscribe input:focus:-ms-input-placeholder {  
+               opacity: .1;
+            }
+            
             .header-subscribe button {
                 height: 36px;
                 width: 96px;
@@ -139,9 +157,29 @@
             .header-subscribe button:hover {
                 color: #999;
             }
+            .header-subscribe button:focus {
+                outline: 0;
+            }
+            .header-learn-more {
+                text-align: left;
+                margin: -28px 0 10px;
+            }
+            .header-learn-more a {
+                font-size: 12px;
+                color: rgba(255,255,255,.5);
+                text-decoration: none;
+            }
+            .header-learn-more a:hover {
+                color: rgba(255,255,255,.9);
+            }
+            .header-learn-more .greater-than {
+                font-size: 22px;
+                margin-left: 5px;
+                line-height: 0;
+                font-weight: 100;
+            }
             
-            
-            /* >>> LIST OF POSTS <<< */
+            /* >>>>>>>>>>> LIST OF POSTS <<<<<<<<<<< */
             
             .content {
                 width: 100%;
@@ -178,11 +216,11 @@
                 color: #fff;
             }
             .item-inner:hover {
-                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
+                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
+                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
+                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
+                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
             }
             .main-tag {
                 height: 52px;
@@ -199,6 +237,7 @@
                 opacity: .5;
                 font-weight: 600;
                 letter-spacing: 2px;
+                text-shadow: 0px 1px 2px rgba(0,0,0,0.35);
             }
             .main-separation {
                 height: 1px;
@@ -209,13 +248,21 @@
             .main-caption {
                 padding: 20px 10px 0;
             }
-            .main-caption a {
+            .main-caption a, .main-caption a h1 {
                 font-size: 32px;
                 margin-top: 30px;
                 font-weight: 300;
                 text-align: center;
                 text-decoration: none;
                 color: #fff;
+                line-height: 44px;
+                text-shadow: 0px 1px 2px rgba(0,0,0,0.15);
+            }
+            .main-caption a h1 {
+                margin-top: 0;
+            }
+            .main-caption .caption-body {
+                display: none;
             }
             .main-link {
                 position:absolute; 
@@ -227,7 +274,7 @@
             }
             
             
-            
+            /* >>>>>>>>>>> PHOTO POST <<<<<<<<<<< */
             
             
             
@@ -239,18 +286,19 @@
                 max-width: 1030px;
             }
             
-            /* >>> CTA BANNER <<< */
+            
+            /* >>>>>>>>>>> CTA BANNER <<<<<<<<<<< */
             
             .advert {
                 width: 100%;
                 height: 180px;
+                margin: 0 0 60px;
                 background-color: #ccf0e6;
                 background: -webkit-linear-gradient( right, #eaf4fa, #ccf0e6);
                 background:    -moz-linear-gradient( right, #eaf4fa, #ccf0e6);
                 background:     -ms-linear-gradient( right, #eaf4fa, #ccf0e6);
                 background:      -o-linear-gradient( right, #eaf4fa, #ccf0e6);
                 background:         linear-gradient( to left, #eaf4fa, #ccf0e6);
-                margin: 30px 0 60px;
             }
             .advert-inner {
                 width: 1032px;
@@ -276,7 +324,8 @@
                 color: #fff;
             }
             
-            /* >>> FOOTER <<< */
+            
+            /* >>>>>>>>>>> FOOTER <<<<<<<<<<< */
             
             .footer {
                 width: 100%;
@@ -313,20 +362,56 @@
                 color: #1c313d;
             }
             
-            .header-learn-more {
-                text-align: left;
-                margin: -28px 0 10px;
+            
+            .post-photo.portrait {
+                display: inline-block;
+                width: 530px;
             }
-            .header-learn-more a {
-                font-size: 12px;
-                color: rgba(255,255,255,.5);
-                text-decoration: none;
+            .post-info.portrait {
+                display: inline-block;
+                max-width: 496px;
+                vertical-align: top;
             }
-            .header-learn-more a:hover {
-                color: rgba(255,255,255,1);
+            .post-photo.portrait img {
+                width: 413px;
+                margin: 0;
+                border-radius: 8px;
+                border: 1px solid rgba(17,0,0,0.10);
             }
+            .date-and-notes {
+                font-size: 14px;
+                color: rgba(144,181,202,1);
+            }
+            .date-and-notes img {
+                padding: 0 3px 3px 0;
+            }
+            .date-and-notes img:nth-of-type(2) {
+                padding-left: 18px;
+            }
+            .post-caption, .post-caption h1 {
+                font-weight: 100;
+                font-size: 48px;
+                color: #3e5a6a;
+                line-height: 65px;
+                margin-bottom: 40px;
+            }
+            .post-caption > .caption-body {
+                font-size: 18px;
+                color: #3e5a6a;
+                line-height: 30px;
+            }
+            .post-caption p:nth-of-type(2) {
+                margin-top: 30px;
+            }
+            .post-notes h2 {
+                font-size: 32px;
+                color: #3e5a6a;
+                line-height: 43px;
+            }
+            
         </style>
-
+        <!--<script type="text/javascript" src="http://codysherman.com/tools/infinite-scrolling/code" ></script>-->
+        <script type="text/javascript" src="http://codes.bitshare.cm/infinitescrolling.js"></script>
     </head>
 
     <body>
@@ -334,14 +419,14 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <img src="http://static.tumblr.com/h4oybik/uPvnfpali/logo-main.png"/>
-                        
+                        <!--<img src="http://static.tumblr.com/h4oybik/uPvnfpali/logo-main.png"/>-->
+                        <img src="http://static.tumblr.com/h4oybik/Fcxnfvnm0/logo-main.svg">
                         <h1 class="sr-only">{Title}</h1>
                     </a>
                 </div>
                 <div class="header-subscribe">
                     <div class="header-learn-more">
-                        <a href="http://digit.co">Learn more  about digit &rsaquo;</a>
+                        <a href="http://digit.co">Learn more  about digit <span class="greater-than">&rsaquo;</span></a>
                     </div>
                     <div class="input-group">
                         <input type="text" placeholder="Email">
@@ -383,24 +468,82 @@
                                     <a href="{Permalink}"><span class="main-link"></span></a>
                                 </div>
                             </article>
+                            
+                            {block:Post6}
+                            </div>
+                        </div>
+                        <div class="advert">
+                            <div class="advert-inner">
+                                <p class="advert-text">Save money without stressing about it.<p>
+                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                            </div>
+                        </div>
+                        <div id="content" class="content">
+                            <div class="content-inner">
+                            {/block:Post6}
+                            {block:Post18}
+                            </div>
+                        </div>
+                        <div class="advert">
+                            <div class="advert-inner">
+                                <p class="advert-text">Save money without stressing about it.<p>
+                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                            </div>
+                        </div>
+                        <div id="content" class="content">
+                            <div class="content-inner">
+                            {/block:Post18}
+                            {block:Post30}
+                            </div>
+                        </div>
+                        <div class="advert">
+                            <div class="advert-inner">
+                                <p class="advert-text">Save money without stressing about it.<p>
+                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                            </div>
+                        </div>
+                        <div id="content" class="content">
+                            <div class="content-inner">
+                            {/block:Post30}
+                            
                         {/block:IndexPage}
                         
                         
                         {block:PermalinkPage}
                             <article class="post photo-post">
-                                {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
-                                {block:Caption}{Caption}{/block:Caption}
-                                {block:HasTags}
-                                <ul class="tags">
-                                    {block:Tags}<li><a href="{TagURL}">{Tag}</a> </li>{/block:Tags}
-                                </ul>
-                                {/block:HasTags}
-                                
-                                {block:PostNotes}
-                                <div id="notes">
-                                    {PostNotes}
+                                <div class="post-photo portrait">
+                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
                                 </div>
-                                {/block:PostNotes} 
+                                
+                                <div class="post-info portrait">
+                                    <p class="date-and-notes">
+                                        <img src="http://static.tumblr.com/h4oybik/Mrcnfvkpj/icon-date.svg"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {12Hour}:{Minutes}{AmPm}">{ShortMonth} {DayOfMonth}</time>
+                                        <img src="http://static.tumblr.com/h4oybik/uhLnfvkpm/icon-notes.svg"> {NoteCountWithLabel}
+                                    </p>
+                                    {block:Caption}
+                                        <div class="post-caption">{Caption}</div>
+                                    {/block:Caption}
+                                    <div>{LikeButton color="black"}</div>
+                                    <div>{ReblogButton color="black"}</div>
+                                    <ul class="like_and_reblog_buttons">
+                                        <li>{ReblogButton}</li>
+                                        <li>{LikeButton}</li>
+                                    </ul>
+                                    <p>{PhotoWidth-HighRes} x {PhotoHeight-HighRes}</p>
+                                    
+                                    {block:HasTags}
+                                        <ul class="tags">
+                                            {block:Tags}<li><a href="{TagURL}">{Tag}</a> </li>{/block:Tags}
+                                        </ul>
+                                    {/block:HasTags}
+                                    
+                                    {block:PostNotes}
+                                        <div id="notes" class="post-notes">
+                                            <h2>Notes</h2>
+                                            {PostNotes}
+                                        </div>
+                                    {/block:PostNotes}
+                                </div>
                             </article>
                         {/block:PermalinkPage}
                     
@@ -409,30 +552,6 @@
             </div>
         </div>
           
-        <div class="advert">
-            <div class="advert-inner">
-                <p class="advert-text">Save money without stressing about it.<p>
-                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
-            </div>
-        </div>
-          
-          
-        {block:Pagination}
-        <nav id="pagination">
-            <ul>
-                {block:NextPage}
-                <li>
-                    <a href="{NextPage}">Next page</a>
-                </li>
-                {/block:NextPage}
-                {block:PreviousPage}
-                <li>
-                    <a href="{PreviousPage}">Previous page</a>
-                </li>
-                {/block:PreviousPage}
-            </ul>
-        </nav>
-        {/block:Pagination}
         
         <footer id="footer" class="footer">
             <div class="footer-inner">
@@ -440,16 +559,16 @@
                     <ul class="list-inline">
                         <li><a href="http://twitter.com/hellodigit">Twitter</a></li>
                         <li><a href="http://facebook.com/hellodigit">Facebook</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Sign In</a></li>
+                        <li><a href="https://digit.co/about">About</a></li>
+                        <li><a href="https://digit.co/about/faq">FAQ</a></li>
+                        <li><a href="https://digit.co/signin">Sign In</a></li>
                     </ul>
                 </div>
                 <div class="footer-terms">
                     <ul class="list-inline">
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="https://digit.co/about/legal/privacy-policy">Privacy Policy</a></li>
                         <li>&bull;</li>
-                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="https://digit.co/about/legal/terms-of-use">Terms of Use</a></li>
                         <li>&bull;</li>
                         <li>Copyright &copy; 2014, Hello Digit Inc.</li>
                     </ul>
@@ -458,9 +577,12 @@
         </footer>
 
 
+
+
         <!--Links to jQuery library, Masonry, infinite scroll and imagesLoaded-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <!--<script src="http://static.tumblr.com/wgijwsy/Ebfm2v4gy/jquery.masonry.min.js"></script>-->
         <!--<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>-->
+        
     </body>
 </html>
