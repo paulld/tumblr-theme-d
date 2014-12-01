@@ -276,116 +276,41 @@
             
             /* >>>>>>>>>>> PHOTO POST <<<<<<<<<<< */
             
-            
-            
-            .photo-item img {
-                /*min-width: 325px;*/
-                /*min-height: 360px;*/
-            }
-            .photo-post img {
-                max-width: 1030px;
-            }
-            
-            
-            /* >>>>>>>>>>> CTA BANNER <<<<<<<<<<< */
-            
-            .advert {
-                width: 100%;
-                height: 180px;
-                margin: 0 0 60px;
-                background-color: #ccf0e6;
-                background: -webkit-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:    -moz-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:     -ms-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:      -o-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:         linear-gradient( to left, #eaf4fa, #ccf0e6);
-            }
-            .advert-inner {
-                width: 1032px;
-                margin: 0 auto;
-                text-align: center;
-                padding: 30px 0;
-            }
-            .advert-text {
-                font-size: 36px;
-                color: #3e5a6a;
-            }
-            .advert-button {
-                background-color: #33b8fa;
-                width: 149px;
-                height: 42px;
-                color: #fff;
-                font-size: 16px;
-                padding: 8px 12px;
-                margin-top: 10px;
-            }
-            .advert-button:hover {
-                background-color: #0e7bb2;
-                color: #fff;
-            }
-            
-            
-            /* >>>>>>>>>>> FOOTER <<<<<<<<<<< */
-            
-            .footer {
-                width: 100%;
-                height: 100px;
-                background-color: #3e5a6a;
-            }
-            .footer-inner {
-                width: 1030px;
-                margin: 0 auto;
-            }
-            .footer-social {
-                display: inline-block;
-                float: left;
-                color: #fff;
-                opacity: .5;
-                font-size: 16px;
-                margin-top: 38px;
-            }
-            .footer-social a, .footer-terms a {
-                text-decoration: none;
-                color: inherit;
-            }
-            .footer-social a:hover {
-                opacity: .75;
-            }
-            .footer-terms {
-                display: inline-block;
-                float: right;
-                color: #273f4d;
-                font-size: 12px;
-                margin-top: 41px;
-            }
-            .footer-terms a:hover {
-                color: #1c313d;
-            }
-            
-            
-            
-            
-            
-            .post-photo img {
+            .block-photo img {
                 margin: 0;
                 border-radius: 8px;
                 border: 1px solid rgba(17,0,0,0.10);
             }
-            .post-photo img:hover {
+            .block-photo img:hover {
                 opacity: .75;
             }
-            .post-photo.portrait {
+
+            .portrait .block-photo {
                 display: inline-block;
                 width: 530px;
             }
-            .post-info.portrait {
+            .portrait .block-info {
                 display: inline-block;
                 max-width: 496px;
                 vertical-align: top;
             }
-            .post-photo.portrait img {
+            .portrait .block-photo img {
                 width: 413px;
             }
+            .landscape .block-photo {
+                width: 100%;
+            }
+            .landscape .block-info {
+                width: 672px;
+                margin: 0 auto;
+            }
+            .landscape .block-photo img {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+
+            
+
             .date-and-notes {
                 font-size: 14px;
                 color: rgba(144,181,202,1);
@@ -489,7 +414,6 @@
                  margin-right: 5px;
              }
             
-            
             .post-notes h2 {
                 font-size: 32px;
                 color: rgba(62,90,106,1);
@@ -540,9 +464,86 @@
                 color: #0e7bb2;
             }
             
+            
+            /* >>>>>>>>>>> CTA BANNER <<<<<<<<<<< */
+            
+            .advert {
+                width: 100%;
+                height: 180px;
+                margin: 0 0 60px;
+                background-color: #ccf0e6;
+                background: -webkit-linear-gradient( right, #eaf4fa, #ccf0e6);
+                background:    -moz-linear-gradient( right, #eaf4fa, #ccf0e6);
+                background:     -ms-linear-gradient( right, #eaf4fa, #ccf0e6);
+                background:      -o-linear-gradient( right, #eaf4fa, #ccf0e6);
+                background:         linear-gradient( to left, #eaf4fa, #ccf0e6);
+            }
+            .advert-inner {
+                width: 1032px;
+                margin: 0 auto;
+                text-align: center;
+                padding: 30px 0;
+            }
+            .advert-text {
+                font-size: 36px;
+                color: #3e5a6a;
+            }
+            .advert-button {
+                background-color: #33b8fa;
+                width: 149px;
+                height: 42px;
+                color: #fff;
+                font-size: 16px;
+                padding: 8px 12px;
+                margin-top: 10px;
+            }
+            .advert-button:hover {
+                background-color: #0e7bb2;
+                color: #fff;
+            }
+            
+            
+            /* >>>>>>>>>>> FOOTER <<<<<<<<<<< */
+            
+            .footer {
+                width: 100%;
+                height: 100px;
+                background-color: #3e5a6a;
+            }
+            .footer-inner {
+                width: 1030px;
+                margin: 0 auto;
+            }
+            .footer-social {
+                display: inline-block;
+                float: left;
+                color: #fff;
+                opacity: .5;
+                font-size: 16px;
+                margin-top: 38px;
+            }
+            .footer-social a, .footer-terms a {
+                text-decoration: none;
+                color: inherit;
+            }
+            .footer-social a:hover {
+                opacity: .75;
+            }
+            .footer-terms {
+                display: inline-block;
+                float: right;
+                color: #273f4d;
+                font-size: 12px;
+                margin-top: 41px;
+            }
+            .footer-terms a:hover {
+                color: #1c313d;
+            }
+            
+            
         </style>
         <!--<script type="text/javascript" src="http://codysherman.com/tools/infinite-scrolling/code" ></script>-->
-        <script type="text/javascript" src="http://codes.bitshare.cm/infinitescrolling.js"></script>
+        
     </head>
 
     <body>
@@ -638,14 +639,14 @@
                         
                         
                         {block:PermalinkPage}
-                            <article class="post photo-post">
-                                <div class="post-photo portrait">
+                            <article class="post photo-post portrait">
+                                <div class="block-photo">
                                     {LinkOpenTag}
                                         <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
                                     {LinkCloseTag}
                                 </div>
                                 
-                                <div class="post-info portrait">
+                                <div class="block-info">
                                     <p class="date-and-notes">
                                         <img src="http://static.tumblr.com/h4oybik/Mrcnfvkpj/icon-date.svg"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {12Hour}:{Minutes}{AmPm}">{ShortMonth} {DayOfMonth}</time>
                                         <img src="http://static.tumblr.com/h4oybik/uhLnfvkpm/icon-notes.svg"> {NoteCountWithLabel}
@@ -731,8 +732,8 @@
         </footer>
 
 
- 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://codes.bitshare.cm/infinitescrolling.js"></script>
         
         <script>
             $(function() {
@@ -750,9 +751,10 @@
                 {block:PermalinkPage}
                     var width = $('#photo').attr("data-width");
                     var height = $('#photo').attr("data-height");
-                    console.log(width, ' x ', height);
-                    if (width > height) {
-                        
+                    // console.log(width, ' x ', height);
+                    if ( width < height ) {
+                        // console.log('CHANGE TO LANDSCAPE');
+                        $('.photo-post').removeClass('portrait').addClass('landscape');
                     }
                     
                     {block:PostNotes} 
