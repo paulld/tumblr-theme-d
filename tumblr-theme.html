@@ -363,6 +363,17 @@
             }
             
             
+            
+            
+            
+            .post-photo img {
+                margin: 0;
+                border-radius: 8px;
+                border: 1px solid rgba(17,0,0,0.10);
+            }
+            .post-photo img:hover {
+                opacity: .75;
+            }
             .post-photo.portrait {
                 display: inline-block;
                 width: 530px;
@@ -374,9 +385,6 @@
             }
             .post-photo.portrait img {
                 width: 413px;
-                margin: 0;
-                border-radius: 8px;
-                border: 1px solid rgba(17,0,0,0.10);
             }
             .date-and-notes {
                 font-size: 14px;
@@ -403,13 +411,6 @@
             .post-caption p:nth-of-type(2) {
                 margin-top: 30px;
             }
-            .post-notes h2 {
-                font-size: 32px;
-                color: rgba(62,90,106,1);
-                font-weight: 100;
-                line-height: 43px;
-            }
-            
             
             table.post-social {
                 margin: 30px 0;
@@ -487,6 +488,44 @@
              .post-social-icon {
                  margin-right: 5px;
              }
+            
+            
+            .post-notes h2 {
+                font-size: 32px;
+                color: rgba(62,90,106,1);
+                font-weight: 100;
+                line-height: 43px;
+                margin-bottom: 30px;
+            }
+            ol.notes {
+                list-style-type: none;
+                margin-left: -40px;
+                color: #4f6e7d;
+                font-size: 14px;
+                font-weight: 100; 
+            }
+            ol.notes li {
+                margin: 4px 0;
+            }
+            ol.notes a {
+                font-weight: 400;
+                text-decoration: none;
+                color: #4f6e7d;
+            }
+            ol.notes a:hover {
+                color: #1f3642;
+            }
+            ol.notes blockquote {
+                display: none;
+            }
+            ol.notes img.avatar {
+                width: 20px;
+                height: 20px;
+                border-radius: 10px;
+                margin-right: 10px;
+                border: 0;
+            }
+            
             
         </style>
         <!--<script type="text/javascript" src="http://codysherman.com/tools/infinite-scrolling/code" ></script>-->
@@ -679,6 +718,14 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <!--<script src="http://static.tumblr.com/wgijwsy/Ebfm2v4gy/jquery.masonry.min.js"></script>-->
         <!--<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>-->
+        
+        <script>
+            $(function() {
+                $(".action").html(function () {
+                    return $(this).html().replace("and added:", ""); 
+                });
+            });
+        </script>
         
     </body>
 </html>
