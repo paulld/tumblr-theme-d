@@ -405,9 +405,88 @@
             }
             .post-notes h2 {
                 font-size: 32px;
-                color: #3e5a6a;
+                color: rgba(62,90,106,1);
+                font-weight: 100;
                 line-height: 43px;
             }
+            
+            
+            table.post-social {
+                margin: 30px 0;
+            }
+            table.table.post-social > tbody > tr > td {
+                border-top: 0;
+            }
+            .custom-like-button {
+                position: relative;
+                display: block;
+                width: 88px;
+                height: 28px;
+                cursor: pointer;
+            }
+            /* class for the Tumblr Like Button iframe */
+            .like_button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                z-index: 10;
+            }
+            /* Force iframe to fill button */
+            .like_button iframe {
+                width: 100% !important;
+                height: 100% !important;
+            }
+            /* class for Our Like Button */
+            .our_button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+                border-radius: 3px;
+                background: rgba(227,89,89,1);
+                color: rgba(255,255,255,1);
+                font-size: 13px;
+                font-weight: 600;
+                padding: 4px;
+                text-align: center;
+            }
+            .like_button:hover + .our_button {
+                color: rgba(255,255,255,.8);
+                background: rgba(227,89,89,.8);
+            }
+            .like_button.liked + .our_button {
+                background: rgba(227,89,89,.4);
+                color: white;
+            }
+            .reblog-button {
+                width: 88px;
+                height: 28px;
+                display: inline-block;
+                text-decoration: none;
+                border-radius: 3px;
+                background: rgba(85,190,167,1);
+                color: rgba(255,255,255,1);
+                font-size: 13px;
+                font-weight: 600;
+                padding: 4px;
+                text-align: center;
+            }
+            .reblog-button:hover {
+                color: rgba(255,255,255,.8);
+                background: rgba(85,190,167,.8);
+            }
+             .post-social-icon {
+                 margin-right: 5px;
+             }
             
         </style>
         <!--<script type="text/javascript" src="http://codysherman.com/tools/infinite-scrolling/code" ></script>-->
@@ -475,7 +554,7 @@
                         <div class="advert">
                             <div class="advert-inner">
                                 <p class="advert-text">Save money without stressing about it.<p>
-                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                                <a href="https://digit.co/" class="advert-button">Learn More</a>
                             </div>
                         </div>
                         <div id="content" class="content">
@@ -523,19 +602,36 @@
                                     {block:Caption}
                                         <div class="post-caption">{Caption}</div>
                                     {/block:Caption}
-                                    <div>{LikeButton color="black"}</div>
-                                    <div>{ReblogButton color="black"}</div>
-                                    <ul class="like_and_reblog_buttons">
-                                        <li>{ReblogButton}</li>
-                                        <li>{LikeButton}</li>
-                                    </ul>
+                                    
+                                    <table class="table post-social">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="custom-like-button">
+                                                      {LikeButton}
+                                                      <span class="our_button">
+                                                        <img src="http://static.tumblr.com/h4oybik/PxHnfw1h8/icon-like.svg" class="post-social-icon"> Like
+                                                      </span>
+                                                    </div>        
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <a href="{ReblogURL}" target="_blank" class="btn reblog-button">
+                                                        <img src="http://static.tumblr.com/h4oybik/VNYnfw1df/icon-reblog.svg" class="post-social-icon"> Reblog        
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                        
                                     <p>{PhotoWidth-HighRes} x {PhotoHeight-HighRes}</p>
                                     
-                                    {block:HasTags}
-                                        <ul class="tags">
-                                            {block:Tags}<li><a href="{TagURL}">{Tag}</a> </li>{/block:Tags}
-                                        </ul>
-                                    {/block:HasTags}
+                                    <!--{block:HasTags}-->
+                                    <!--    <ul class="tags">-->
+                                    <!--        {block:Tags}<li><a href="{TagURL}">{Tag}</a> </li>{/block:Tags}-->
+                                    <!--    </ul>-->
+                                    <!--{/block:HasTags}-->
                                     
                                     {block:PostNotes}
                                         <div id="notes" class="post-notes">
