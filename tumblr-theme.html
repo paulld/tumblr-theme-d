@@ -100,11 +100,13 @@
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
                 border: 1px solid rgba(255,255,255,.5);
+                border-right: 0;
                 background: transparent;
                 font-size: 13px;
                 font-weight: 300;
                 padding: 0 11px;
                 color: #fff;
+                transition: all 1s ease;
             }
             .header-subscribe input::-webkit-input-placeholder {
                color: #fff;
@@ -155,7 +157,7 @@
                 text-align: center;
             }
             .header-subscribe button:hover {
-                color: #999;
+                color: #3e887c;
             }
             .header-subscribe button:focus {
                 outline: 0;
@@ -172,7 +174,7 @@
             .header-learn-more a:hover {
                 color: rgba(255,255,255,.9);
             }
-            .header-learn-more .greater-than {
+            .header-learn-more .right-chevron {
                 font-size: 22px;
                 margin-left: 5px;
                 line-height: 0;
@@ -198,7 +200,11 @@
                 margin-bottom: 23px;
                 border-radius: 5px;
                 position: relative;
+                background-position: top center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
+            
             .item-outer:nth-child(3n+3) {
                 margin-right: 0;
             }
@@ -274,12 +280,57 @@
             }
             
             
-            /* >>>>>>>>>>> PHOTO POST <<<<<<<<<<< */
+            /* >>>>>>>>>>> SINGLE PHOTO POST <<<<<<<<<<< */
+            
+            .photo-post.photo-only .block-photo {
+                width: 100%;
+            }
+            .photo-post.photo-only .block-photo img {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                border: 0;
+                cursor: default;
+            }
+            .photo-post.photo-only .block-photo img:hover {
+                opacity: 1;
+            }
+            .photo-post.photo-only .block-info {
+                display: none;
+            }
+            
+            .back-button {
+                display: none;
+                margin-bottom: 30px;
+                transition: all 0.2s ease;
+            }
+            .photo-post.photo-only .back-button {
+                display: block;
+            }
+            .back-button p {
+                font-size: 14px;
+                color: #33b8fa;
+                font-weight: 600;
+                line-height: 19px;
+                cursor: pointer;
+            }
+            .back-button p:hover {
+                color: #0e7bb2;
+            }
+            .left-chevron {
+                font-size: 1.4em;
+            }
+            
+            
+            /* >>>>>>>>>>>>> */
+            
             
             .block-photo img {
                 margin: 0;
                 border-radius: 8px;
                 border: 1px solid rgba(17,0,0,0.10);
+                transition: all 0.2s ease;
+                cursor: pointer;
             }
             .block-photo img:hover {
                 opacity: .75;
@@ -557,7 +608,7 @@
                 </div>
                 <div class="header-subscribe">
                     <div class="header-learn-more">
-                        <a href="http://digit.co">Learn more  about digit <span class="greater-than">&rsaquo;</span></a>
+                        <a href="http://digit.co">Learn more  about digit <span class="right-chevron">&rsaquo;</span></a>
                     </div>
                     <div class="input-group">
                         <input type="text" placeholder="Email">
@@ -578,7 +629,7 @@
                 {block:Posts}
                     {block:Photo}
                         {block:IndexPage}
-                            <article class="item-outer photo-item" style="background-image: url({PhotoURL-400});" data-width="{PhotoWidth-400}" data-height="{PhotoHeight-400}" >
+                            <article class="item-outer photo-item" style="background-image: url({PhotoURL-HighRes});" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" >
                                 <div class="item-inner">
                                     <div class="main-tag">
                                         {block:HasTags}
@@ -604,7 +655,7 @@
                         <div class="advert">
                             <div class="advert-inner">
                                 <p class="advert-text">Save money without stressing about it.<p>
-                                <a href="https://digit.co/" class="advert-button">Learn More</a>
+                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
                             </div>
                         </div>
                         <div id="content" class="content">
@@ -640,10 +691,17 @@
                         
                         {block:PermalinkPage}
                             <article class="post photo-post portrait">
+                                <div class="back-button">
+                                    <p><span class="left-chevron">&lsaquo;</span> Back to post</p>
+                                </div>
+                            
                                 <div class="block-photo">
-                                    {LinkOpenTag}
-                                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
-                                    {LinkCloseTag}
+                                    <!--{LinkOpenTag}-->
+                                    <!--    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />-->
+                                    <!--{LinkCloseTag}-->
+                                    
+                                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
+                                    
                                 </div>
                                 
                                 <div class="block-info">
@@ -738,21 +796,34 @@
         <script>
             $(function() {
                 {block:IndexPage}
-                
-                    $( ".photo-item" ).each(function( index ) {
-                        var width = $( this ).attr("data-width");
-                        var height = $( this ).attr("data-height");
-                        console.log( index + ": " + width + ' x ' + height );
-                    });
-                
+                    // $( ".photo-item" ).each(function( index ) {
+                    //     width = $(this).attr("data-width");
+                    //     height = $(this).attr("data-height");
+                    //     console.log(index + ": " + width + ' x ' + height);
+                        
+                    //     if ( width - height > 0 ) { 
+                    //         console.log(index + ": " + 'landscape');
+                    //         var newHeight = 360;
+                    //         var newWidth = width * newHeight / height;
+                    //         console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
+                    //     } else {
+                    //         console.log(index + ": " + 'portrait');
+                    //         var newWidth = 325;
+                    //         var newHeight = height * newWidth / width;
+                    //         console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
+                    //     }
+                    //     $(this).css("background-size", newWidth + "px " + newHeight + "px");
+                        
+                    // });
+                    
                 {/block:IndexPage}
                 
                 
                 {block:PermalinkPage}
                     var width = $('#photo').attr("data-width");
                     var height = $('#photo').attr("data-height");
-                    // console.log(width, ' x ', height);
-                    if ( width < height ) {
+                    console.log(width, ' x ', height);
+                    if ( width - height > 0 ) {
                         // console.log('CHANGE TO LANDSCAPE');
                         $('.photo-post').removeClass('portrait').addClass('landscape');
                     }
