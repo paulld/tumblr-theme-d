@@ -7,6 +7,10 @@
     <head>
         {block:Description}
         <meta name="description" content="{MetaDescription}" />
+        <meta name="color:Paul" content="#eee"/>
+        <meta name="text:Repeat CTA Banner every x Posts" content="12"/>
+        
+        
         {/block:Description}
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
@@ -222,11 +226,11 @@
                 color: #fff;
             }
             .item-inner:hover {
-                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
-                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
-                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
-                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
-                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
             }
             .main-tag {
                 height: 52px;
@@ -291,6 +295,7 @@
                 border-radius: 0;
                 border: 0;
                 cursor: default;
+                border: 1px solid #fff;
             }
             .photo-post.photo-only .block-photo img:hover {
                 opacity: 1;
@@ -317,8 +322,9 @@
             .back-button p:hover {
                 color: #0e7bb2;
             }
-            .left-chevron {
-                font-size: 1.4em;
+            .minimize {
+                font-size: 1.3em;
+                margin-right: 5px;
             }
             
             
@@ -329,6 +335,9 @@
                 margin: 0;
                 border-radius: 8px;
                 border: 1px solid rgba(17,0,0,0.10);
+                /*-webkit-box-shadow: 1px 1px 1px 1px rgba(17,0,0,0.06);*/
+                /*-moz-box-shadow: 1px 1px 1px 1px rgba(17,0,0,0.06);*/
+                /*box-shadow: 1px 1px 1px 1px rgba(17,0,0,0.06);*/
                 transition: all 0.2s ease;
                 cursor: pointer;
             }
@@ -692,7 +701,7 @@
                         {block:PermalinkPage}
                             <article class="post photo-post portrait">
                                 <div class="back-button">
-                                    <p><span class="left-chevron">&lsaquo;</span> Back to post</p>
+                                    <p><span class="minimize">&times;</span> Minimize Image</p>
                                 </div>
                             
                                 <div class="block-photo">
@@ -841,6 +850,16 @@
                           $(".show-more-notes").css("visibility", "hidden");
                         });
                     {/block:PostNotes}
+                    
+                    $('#photo').click(function() {
+                        $('.photo-post').addClass('photo-only');
+                        $('.advert').addClass('hide');
+                    });
+                    $('.back-button').click(function() {
+                        $('.photo-post').removeClass('photo-only');
+                        $('.advert').removeClass('hide');
+                    });
+                    
                 {/block:PermalinkPage}
             });
         </script>
