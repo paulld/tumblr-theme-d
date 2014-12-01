@@ -550,7 +550,6 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <!--<img src="http://static.tumblr.com/h4oybik/uPvnfpali/logo-main.png"/>-->
                         <img src="http://static.tumblr.com/h4oybik/Fcxnfvnm0/logo-main.svg">
                         <h1 class="sr-only">{Title}</h1>
                     </a>
@@ -578,10 +577,8 @@
                 {block:Posts}
                     {block:Photo}
                         {block:IndexPage}
-                            <article class="item-outer photo-item" style="background-image: url({PhotoURL-HighRes});">
+                            <article class="item-outer photo-item" style="background-image: url({PhotoURL-400});" data-width="{PhotoWidth-400}" data-height="{PhotoHeight-400}" >
                                 <div class="item-inner">
-                                    <!--<a href="{Permalink}"><img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" /></a>-->
-                                    
                                     <div class="main-tag">
                                         {block:HasTags}
                                             {block:Tags}
@@ -643,7 +640,9 @@
                         {block:PermalinkPage}
                             <article class="post photo-post">
                                 <div class="post-photo portrait">
-                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" />{LinkCloseTag}
+                                    {LinkOpenTag}
+                                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
+                                    {LinkCloseTag}
                                 </div>
                                 
                                 <div class="post-info portrait">
@@ -676,8 +675,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                        
-                                    <p>{PhotoWidth-HighRes} x {PhotoHeight-HighRes}</p>
                                     
                                     <!--{block:HasTags}-->
                                     <!--    <ul class="tags">-->
@@ -693,7 +690,15 @@
                                         </div>
                                     {/block:PostNotes}
                                 </div>
+                                
                             </article>
+                        </div>
+                    </div>
+                    <div class="advert">
+                        <div class="advert-inner">
+                            <p class="advert-text">Save money without stressing about it.<p>
+                            <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                        
                         {/block:PermalinkPage}
                     
                     {/block:Photo}
@@ -726,22 +731,44 @@
         </footer>
 
 
-
-
-        <!--Links to jQuery library, Masonry, infinite scroll and imagesLoaded-->
+ 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <!--<script src="http://static.tumblr.com/wgijwsy/Ebfm2v4gy/jquery.masonry.min.js"></script>-->
-        <!--<script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>-->
         
         <script>
             $(function() {
-                $(".action").html(function () {
-                    return $(this).html().replace("and added:", ""); 
-                });
-                $(".show-more-notes").click(function() {
-                  $('ol.notes li').css("visibility", "visible");
-                  $(".show-more-notes").css("visibility", "hidden");
-                });
+                {block:IndexPage}
+                
+                    $( ".photo-item" ).each(function( index ) {
+                        var width = $( this ).attr("data-width");
+                        var height = $( this ).attr("data-height");
+                        console.log( index + ": " + width + ' x ' + height );
+                    });
+                
+                {/block:IndexPage}
+                
+                
+                {block:PermalinkPage}
+                    var width = $('#photo').attr("data-width");
+                    var height = $('#photo').attr("data-height");
+                    console.log(width, ' x ', height);
+                    if (width > height) {
+                        
+                    }
+                    
+                    {block:PostNotes} 
+                        $(".action").html(function () {
+                            return $(this).html().replace("and added:", ""); 
+                        });
+                        var notes = $('ol.notes li');
+                        if (notes.length < 7) {
+                            $(".show-more-notes").css("visibility", "hidden");
+                        }
+                        $(".show-more-notes").click(function() {
+                          $('ol.notes li').css("visibility", "visible");
+                          $(".show-more-notes").css("visibility", "hidden");
+                        });
+                    {/block:PostNotes}
+                {/block:PermalinkPage}
             });
         </script>
         
