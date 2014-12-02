@@ -264,6 +264,9 @@
             .main-caption {
                 padding: 20px 10px 0;
             }
+            .main-caption p:nth-of-type(n+2) {
+                display: none;
+            }
             .main-caption a, .main-caption a h1 {
                 font-size: 32px;
                 margin-top: 30px;
@@ -277,9 +280,6 @@
             .main-caption a h1 {
                 margin-top: 0;
             }
-            .main-caption .caption-body {
-                display: none;
-            }
             .main-link {
                 position:absolute; 
                 width:100%;
@@ -290,7 +290,7 @@
             }
             
             
-            /* >>>>>>>>>>> SINGLE PHOTO POST <<<<<<<<<<< */
+            /* >>>>>>>>>>> ZOOM ON IMAGE <<<<<<<<<<< */
             
             .photo-post.photo-only .block-photo {
                 width: 100%;
@@ -334,7 +334,7 @@
             }
             
             
-            /* >>>>>>>>>>>>> */
+            /* >>>>>>>>>>> SINGLE PHOTO POST <<<<<<<<<<< */
             
             
             .block-photo img {
@@ -372,11 +372,8 @@
                 margin-bottom: 40px;
             }
 
-            li.info-tags {
+            li.info-tags:nth-of-type(n+2) {
                 display: none;
-            }
-            li.info-tags:first-child {
-                display: inline-block;
             }
             .info-tags a {
                 font-size: 11px;
@@ -407,7 +404,7 @@
                 line-height: 65px;
                 margin-bottom: 40px;
             }
-            .post-caption > .caption-body {
+            .post-caption p:nth-of-type(n+2) {
                 font-size: 18px;
                 color: #3e5a6a;
                 line-height: 30px;
@@ -650,6 +647,9 @@
                 -moz-box-shadow:    inset 0px 1px 0px rgba(255,255,255,0.050);
                 box-shadow:         inset 0px 1px 0px rgba(255,255,255,0.050);
             }
+            .featured .item-outer:hover {
+                opacity: .75;    
+            }
             .featured-photo {
                 display: inline-block;
                 width: 443px;
@@ -677,8 +677,14 @@
             .btn.featured-article:hover {
                 background: rgba(88, 201, 169, .8);
             }
-            .featured-info .date-and-notes {
+            .featured-info .date-and-notes, .featured-info .date-and-notes a {
+                text-decoration: none;
+                font-size: 14px;
                 color: rgba(0,0,0,.25);
+                transition: all .2s ease-in-out;
+            }
+            .featured-info .date-and-notes a:hover {
+                color: rgba(0,0,0,.5);
             }
             .featured-tag {
                 font-size: 11px;
@@ -689,23 +695,19 @@
                 text-transform: uppercase;
                 transition: all .2s ease-in-out;
             }
-            .featured .caption-title, .featured .post-caption {
+            .featured .post-caption {
                 color: rgba(255,255,255,1);
                 line-height: 56px;
                 margin-bottom: 30px;
                 margin-top: 30px;
             }
-            .featured p.caption-body {
-                display: none;
-            }
-            .featured p.caption-body:first-of-type {
-                display: block;
+            .featured p:nth-of-type(2) {
                 color: rgba(255,255,255,.5);
                 height: 90px;
                 overflow: hidden;
             }
-            .featured .item-outer:hover {
-                opacity: .75;    
+            .featured p:nth-of-type(n+3) {
+                display: none;
             }
             
         </style>
@@ -743,10 +745,10 @@
             <div id="featured" class="featured" style="display: none;">
                 <div class=featured-inner>
                     <div class="featured-photo">
-                        <!-- BACKGROUND -->
+                        <!-- INSERT BACKGROUND IMAGE -->
                         <div id="feature-image" class="item-outer" >
-                            <!-- URL1 -->
-                            <a id="feature-link1">
+                            <!-- INSERT URL -->
+                            <a id="feature-url1">
                                 <span class="main-link"></span>
                             </a>
                         </div>
@@ -754,29 +756,28 @@
                     <div class="featured-info">
                         <ul class="list-inline">           
                             <li>
-                                <!-- URL2 -->
-                                <a id="feature-link2" class="btn featured-article">Featured Article</a>
+                                <!-- INSERT URL -->
+                                <a id="feature-url2" class="btn featured-article">Featured Article</a>
                             </li>
                             <li class="featured-tag">
-                                <!-- TAG -->
+                                <!-- INSERT FIRST TAG -->
                                 <span id="feature-tag"></span>
                             </li>
                             <li class="date-and-notes">
                                 <img src="{image:IconDateDark}">
-                                <!-- DATE -->
-                                <span id="feature-date"></span>
+                                <!-- INSERT URL -->
+                                <a id="feature-url3">
+                                    <!-- INSERT DATE -->
+                                    <span id="feature-date"></span>
+                                </a>
                             </li>
                             <!--<li class="date-and-notes">-->
                             <!--    <img src="{image:IconNotesDark}">-->
-                                 <!--NUMBER OF NOTES -->
-                            <!--    1 note-->
+                                 <!--INSERT NUMBER OF NOTES -->
                             <!--</li>-->
                         </ul>
                         <div id="feature-caption" class="post-caption">
-                            <!-- CAPTION -->
-                            <!--<h1 class="caption-title">The evolution of Google Search</h1>-->
-                            <!--<p class="caption-body">Nunc nulla. Integer tincidunt. Curabitur blandit mollis lacus. Praesent ac sem eget est egestas volutpat. Ut leo. Donec vitae sapien ut libero venenatis faucibus.</p>-->
-                            <!--<p class="caption-body">Sed fringilla mauris sit amet nibh. Vestibulum eu odio. Phasellus magna. Quisque malesuada placerat nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit.</p>-->
+                            <!-- INSERT CAPTION -->
                         </div>
                     </div>
                 </div>
@@ -1051,17 +1052,14 @@
         <!-- G+ share button -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
-        
-        <!--<script src="http://lab.bandit.co.nz/sites/tumblr/bandit-tumblr-featured.js" language="javascript" type="text/javascript"></script> -->
-        
+    
         
         
-        
-            <!-- *********************
-                FEATURED POST
-                Code borrowed from james <at> bandit.co.nz
-                http://blog.bandit.co.nz/post/87511743/tumblr-featured-posts-javascript-plugin
-                ********************* -->
+        <!-- *********************
+            DIGIT - FEATURED POST
+            inspired from plugin by james <at> bandit.co.nz
+            http://blog.bandit.co.nz/post/87511743/tumblr-featured-posts-javascript-plugin
+            ********************* -->
         <script>    
             /*
                 TUMBLR FEATURED POSTS SCRIPT
@@ -1102,8 +1100,9 @@
                             };
                             var url = "url('" + p["photo-url-500"] + "')";
                             $('#feature-image').css("background-image", url);
-                            $('#feature-link1').attr("href", p["url-with-slug"]);
-                            $('#feature-link2').attr("href", p["url-with-slug"]);
+                            $('#feature-url1').attr("href", p["url-with-slug"]);
+                            $('#feature-url2').attr("href", p["url-with-slug"]);
+                            $('#feature-url3').attr("href", p["url-with-slug"]);
                             $('#feature-caption').html(p["photo-caption"]);
 
                             var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];

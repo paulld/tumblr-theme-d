@@ -1,3 +1,14 @@
+            /*
+                TUMBLR FEATURED POSTS SCRIPT
+                Automatically gets all posts tagged with "featured" and lists them
+                REQUIRES JQUERY!
+                --------------------------------------
+                Created by james <at> bandit.co.nz
+                http://blog.bandit.co.nz
+                
+                Some code borrowed from Jacob DeHart's AJAX Search:
+                http://blog.bandit.co.nz/post/80415548/tumblr-ajax-inline-search
+            */
             Featured = {
                 'apiNum' : 50, // how many posts to read
                 'listId' : 'featured', // the id of the div to write to
@@ -26,14 +37,16 @@
                             };
                             var url = "url('" + p["photo-url-500"] + "')";
                             $('#feature-image').css("background-image", url);
-                            $('#feature-link1').attr("href", p["url-with-slug"]);
-                            $('#feature-link2').attr("href", p["url-with-slug"]);
+                            $('#feature-url1').attr("href", p["url-with-slug"]);
+                            $('#feature-url2').attr("href", p["url-with-slug"]);
+                            $('#feature-url3').attr("href", p["url-with-slug"]);
                             $('#feature-caption').html(p["photo-caption"]);
 
                             var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-                            var date = monthNames[p["date-gmt"].slice(5,7)] + " " + p["date-gmt"].slice(8,11);
+                            var date = monthNames[p["date-gmt"].slice(5,7)-1] + " " + p["date-gmt"].slice(8,11);
                             $('#feature-date').html(date);
                             $('#feature-tag').html(p["tags"][0]);
+                            
                             
                             // innerDiv = document.createElement('innerDiv');
 
