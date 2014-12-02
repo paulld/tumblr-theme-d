@@ -212,6 +212,7 @@
                 background-position: top center;
                 background-repeat: no-repeat;
                 background-size: cover;
+                transition: all .2s ease-in-out;
             }
             
             .item-outer:nth-child(3n+3) {
@@ -673,6 +674,9 @@
                 letter-spacing: 1px;
                 margin-right: 12px;
             }
+            .btn.featured-article:hover {
+                background: rgba(88, 201, 169, .8);
+            }
             .featured-info .date-and-notes {
                 color: rgba(0,0,0,.25);
             }
@@ -683,6 +687,7 @@
                 line-height: 15px;
                 letter-spacing: 1px;
                 text-transform: uppercase;
+                transition: all .2s ease-in-out;
             }
             .featured .caption-title, .featured .post-caption {
                 color: rgba(255,255,255,1);
@@ -698,6 +703,9 @@
                 color: rgba(255,255,255,.5);
                 height: 90px;
                 overflow: hidden;
+            }
+            .featured .item-outer:hover {
+                opacity: .75;    
             }
             
         </style>
@@ -734,11 +742,19 @@
         {block:IndexPage}
             <div id="featured" class="featured">
                 <div class=featured-inner>
-                    <div class="featured-photo"><div class="item-outer" style="background-image: url('http://40.media.tumblr.com/217fee9675fa8809661648993ffc83a3/tumblr_nfowlcYrEK1u4vaolo1_500.jpg');" ></div></div>
+                    <div class="featured-photo">
+                        <div class="item-outer" style="background-image: url('http://40.media.tumblr.com/217fee9675fa8809661648993ffc83a3/tumblr_nfowlcYrEK1u4vaolo1_500.jpg');" >
+                            <!--<div class="item-inner">-->
+                                <a href="http://digit-dev.tumblr.com/post/103711343023/world-octopus-day">
+                                    <span class="main-link"></span>
+                                </a>
+                            <!--</div>-->
+                        </div>
+                    </div>
                     <div class="featured-info">
                         <ul class="list-inline">           
                             <li>
-                                <a href="#" class="btn featured-article">Featured Article</a>
+                                <a href="http://digit-dev.tumblr.com/post/103711343023/world-octopus-day" class="btn featured-article">Featured Article</a>
                             </li>
                             <li class="featured-tag">
                                 infographic
