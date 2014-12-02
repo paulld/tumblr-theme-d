@@ -9,10 +9,11 @@
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
         
-        <meta name="text:CTA Banner repeats every x Posts" content="12"/>
         <meta name="image:HeaderLogo" content=""/>
         <meta name="image:IconDate" content=""/>
+        <meta name="image:IconDateDark" content=""/>
         <meta name="image:IconNotes" content=""/>
+        <meta name="image:IconNotesDark" content=""/>
         <meta name="image:IconLike" content=""/>
         <meta name="image:IconReblog" content=""/>
         
@@ -370,7 +371,12 @@
                 margin-bottom: 40px;
             }
 
-            
+            li.info-tags {
+                display: none;
+            }
+            li.info-tags:first-child {
+                display: inline-block;
+            }
             .info-tags a {
                 font-size: 11px;
                 color: #33b8fa;
@@ -619,6 +625,81 @@
                 color: #1c313d;
             }
             
+            
+            /* >>>>>>>>>>> FEATURED ARTICLE <<<<<<<<<<< */
+            
+            .featured {
+                /*position: fixed;*/
+                background-color: #488c9b;
+                background: -webkit-linear-gradient( right, #58c9a9, #488c9b);
+                background:    -moz-linear-gradient( right, #58c9a9, #488c9b);
+                background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
+                background:      -o-linear-gradient( right, #58c9a9, #488c9b);
+                background:         linear-gradient( to left, #58c9a9, #488c9b);
+                height: 460px;
+                width: 100%;
+                margin: 0px 0;
+            }
+            .featured-inner {
+                width: 1030px;
+                height: 460px;
+                margin: 0 auto;
+                padding-top: 50px;
+                border-top: 1px solid rgba(0,0,0,.1);;
+                -moz-box-shadow:    inset 0px 1px 0px rgba(255,255,255,0.050);
+                box-shadow:         inset 0px 1px 0px rgba(255,255,255,0.050);
+            }
+            .featured-photo {
+                display: inline-block;
+                width: 443px;
+            }
+            .featured-info {
+                display: inline-block;
+                max-width: 583px;
+                vertical-align: top;
+                padding-top: 37px;
+                height: 323px;
+                overflow: hidden;
+            }
+            .btn.featured-article {
+                background: #57e2ad;
+                width: 151px;
+                height: 30px;
+                border-radius: 0;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 11px;
+                line-height: 15px;
+                letter-spacing: 1px;
+                margin-right: 12px;
+            }
+            .featured-info .date-and-notes {
+                color: rgba(0,0,0,.25);
+            }
+            .featured-tag {
+                font-size: 11px;
+                /*color: #0e7bb2;*/
+                color: rgba(0,0,0,.25);
+                line-height: 15px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+            .featured .caption-title, .featured .post-caption {
+                color: rgba(255,255,255,1);
+                line-height: 56px;
+                margin-bottom: 30px;
+                margin-top: 30px;
+            }
+            .featured p.caption-body {
+                display: none;
+            }
+            .featured p.caption-body:first-of-type {
+                display: block;
+                color: rgba(255,255,255,.5);
+                height: 90px;
+                overflow: hidden;
+            }
+            
         </style>
         
     </head>
@@ -649,6 +730,37 @@
                 </div>
             </div>
         </header>
+        
+        {block:IndexPage}
+            <div id="featured" class="featured">
+                <div class=featured-inner>
+                    <div class="featured-photo"><div class="item-outer" style="background-image: url('http://40.media.tumblr.com/217fee9675fa8809661648993ffc83a3/tumblr_nfowlcYrEK1u4vaolo1_500.jpg');" ></div></div>
+                    <div class="featured-info">
+                        <ul class="list-inline">           
+                            <li>
+                                <a href="#" class="btn featured-article">Featured Article</a>
+                            </li>
+                            <li class="featured-tag">
+                                infographic
+                            </li>
+                            <li class="date-and-notes">
+                                <img src="{image:IconDateDark}">
+                                <time datetime="2014-11-27 3:50am">Nov 27</time>
+                            </li>
+                            <li class="date-and-notes">
+                                <img src="{image:IconNotesDark}">
+                                1 note
+                            </li>
+                        </ul>
+                        <div class="post-caption">
+                            <h1 class="caption-title">The evolution of Google Search</h1>
+                            <p class="caption-body">Nunc nulla. Integer tincidunt. Curabitur blandit mollis lacus. Praesent ac sem eget est egestas volutpat. Ut leo. Donec vitae sapien ut libero venenatis faucibus.</p>
+                            <p class="caption-body">Sed fringilla mauris sit amet nibh. Vestibulum eu odio. Phasellus magna. Quisque malesuada placerat nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/block:IndexPage}
         
         <div id="content" class="content">
             <div class="content-inner">
@@ -919,6 +1031,78 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
         
+        <!--<script src="http://lab.bandit.co.nz/sites/tumblr/bandit-tumblr-featured.js" language="javascript" type="text/javascript"></script> -->
         
+        
+        
+        
+            <!-- *********************
+                FEATURED POST
+                Code borrowed from james <at> bandit.co.nz
+                http://blog.bandit.co.nz/post/87511743/tumblr-featured-posts-javascript-plugin
+                ********************* -->
+        <script>    
+            /*
+                TUMBLR FEATURED POSTS SCRIPT
+                Automatically gets all posts tagged with "featured" and lists them
+                REQUIRES JQUERY!
+                --------------------------------------
+                Created by james <at> bandit.co.nz
+                http://blog.bandit.co.nz
+                
+                Some code borrowed from Jacob DeHart's AJAX Search:
+                http://blog.bandit.co.nz/post/80415548/tumblr-ajax-inline-search
+            */
+                        Featured = {
+              'apiNum' : 50, // how many posts to read
+              'listId' : 'featured', // the id of the div to write to
+              'tagName' : 'featured', // the name of the tag we're searching for
+              'linkAppend' : '', // html to append to the end of each linked post
+              
+              'postDB' : [],
+              'listPos' : 0,
+              'doList' : function (where) {
+                var innerDiv; var outerDiv = $('#'+where);
+                var titles = {"link":"link-text", "photo":"photo-caption", "quote":"quote-text", "regular":"regular-title", "video":"video-caption"}
+                
+                // cycle through post database
+                pcount = Featured.postDB.length;
+                for (i=Featured.listPos; i<pcount; i++) {
+                  p = Featured.postDB[i];
+            
+                  if (p[titles[p.type]] != '') {
+                    titlestr = p[titles[p.type]].replace(/<\/?[^>]+>/gi, '');
+                  } else {
+                    titlestr = p['url']
+                  };
+                  console.log(p);
+                  innerDiv = document.createElement('innerDiv');
+
+                  $(innerDiv).html('<a class="'+Featured.tagName+'-'+p.type+'" href="'+p["url-with-slug"]+'">'+titlestr+Featured.linkAppend+'</a>');
+
+                  outerDiv.append(innerDiv);
+                  
+                  Featured.listPos = pcount;
+                }
+              },
+              'getData' : function() {
+                $.get('/api/read/json?num='+Featured.apiNum+'&tagged='+Featured.tagName,
+                  function(data) {
+                    eval(data);
+                    // for (i=0; i<tumblr_api_read.posts.length; i++) {
+                    //   Featured.postDB.push(tumblr_api_read.posts[i]);
+                    // }
+                    Featured.postDB.push(tumblr_api_read.posts[0]);     // ONLY SHOW THE LAST FEATURED POST
+                    Featured.doList(Featured.listId);
+                  }
+                );
+              }
+            };
+            
+            $(document).ready(function(){
+              Featured.getData();
+            });
+            
+        </script>
     </body>
 </html>
