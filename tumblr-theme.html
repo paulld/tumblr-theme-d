@@ -740,38 +740,43 @@
         </header>
         
         {block:IndexPage}
-            <div id="featured" class="featured">
+            <div id="featured" class="featured" style="display: none;">
                 <div class=featured-inner>
                     <div class="featured-photo">
-                        <div class="item-outer" style="background-image: url('http://40.media.tumblr.com/217fee9675fa8809661648993ffc83a3/tumblr_nfowlcYrEK1u4vaolo1_500.jpg');" >
-                            <!--<div class="item-inner">-->
-                                <a href="http://digit-dev.tumblr.com/post/103711343023/world-octopus-day">
-                                    <span class="main-link"></span>
-                                </a>
-                            <!--</div>-->
+                        <!-- BACKGROUND -->
+                        <div id="feature-image" class="item-outer" >
+                            <!-- URL1 -->
+                            <a id="feature-link1">
+                                <span class="main-link"></span>
+                            </a>
                         </div>
                     </div>
                     <div class="featured-info">
                         <ul class="list-inline">           
                             <li>
-                                <a href="http://digit-dev.tumblr.com/post/103711343023/world-octopus-day" class="btn featured-article">Featured Article</a>
+                                <!-- URL2 -->
+                                <a id="feature-link2" class="btn featured-article">Featured Article</a>
                             </li>
                             <li class="featured-tag">
-                                infographic
+                                <!-- TAG -->
+                                <span id="feature-tag"></span>
                             </li>
                             <li class="date-and-notes">
                                 <img src="{image:IconDateDark}">
-                                <time datetime="2014-11-27 3:50am">Nov 27</time>
+                                <!-- DATE -->
+                                <span id="feature-date"></span>
                             </li>
-                            <li class="date-and-notes">
-                                <img src="{image:IconNotesDark}">
-                                1 note
-                            </li>
+                            <!--<li class="date-and-notes">-->
+                            <!--    <img src="{image:IconNotesDark}">-->
+                                 <!--NUMBER OF NOTES -->
+                            <!--    1 note-->
+                            <!--</li>-->
                         </ul>
-                        <div class="post-caption">
-                            <h1 class="caption-title">The evolution of Google Search</h1>
-                            <p class="caption-body">Nunc nulla. Integer tincidunt. Curabitur blandit mollis lacus. Praesent ac sem eget est egestas volutpat. Ut leo. Donec vitae sapien ut libero venenatis faucibus.</p>
-                            <p class="caption-body">Sed fringilla mauris sit amet nibh. Vestibulum eu odio. Phasellus magna. Quisque malesuada placerat nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit.</p>
+                        <div id="feature-caption" class="post-caption">
+                            <!-- CAPTION -->
+                            <!--<h1 class="caption-title">The evolution of Google Search</h1>-->
+                            <!--<p class="caption-body">Nunc nulla. Integer tincidunt. Curabitur blandit mollis lacus. Praesent ac sem eget est egestas volutpat. Ut leo. Donec vitae sapien ut libero venenatis faucibus.</p>-->
+                            <!--<p class="caption-body">Sed fringilla mauris sit amet nibh. Vestibulum eu odio. Phasellus magna. Quisque malesuada placerat nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit.</p>-->
                         </div>
                     </div>
                 </div>
@@ -1069,54 +1074,72 @@
                 Some code borrowed from Jacob DeHart's AJAX Search:
                 http://blog.bandit.co.nz/post/80415548/tumblr-ajax-inline-search
             */
-                        Featured = {
-              'apiNum' : 50, // how many posts to read
-              'listId' : 'featured', // the id of the div to write to
-              'tagName' : 'featured', // the name of the tag we're searching for
-              'linkAppend' : '', // html to append to the end of each linked post
-              
-              'postDB' : [],
-              'listPos' : 0,
-              'doList' : function (where) {
-                var innerDiv; var outerDiv = $('#'+where);
-                var titles = {"link":"link-text", "photo":"photo-caption", "quote":"quote-text", "regular":"regular-title", "video":"video-caption"}
-                
-                // cycle through post database
-                pcount = Featured.postDB.length;
-                for (i=Featured.listPos; i<pcount; i++) {
-                  p = Featured.postDB[i];
-            
-                  if (p[titles[p.type]] != '') {
-                    titlestr = p[titles[p.type]].replace(/<\/?[^>]+>/gi, '');
-                  } else {
-                    titlestr = p['url']
-                  };
-                  console.log(p);
-                  innerDiv = document.createElement('innerDiv');
+            Featured = {
+                'apiNum' : 50, // how many posts to read
+                'listId' : 'featured', // the id of the div to write to
+                'tagName' : 'featured', // the name of the tag we're searching for
+                'linkAppend' : '', // html to append to the end of each linked post
 
-                  $(innerDiv).html('<a class="'+Featured.tagName+'-'+p.type+'" href="'+p["url-with-slug"]+'">'+titlestr+Featured.linkAppend+'</a>');
+                'postDB' : [],
+                'listPos' : 0,
+                'doList' : function (where) {
+                    var innerDiv; var outerDiv = $('#'+where);
+                    var titles = {"link":"link-text", "photo":"photo-caption", "quote":"quote-text", "regular":"regular-title", "video":"video-caption"}
 
-                  outerDiv.append(innerDiv);
-                  
-                  Featured.listPos = pcount;
+                    // cycle through post database
+                    pcount = Featured.postDB.length;
+                    console.log('pcount', pcount);
+
+                    if (pcount > 0) {
+                        $(outerDiv).show();
+                        for (i=Featured.listPos; i<pcount; i++) {
+                            p = Featured.postDB[i];
+
+                            if (p[titles[p.type]] != '') {
+                                titlestr = p[titles[p.type]].replace(/<\/?[^>]+>/gi, '');
+                            } else {
+                                titlestr = p['url'];
+                            };
+                            var url = "url('" + p["photo-url-500"] + "')";
+                            $('#feature-image').css("background-image", url);
+                            $('#feature-link1').attr("href", p["url-with-slug"]);
+                            $('#feature-link2').attr("href", p["url-with-slug"]);
+                            $('#feature-caption').html(p["photo-caption"]);
+
+                            var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+                            var date = monthNames[p["date-gmt"].slice(5,7)-1] + " " + p["date-gmt"].slice(8,11);
+                            $('#feature-date').html(date);
+                            $('#feature-tag').html(p["tags"][0]);
+                            
+                            
+                            // innerDiv = document.createElement('innerDiv');
+
+                            // $(innerDiv).html('<a class="'+Featured.tagName+'-'+p.type+'" href="'+p["url-with-slug"]+'">'+titlestr+Featured.linkAppend+'</a>');
+                            console.log(p);
+                            // outerDiv.append(innerDiv);
+
+                            Featured.listPos = pcount;
+                        }
+                    } else {
+                        $(outerDiv).hide();
+                    }
+                },
+                'getData' : function() {
+                    $.get('/api/read/json?num='+Featured.apiNum+'&tagged='+Featured.tagName,
+                        function(data) {
+                            eval(data);
+                            // for (i=0; i<tumblr_api_read.posts.length; i++) {
+                            //   Featured.postDB.push(tumblr_api_read.posts[i]);
+                            // }
+                            Featured.postDB.push(tumblr_api_read.posts[0]);     // ONLY SHOW THE LAST FEATURED POST
+                            Featured.doList(Featured.listId);
+                        }
+                    );
                 }
-              },
-              'getData' : function() {
-                $.get('/api/read/json?num='+Featured.apiNum+'&tagged='+Featured.tagName,
-                  function(data) {
-                    eval(data);
-                    // for (i=0; i<tumblr_api_read.posts.length; i++) {
-                    //   Featured.postDB.push(tumblr_api_read.posts[i]);
-                    // }
-                    Featured.postDB.push(tumblr_api_read.posts[0]);     // ONLY SHOW THE LAST FEATURED POST
-                    Featured.doList(Featured.listId);
-                  }
-                );
-              }
             };
             
             $(document).ready(function(){
-              Featured.getData();
+                Featured.getData();
             });
             
         </script>
