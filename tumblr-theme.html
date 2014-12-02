@@ -7,8 +7,9 @@
     <head>
         {block:Description}
         <meta name="description" content="{MetaDescription}" />
-        <meta name="text:CTA Banner repeats every x Posts" content="12"/>
+        {/block:Description}
         
+        <meta name="text:CTA Banner repeats every x Posts" content="12"/>
         <meta name="image:HeaderLogo" content=""/>
         <meta name="image:IconDate" content=""/>
         <meta name="image:IconNotes" content=""/>
@@ -16,7 +17,6 @@
         <meta name="image:IconReblog" content=""/>
         
         
-        {/block:Description}
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
             {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}
@@ -414,6 +414,7 @@
             }
             table.table.post-social > tbody > tr > td {
                 border-top: 0;
+                width: 25%;
             }
             .custom-like-button {
                 position: relative;
@@ -753,19 +754,36 @@
                                                     <div class="custom-like-button">
                                                       {LikeButton}
                                                       <span class="our_button">
-                                                        <!--<img src="http://static.tumblr.com/h4oybik/PxHnfw1h8/icon-like.svg" class="post-social-icon"> Like-->
                                                         <img src="{image:IconLike}" class="post-social-icon"> Like
                                                       </span>
                                                     </div>        
+                                                </td>
+                                                <td>
+                                                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="hellodigit">Tweet</a>
+                                                </td>
+                                                <td>
+                                                    <div class="fb-like" data-href="{Permalink}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                                                </td>
+                                                <td>
+                                                    <a href="//www.pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description={PlaintextCaption} - {Title}" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <a href="{ReblogURL}" target="_blank" class="btn reblog-button">
-                                                        <!--<img src="http://static.tumblr.com/h4oybik/VNYnfw1df/icon-reblog.svg" class="post-social-icon"> Reblog -->
                                                         <img src="{image:IconReblog}" class="icon-reblog"> Reblog 
                                                     </a>
                                                 </td>
+                                                <td>
+                                                    <div class="g-plusone" data-annotation="inline" data-width="120" data-href="{Permalink}"></div>
+                                                </td>
+                                                <td>
+                                                    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US </script>
+                                                    <script type="IN/Share" data-url="{Permalink}" data-counter="right"></script>
+                                                </td>
+                                                <td>
+                                                    <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit7.gif" alt="submit to reddit" border="0" /> </a>
+                                                </td> 
                                             </tr>
                                         </tbody>
                                     </table>
@@ -883,6 +901,24 @@
                 {/block:PermalinkPage}
             });
         </script>
+        
+        <!-- Facebook share button -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <!-- Twitter share button -->
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <!-- Pinterest share button -->
+        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+        <!-- G+ share button -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+        
         
     </body>
 </html>
