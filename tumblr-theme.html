@@ -32,6 +32,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        
         <style>
             /* >>>>>>>>>>> GENERAL LAYOUT <<<<<<<<<<< */
             
@@ -710,6 +712,13 @@
                 display: none;
             }
             
+            
+            /* >>>>>>>>>>> RELATED POSTS <<<<<<<<<<< */
+            
+            .loading {
+                text-align: center;
+            }
+            
         </style>
         
     </head>
@@ -938,8 +947,221 @@
                         <div class="advert-inner">
                             <p class="advert-text">Save money without stressing about it.<p>
                             <a href="https://digit.co/" class="btn advert-button">Learn More</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <div id="related-posts-outer"></div>
+                    
+                    
+                    
+                    <!-- --------------------------------------------------------------------------------------------
+            ---------------------------------------------------------------------------------------------
+            DIGIT - RELATED POSTS
+            inspired from plugin by In-Link
+            http://tumblr-in-link.googlecode.com/svn/branches/Version%202.0/js/tumblr-in-link.2.0.js
+        -->
+                    <script type='text/javascript'>
                         
-                        {/block:PermalinkPage}
+                        (function(s) {
+                            var titles = [];
+                            var links = [];
+                            var images = [];
+                            var notes = [];
+                            var captions = [];
+                            var postTags = [];
+                            var items = [];
+                            var types = [];
+                            var $jo = jQuery.noConflict()
+            
+                            var config = {
+                                'num': 6,
+                                'len': 60,
+                                'size': 500,
+                                'title': '',
+                                'tags': '{block:Tags}{Tag},{/block:Tags}',
+                                'type': ''
+                            }
+                            if(typeof(config.tags)=='undefined'){ error(0); return; }
+                            if(typeof(config.imageurl)=='undefined'){ config.imageurl='http://tumblr-in-link.googlecode.com/svn/branches/Version 2.0/img/placeholder.jpg'; }
+                            
+                            
+                            var loadingDiv = 
+                                '<div id="content" class="content">'+
+                                    '<div class="content-inner" id="related-posts">'+
+                                        '<div id="loading" class="loading">Loading related articles...</div>'+
+                                    '</div>'+
+                                '</div>';
+                            
+                            
+                            var tags = config.tags.slice(0,-1).split(',');
+            
+                            $jo(document).ready(function() {
+                                
+                                
+                                function getRelated() {
+                                    var req;
+                                    for(var i=0; i<tags.length; i++){
+                                        req=$jo.getJSON('http://api.tumblr.com/v2/blog/'+document.domain+'/posts?api_key=VspHunyBAE3ZhmnivmJ7F8AMZX84Ptz96XCHGCdCRyg0DLNKif&limit='+config.num+'&offset=0&type='+config.type+'&tag='+escape(tags[i])+'&jsonp=?', 
+                                        function(pippo) {
+                                            $jo(pippo.response.posts).each(function(i, post) {
+                                                /*Set Text*/
+                                                var text='';
+                                                if(post.type=='text') text+=post['title'];
+                                                else if(post.type=='link') text+=post['title'];
+                                                else if(post.type=='chat') text+=post['body'];
+                                                else if(post.type=='quote') text+=post['text'];
+                                                else if(post.type=='photo') text+=post['caption'];
+                                                else if(post.type=='video') text+=post['caption'];
+                                                else if(post.type=='audio') text+=post['caption'];
+                                                else if(post.type=='answer') text+=post['question'];
+            
+                                                /*Strip HTML from text*/
+                                                var StrippedText = text.replace(/(<([^>]+)>)/ig,"");
+            
+                                                /*slice text to the desired length*/
+                                                if(StrippedText.length>config.len){ 
+                                                    StrippedText=StrippedText.slice(0,config.len); StrippedText+='...';
+                                                }
+            
+                                                /*get images*/
+                                                var image ='';
+            
+                                                /*If article, try to get the first image out of the body*/
+                                                if(post.type=='text'){
+                                                    var fullbody = post.body;
+                                                    var fullbodyset = $jo(fullbody);
+                                                    image += fullbodyset.find('img').attr('src');
+                                                }
+                                                
+                                                /*If audio, get the album cover if available*/
+                                                else if(post.type=='audio'){
+                                                    image+=this.album_art;
+                                                }
+                                                else if(post.type=='photo'){
+                                                    image+= this.photos[0]['alt_sizes'][0]['url'];
+                                                    // /*Loop to the various photos data, and make sure to select only the first in case of a slideshow*/
+                                                    // $jo(this.photos[0]).each(function(i, photo) {
+                                                    //     /*Loop through the various photo size to get the thumbnail information*/
+                                                    //     $jo(this.alt_sizes).each(function(i, alt_size) {
+                                                    //         if(config.size=='75') {
+                                                    //             if(alt_size.width=='75') {image+=alt_size['url'];}
+                                                    //         }
+                                                    //         if(config.size=='100') {
+                                                    //             if(alt_size.width=='100') {image+=alt_size['url'];}
+                                                    //         }
+                                                    //         if(config.size=='250') {
+                                                    //             if(alt_size.width=='250') {image+=alt_size['url'];}
+                                                    //         }
+                                                    //         if(config.size=='500') {
+                                                    //             if(alt_size.width=='500') {image+=alt_size['url'];}
+                                                    //         }
+                                                    //     });  
+                                                    // });
+                                                }
+                                            
+                                                /*For other types, use the standard image*/
+                                                else if(post.type=='link') image += 0
+                                                else if(post.type=='chat')  image += 0
+                                                else if(post.type=='quote')  image += 0
+                                                else if(post.type=='photo')  image += 0
+                                                else if(post.type=='answer')  image += 0;
+                                        
+                                                /*Manage Exceptions*/
+                                                if(image==0){image=config.imageurl; }
+                                                else if(image=='undefined'){image=config.imageurl; };
+                                        
+                                                /*Set Notes*/
+                                                console.log('post', post);
+                                                var note ='';
+                                                note+=post['note_count'];
+                                                if(note=='undefined'){note='0'; };
+                                        
+                                                /*Set Tags*/
+                                                var postTag ='';
+                                                postTag+=post['tags'][0];
+                                                if(postTag=='undefined'){postTag=''; };
+                                                
+                                                /*Set Captions*/
+                                                var caption ='';
+                                                caption+=post['caption'];
+                                                if(caption=='undefined'){caption=''; };
+                                        
+                                                /*Transfer pieces*/
+                                                images.push(image);
+                                                titles.push(StrippedText);
+                                                links.push(post['post_url']); 
+                                                types.push(post['type']);
+                                                notes.push(note);
+                                                postTags.push(postTag);
+                                                captions.push(caption);
+                                            });
+                                
+                                        }).complete(getList);
+                                    }
+                                }
+                                function getList(){
+                                    for(var i=0; i<titles.length; i++){
+                                        var regex = new RegExp('('+links[i]+')');
+                                        // var html = $jo("#inlink-list").html();
+                                        var html = $jo("#related-posts").html();
+                                
+                                        if(links[i]!=document.location&&!html.match(regex)){
+                                            if(config.num--<=0) return;
+                                        
+                                            var article = 
+                                                '<article class="item-outer photo-item" style="background-image: url(\''+images[i]+'\');" >'+
+                                                    '<div class="item-inner">'+
+                                                        '<div class="main-tag">'+
+                                                            '<p>'+postTags[i]+'</p>'+
+                                                        '</div>'+
+                                                        '<div class="main-separation">'+
+                                                        '</div>'+
+                                                        '<div class="main-caption">'+
+                                                            '<a href="'+links[i]+'">'+captions[i]+'</a>'+
+                                                        '</div>'+
+                                                        '<a href="'+links[i]+'"><span class="main-link"></span></a>'+
+                                                    '</div>'+
+                                                '</article>';
+                                            
+                                            $jo("#related-posts").append(article);
+                                            
+                                        }
+                                    }
+                                    $jo("#loading").remove();
+                                    if(links.length==0) hideall();
+                                    console.log(links);
+                                    // $jo("#inlink-title").html('<h2>'+config.title+'</h2>');
+                                    // $jo("#inlink-loading").html('');
+                                }
+            
+                                // ACTIONS CALLED HERE:
+                                $jo('#related-posts-outer').append(loadingDiv);
+                                getRelated();
+                                
+                            });
+            
+                            function getError(e){
+                                var msg="error: ";
+                                switch(e){
+                                    case 0: msg+='no tags defined'; break;
+                                    case 1: msg+='tumblr API problem'; break;
+                                    case 2: msg+='tumblr problem'; break;
+                                }
+                                $jo("#inlink-loading").html(msg);
+                                ////////////////
+                            }
+                            
+                            function hideall(){
+                                $jo('#loading').hide();
+            
+                            }
+                        })(jQuery);
+            
+        </script>
+                          
+                    
+                        {/block:PermalinkPage} 
                     
                     {/block:Photo}
                 {/block:Posts}
@@ -971,68 +1193,70 @@
         </footer>
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>-->
         <script type="text/javascript" src="http://codes.bitshare.cm/infinitescrolling.js"></script>
         
+        <!--
+        {block:IndexPage}
         <script>
             $(function() {
-                {block:IndexPage}
-                    // $( ".photo-item" ).each(function( index ) {
-                    //     width = $(this).attr("data-width");
-                    //     height = $(this).attr("data-height");
-                    //     console.log(index + ": " + width + ' x ' + height);
-                        
-                    //     if ( width - height > 0 ) { 
-                    //         console.log(index + ": " + 'landscape');
-                    //         var newHeight = 360;
-                    //         var newWidth = width * newHeight / height;
-                    //         console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
-                    //     } else {
-                    //         console.log(index + ": " + 'portrait');
-                    //         var newWidth = 325;
-                    //         var newHeight = height * newWidth / width;
-                    //         console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
-                    //     }
-                    //     $(this).css("background-size", newWidth + "px " + newHeight + "px");
-                        
-                    // });
+                $( ".photo-item" ).each(function( index ) {
+                    width = $(this).attr("data-width");
+                    height = $(this).attr("data-height");
+                    console.log(index + ": " + width + ' x ' + height);
                     
-                {/block:IndexPage}
-                
-                
-                {block:PermalinkPage}
-                    var width = $('#photo').attr("data-width");
-                    var height = $('#photo').attr("data-height");
-                    console.log(width, ' x ', height);
-                    if ( width - height > 0 ) {
-                        // console.log('CHANGE TO LANDSCAPE');
-                        $('.photo-post').removeClass('portrait').addClass('landscape');
+                    if ( width - height > 0 ) { 
+                        console.log(index + ": " + 'landscape');
+                        var newHeight = 360;
+                        var newWidth = width * newHeight / height;
+                        console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
+                    } else {
+                        console.log(index + ": " + 'portrait');
+                        var newWidth = 325;
+                        var newHeight = height * newWidth / width;
+                        console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
                     }
-                    
-                    {block:PostNotes} 
-                        $(".action").html(function () {
-                            return $(this).html().replace("and added:", ""); 
-                        });
-                        var notes = $('ol.notes li');
-                        if (notes.length < 7) {
-                            $(".show-more-notes").css("visibility", "hidden");
-                        }
-                        $(".show-more-notes").click(function() {
-                          $('ol.notes li').css("visibility", "visible");
-                          $(".show-more-notes").css("visibility", "hidden");
-                        });
-                    {/block:PostNotes}
-                    
-                    $('#photo').click(function() {
-                        $('.photo-post').addClass('photo-only');
-                        $('.advert').addClass('hide');
+                    $(this).css("background-size", newWidth + "px " + newHeight + "px");
+                });
+            });
+        </script>
+        {/block:IndexPage}
+        -->
+                
+                
+        {block:PermalinkPage}
+        <script>
+            $(function() {
+                var width = $('#photo').attr("data-width");
+                var height = $('#photo').attr("data-height");
+                // console.log(width, ' x ', height);
+                if ( width - height > 0 ) {
+                    // console.log('CHANGE TO LANDSCAPE');
+                    $('.photo-post').removeClass('portrait').addClass('landscape');
+                }
+                
+                {block:PostNotes} 
+                    $(".action").html(function () {
+                        return $(this).html().replace("and added:", ""); 
                     });
-                    $('.back-button').click(function() {
-                        $('.photo-post').removeClass('photo-only');
-                        $('.advert').removeClass('hide');
+                    var notes = $('ol.notes li');
+                    if (notes.length < 7) {
+                        $(".show-more-notes").css("visibility", "hidden");
+                    }
+                    $(".show-more-notes").click(function() {
+                      $('ol.notes li').css("visibility", "visible");
+                      $(".show-more-notes").css("visibility", "hidden");
                     });
-                    
-                {/block:PermalinkPage}
+                {/block:PostNotes}
+                
+                $('#photo').click(function() {
+                    $('.photo-post').addClass('photo-only');
+                    $('.advert').addClass('hide');
+                });
+                $('.back-button').click(function() {
+                    $('.photo-post').removeClass('photo-only');
+                    $('.advert').removeClass('hide');
+                });
             });
         </script>
         
@@ -1045,33 +1269,26 @@
             js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-        <!-- Twitter share button -->
+         <!--Twitter share button -->
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <!-- Pinterest share button -->
+         <!--Pinterest share button -->
         <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
-        <!-- G+ share button -->
+         <!--G+ share button -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
-    
+        {/block:PermalinkPage}
         
         
-        <!-- *********************
+        
+        
+        <!-- --------------------------------------------------------------------------------------------
+            ---------------------------------------------------------------------------------------------
             DIGIT - FEATURED POST
             inspired from plugin by james <at> bandit.co.nz
             http://blog.bandit.co.nz/post/87511743/tumblr-featured-posts-javascript-plugin
-            ********************* -->
-        <script>    
-            /*
-                TUMBLR FEATURED POSTS SCRIPT
-                Automatically gets all posts tagged with "featured" and lists them
-                REQUIRES JQUERY!
-                --------------------------------------
-                Created by james <at> bandit.co.nz
-                http://blog.bandit.co.nz
-                
-                Some code borrowed from Jacob DeHart's AJAX Search:
-                http://blog.bandit.co.nz/post/80415548/tumblr-ajax-inline-search
-            */
+        -->
+        {block:IndexPage}
+        <script type='text/javascript'>
             Featured = {
                 'apiNum' : 50, // how many posts to read
                 'listId' : 'featured', // the id of the div to write to
@@ -1086,7 +1303,7 @@
 
                     // cycle through post database
                     pcount = Featured.postDB.length;
-                    console.log('pcount', pcount);
+                    // console.log('pcount', pcount);
 
                     if (pcount > 0) {
                         $(outerDiv).show();
@@ -1114,7 +1331,7 @@
                             // innerDiv = document.createElement('innerDiv');
 
                             // $(innerDiv).html('<a class="'+Featured.tagName+'-'+p.type+'" href="'+p["url-with-slug"]+'">'+titlestr+Featured.linkAppend+'</a>');
-                            console.log(p);
+                            // console.log(p);
                             // outerDiv.append(innerDiv);
 
                             Featured.listPos = pcount;
@@ -1142,5 +1359,7 @@
             });
             
         </script>
+        {/block:IndexPage}
+        
     </body>
 </html>
