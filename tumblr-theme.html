@@ -96,6 +96,7 @@
             .header-logo img {
                 height: 66px;
                 margin-top: 28px;
+                transition: all .35s ease-out;
             }
             .header-logo img:hover {
                 opacity: .75;
@@ -135,18 +136,23 @@
             .header-subscribe input:focus {
                 outline: 0;
                 border-color: rgba(255,255,255,1);
+                transition: all .35s ease;
             }
             .header-subscribe input:focus::-webkit-input-placeholder {
-               opacity: .1;
+               opacity: .3;
+               transition: all .35s ease;
             }
             .header-subscribe input:focus:-moz-placeholder { /* Firefox 18- */
-               opacity: .1;
+               opacity: .3;
+               transition: all .35s ease;
             }
             .header-subscribe input:focus::-moz-placeholder {  /* Firefox 19+ */
-               opacity: .1;
+               opacity: .3;
+               transition: all .35s ease;
             }
             .header-subscribe input:focus:-ms-input-placeholder {  
-               opacity: .1;
+               opacity: .3;
+               transition: all .35s ease;
             }
             
             .header-subscribe button {
@@ -163,6 +169,7 @@
                 font-weight: 600;
                 color: #58c8a9;
                 text-align: center;
+                transition: all .35s ease-out;
             }
             .header-subscribe button:hover {
                 color: #3e887c;
@@ -178,6 +185,7 @@
                 font-size: 12px;
                 color: rgba(255,255,255,.5);
                 text-decoration: none;
+                transition: all .35s ease-out;
             }
             .header-learn-more a:hover {
                 color: rgba(255,255,255,.9);
@@ -229,6 +237,7 @@
                 width: 100%;
                 height: 100%;
                 color: #fff;
+                transition: all .35s ease-out;
             }
             .item-inner:hover {
                 background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
@@ -236,6 +245,7 @@
                 background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
                 background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
                 background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                transition: all .35s ease;
             }
             .main-tag {
                 height: 52px;
@@ -301,6 +311,7 @@
                 border: 0;
                 cursor: default;
                 border: 1px solid #fff;
+                transition: all .35s ease-out;
             }
             .photo-post.photo-only .block-photo img:hover {
                 opacity: 1;
@@ -323,6 +334,7 @@
                 font-weight: 600;
                 line-height: 19px;
                 cursor: pointer;
+                transition: all .35s ease-out;
             }
             .back-button p:hover {
                 color: #0e7bb2;
@@ -344,6 +356,7 @@
             }
             .portrait .block-photo img {
                 cursor: pointer;
+                transition: all .35s ease-out;
             }
             .portrait .block-photo img:hover {
                 opacity: .75;
@@ -377,12 +390,13 @@
                 display: none;
             }
             .info-tags a {
-                font-size: 11px;
+                font-size: 12px;
                 color: #33b8fa;
                 line-height: 15px;
                 letter-spacing: 1px;
                 text-transform: uppercase;
                 text-decoration: none;
+                transition: all .35s ease-out;
             }
             .info-tags a:hover {
                 color: #0e7bb2;
@@ -471,6 +485,7 @@
             .like_button:hover + .our_button {
                 color: rgba(255,255,255,.8);
                 background: rgba(227,89,89,.8);
+                transition: all .35s ease-out;
             }
             .like_button.liked + .our_button {
                 background: rgba(227,89,89,.4);
@@ -488,6 +503,7 @@
                 font-weight: 600;
                 padding: 4px;
                 text-align: center;
+                transition: all .35s ease-out;
             }
             .reblog-button:hover {
                 color: rgba(255,255,255,.8);
@@ -510,11 +526,13 @@
                 margin-left: -40px;
                 color: #4f6e7d;
                 font-size: 14px;
-                font-weight: 100; 
+                font-weight: 100;
+                line-height: 32px;
             }
             ol.notes li {
                 margin: 4px 0;
                 visibility: hidden;
+                transition: all 1s ease;
             }
             ol.notes li:nth-child(-n+6) {
                 visibility: visible;
@@ -523,6 +541,7 @@
                 font-weight: 400;
                 text-decoration: none;
                 color: #4f6e7d;
+                transition: all .35s ease-out;
             }
             ol.notes a:hover {
                 color: #1f3642;
@@ -541,8 +560,10 @@
                 font-size: 14px;
                 color: #33b8fa;
                 line-height: 19px;
-                margin: 20px 0 0 30px;
+                margin: -20px 0 0 30px;
                 cursor: pointer;
+                transition: all .35s ease-out;
+                transition:visibility 0
             }
             .show-more-notes:hover {
                 color: #0e7bb2;
@@ -580,6 +601,7 @@
                 font-size: 16px;
                 padding: 8px 12px;
                 margin-top: 10px;
+                transition: all .35s ease-out;
             }
             .advert-button:hover {
                 background-color: #0e7bb2;
@@ -609,6 +631,7 @@
             .footer-social a, .footer-terms a {
                 text-decoration: none;
                 color: inherit;
+                transition: all .35s ease-out;
             }
             .footer-social a:hover {
                 opacity: .75;
@@ -622,6 +645,7 @@
             }
             .footer-terms a:hover {
                 color: #1c313d;
+                transition: all .35s ease-out;
             }
             
             
@@ -635,9 +659,9 @@
                 background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
                 background:      -o-linear-gradient( right, #58c9a9, #488c9b);
                 background:         linear-gradient( to left, #58c9a9, #488c9b);
-                height: 460px;
-                width: 100%;
-                margin: 0px 0;
+                height: 1460px;
+                margin: -1000px 0 0;
+                padding-top: 1000px;
             }
             .featured-inner {
                 width: 1030px;
@@ -647,6 +671,12 @@
                 border-top: 1px solid rgba(0,0,0,.1);;
                 -moz-box-shadow:    inset 0px 1px 0px rgba(255,255,255,0.050);
                 box-shadow:         inset 0px 1px 0px rgba(255,255,255,0.050);
+            }
+            .featured .item-outer {
+                -moz-box-shadow:    0px 2px 4px 0px rgba(0,0,0,0.15);
+                -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+                box-shadow:         0px 2px 4px 0px rgba(0,0,0,0.15);
+                transition: all .35s ease-out;
             }
             .featured .item-outer:hover {
                 opacity: .75;    
@@ -663,20 +693,28 @@
                 height: 323px;
                 overflow: hidden;
             }
-            .btn.featured-article {
+            a.featured-article {
+                padding: 8px 12px;
+                margin-bottom: 0;
+                line-height: 1.42857143;
+                text-align: center;
+                vertical-align: middle;
                 background: #57e2ad;
                 width: 151px;
                 height: 30px;
-                border-radius: 0;
                 color: #fff;
                 text-transform: uppercase;
                 font-size: 11px;
                 line-height: 15px;
                 letter-spacing: 1px;
                 margin-right: 12px;
+                transition: all .35s ease-out;
+                display: inline-block;
+                text-decoration: none;
             }
-            .btn.featured-article:hover {
+            a.featured-article:hover {
                 background: rgba(88, 201, 169, .8);
+                
             }
             .featured-info .date-and-notes, .featured-info .date-and-notes a {
                 text-decoration: none;
@@ -727,7 +765,7 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <img src="{image:HeaderLogo}">
+                        <img src="http://static.tumblr.com/h4oybik/BSGnfzwsp/header-logo.svg">
                         <h1 class="sr-only">{Title}</h1>
                     </a>
                 </div>
@@ -743,7 +781,9 @@
                 </div>
                 <div class="header-learn-text">
                     <p>
-                        <strong>Receive weekly updates</strong> from the digit blog,<br>direct to your inbox
+                        <strong>Receive weekly updates</strong>
+                        <br>
+                        from the digit blog to your inbox!
                     </p>
                 </div>
             </div>
@@ -767,14 +807,10 @@
                                 <ul class="list-inline">           
                                     <li>
                                         <!-- INSERT URL -->
-                                        <a id="feature-url2" class="btn featured-article">Featured Article</a>
-                                    </li>
-                                    <li class="featured-tag">
-                                        <!-- INSERT FIRST TAG -->
-                                        <span id="feature-tag"></span>
+                                        <a id="feature-url2" class="featured-article">Featured Article</a>
                                     </li>
                                     <li class="date-and-notes">
-                                        <img src="{image:IconDateDark}">
+                                        <img src="http://static.tumblr.com/h4oybik/j9Infzwur/icon-date.svg">
                                         <!-- INSERT URL -->
                                         <a id="feature-url3">
                                             <!-- INSERT DATE -->
@@ -782,7 +818,7 @@
                                         </a>
                                     </li>
                                     <!--<li class="date-and-notes">-->
-                                    <!--    <img src="{image:IconNotesDark}">-->
+                                    <!--    <img src="http://static.tumblr.com/h4oybik/QL1nfzwwf/icon-notes.svg">-->
                                          <!--INSERT NUMBER OF NOTES -->
                                     <!--</li>-->
                                 </ul>
@@ -881,11 +917,11 @@
                                         {/block:Tags}
                                     {/block:HasTags}
                                         <li class="date-and-notes">
-                                            <img src="{image:IconDate}"> 
+                                            <img src="http://static.tumblr.com/h4oybik/j9Infzwur/icon-date.svg"> 
                                             <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero} {12Hour}:{Minutes}{AmPm}">{ShortMonth} {DayOfMonth}</time>
                                         </li>
                                         <li class="date-and-notes">
-                                            <img src="{image:IconNotes}"> 
+                                            <img src="http://static.tumblr.com/h4oybik/QL1nfzwwf/icon-notes.svg"> 
                                             {NoteCountWithLabel}
                                         </li>
                                     </ul>
@@ -900,7 +936,7 @@
                                                     <div class="custom-like-button">
                                                       {LikeButton}
                                                       <span class="our_button">
-                                                        <img src="{image:IconLike}" class="post-social-icon"> Like
+                                                        <img src="http://static.tumblr.com/h4oybik/fOgnfzwxt/icon-like.svg" class="post-social-icon"> Like
                                                       </span>
                                                     </div>        
                                                 </td>
@@ -917,7 +953,7 @@
                                             <tr>
                                                 <td>
                                                     <a href="{ReblogURL}" target="_blank" class="btn reblog-button">
-                                                        <img src="{image:IconReblog}" class="icon-reblog"> Reblog 
+                                                        <img src="http://static.tumblr.com/h4oybik/kMnnfzwyk/icon-reblog.svg" class="icon-reblog"> Reblog 
                                                     </a>
                                                 </td>
                                                 <td>
@@ -994,7 +1030,7 @@
         
         {block:Posts}{block:Photo}{block:IndexPage}
         <!--
-        <script>
+        <script type='text/javascript'>
             $(function() {
                 $( ".photo-item" ).each(function( index ) {
                     width = $(this).attr("data-width");
@@ -1061,7 +1097,6 @@
                             var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
                             var date = monthNames[p["date-gmt"].slice(5,7)-1] + " " + p["date-gmt"].slice(8,11);
                             $('#feature-date').html(date);
-                            $('#feature-tag').html(p["tags"][0]);
                             
                             
                             // innerDiv = document.createElement('innerDiv');
@@ -1091,7 +1126,13 @@
             };
             
             $(document).ready(function(){
-                Featured.getData();
+                var stop = false;
+                
+                {block:TagPage} 
+                    stop = true; 
+                {/block:TagPage}
+                
+                if (stop) { return; } else { Featured.getData(); }
             });
             
         </script>
@@ -1104,9 +1145,7 @@
         <script type='text/javascript'>
             // $(function() {
             (function(s) {
-                console.log('$',$);
-                var $jo = jQuery.noConflict()
-                console.log('$jo',$jo);
+                var $jo = jQuery.noConflict();
                 
                 var width = $jo('#photo').attr("data-width");
                 var height = $jo('#photo').attr("data-height");
@@ -1137,6 +1176,8 @@
                     }
                     $jo(".show-more-notes").click(function() {
                       $jo('ol.notes li').css("visibility", "visible");
+                    //   $jo('ol.notes li').slideDown();
+                      
                       $jo(".show-more-notes").css("visibility", "hidden");
                     });
                 {/block:PostNotes}
@@ -1316,14 +1357,10 @@
                                         '</article>';
                                     
                                     $jo("#related-posts").append(article);
-                                    
                                 }
                             }
                             $jo("#loading").remove();
                             if(links.length==0) hideall();
-                            console.log(links);
-                            // $jo("#inlink-title").html('<h2>'+config.title+'</h2>');
-                            // $jo("#inlink-loading").html('');
                         }
     
                         // ACTIONS CALLED HERE:
@@ -1339,7 +1376,7 @@
                             case 1: msg+='tumblr API problem'; break;
                             case 2: msg+='tumblr problem'; break;
                         }
-                        $jo("#inlink-loading").html(msg);
+                        $jo("#loading").html(msg);
                         ////////////////
                     }
                     
