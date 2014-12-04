@@ -1188,6 +1188,7 @@
     
                     var config = {
                         'num': 6,
+                        'numcheck': 7,
                         'len': 60,
                         'size': 500,
                         'title': '',
@@ -1207,6 +1208,7 @@
                     
                     
                     var tags = config.tags.slice(0,-1).split(',');
+                    var count = 0;
     
                     $jo(document).ready(function() {
                         
@@ -1214,8 +1216,10 @@
                         function getRelated() {
                             var req;
                             for(var i=0; i<tags.length; i++){
+                                console.log('TAG:', tags[i]);
                                 req=$jo.getJSON('http://api.tumblr.com/v2/blog/'+document.domain+'/posts?api_key=VspHunyBAE3ZhmnivmJ7F8AMZX84Ptz96XCHGCdCRyg0DLNKif&limit='+config.num+'&offset=0&type='+config.type+'&tag='+escape(tags[i])+'&jsonp=?', 
                                 function(pippo) {
+                                    
                                     $jo(pippo.response.posts).each(function(i, post) {
                                         /*Set Text*/
                                         var text='';
@@ -1284,7 +1288,6 @@
                                         else if(image=='undefined'){image=config.imageurl; };
                                 
                                         /*Set Notes*/
-                                        console.log('post', post);
                                         var note ='';
                                         note+=post['note_count'];
                                         if(note=='undefined'){note='0'; };
@@ -1307,15 +1310,38 @@
                                         notes.push(note);
                                         postTags.push(postTag);
                                         captions.push(caption);
+                                        
+                                        console.log('new post', post);
+                                        console.log('links', links);
                                     });
-                        
+                                    
                                 }).complete(getList);
                             }
                         }
+                        
+                        function checkList() {
+                            var req = $jo.get('/api/read/json?num='+config.numcheck,
+                                function(data) {
+                                    eval(data);
+                                    for (var j=0; j<tumblr_api_read.posts.length; j++) {
+                                        links.push(tumblr_api_read.posts[j]["url-with-slug"]);
+                                        captions.push(tumblr_api_read.posts[j]["photo-caption"]);
+                                        images.push(tumblr_api_read.posts[j]["photo-url-1280"]);
+                                        postTags.push(tumblr_api_read.posts[j]["tags"][0]);
+                                        getList();
+                                    }
+                                }
+                            );
+                            
+                        }
+                        
                         function getList(){
-                            for(var i=0; i<titles.length; i++){
+                            count++;
+                            if (count === tags.length) {
+                                checkList();
+                            }
+                            for(var i=0; i<links.length; i++){
                                 var regex = new RegExp('('+links[i]+')');
-                                // var html = $jo("#inlink-list").html();
                                 var html = $jo("#related-posts").html();
                         
                                 if(links[i]!=document.location&&!html.match(regex)){
