@@ -9,14 +9,6 @@
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
         
-        <meta name="image:HeaderLogo" content=""/>
-        <meta name="image:IconDate" content=""/>
-        <meta name="image:IconDateDark" content=""/>
-        <meta name="image:IconNotes" content=""/>
-        <meta name="image:IconNotesDark" content=""/>
-        <meta name="image:IconLike" content=""/>
-        <meta name="image:IconReblog" content=""/>
-        
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
             {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}
@@ -195,7 +187,10 @@
                 margin-left: 5px;
                 line-height: 0;
                 font-weight: 100;
+                position: relative;
+                top: 2px;
             }
+            
             
             /* >>>>>>>>>>> LIST OF POSTS <<<<<<<<<<< */
             
@@ -342,6 +337,8 @@
             .minimize {
                 font-size: 1.3em;
                 margin-right: 5px;
+                position: relative;
+                top: 2px;
             }
             
             
@@ -532,7 +529,7 @@
             ol.notes li {
                 margin: 4px 0;
                 visibility: hidden;
-                transition: all 1s ease;
+                transition: all 2s ease;
             }
             ol.notes li:nth-child(-n+6) {
                 visibility: visible;
@@ -652,15 +649,19 @@
             /* >>>>>>>>>>> FEATURED ARTICLE <<<<<<<<<<< */
             
             .featured {
-                /*position: fixed;*/
                 background-color: #488c9b;
                 background: -webkit-linear-gradient( right, #58c9a9, #488c9b);
                 background:    -moz-linear-gradient( right, #58c9a9, #488c9b);
                 background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
                 background:      -o-linear-gradient( right, #58c9a9, #488c9b);
                 background:         linear-gradient( to left, #58c9a9, #488c9b);
+                width: 100%;
+                /*height: 460px;*/
+                /*margin: 0;*/
+                /*padding: 0;*/
+                
                 height: 1460px;
-                margin: -1000px 0 0;
+                margin-top: -1000px;
                 padding-top: 1000px;
             }
             .featured-inner {
@@ -719,11 +720,12 @@
             .featured-info .date-and-notes, .featured-info .date-and-notes a {
                 text-decoration: none;
                 font-size: 14px;
-                color: rgba(0,0,0,.25);
-                transition: all .2s ease-in-out;
+                color: rgba(0,0,0,1);
+                opacity: .5;
+                transition: all .15s ease-in-out;
             }
             .featured-info .date-and-notes a:hover {
-                color: rgba(0,0,0,.5);
+                opacity: .75;
             }
             .featured-tag {
                 font-size: 11px;
@@ -767,11 +769,15 @@
                     <a href="{BlogURL}" title="{lang:Home}">
                         <img src="http://static.tumblr.com/h4oybik/BSGnfzwsp/header-logo.svg">
                         <h1 class="sr-only">{Title}</h1>
+                        <p>{base-hostname}</p>
                     </a>
                 </div>
                 <div class="header-subscribe">
                     <div class="header-learn-more">
-                        <a href="http://digit.co">Learn more  about digit <span class="right-chevron">&rsaquo;</span></a>
+                        <a href="http://digit.co">
+                            <span>Learn more  about digit </span>
+                            <span class="right-chevron">&rsaquo;</span>    
+                        </a>
                     </div>
                     <div class="input-group">
                         <input type="text" placeholder="Email">
@@ -810,17 +816,23 @@
                                         <a id="feature-url2" class="featured-article">Featured Article</a>
                                     </li>
                                     <li class="date-and-notes">
-                                        <img src="http://static.tumblr.com/h4oybik/j9Infzwur/icon-date.svg">
+                                        
                                         <!-- INSERT URL -->
                                         <a id="feature-url3">
+                                            <img src="http://static.tumblr.com/h4oybik/F14ng1dst/icon-date-black.svg">
                                             <!-- INSERT DATE -->
                                             <span id="feature-date"></span>
                                         </a>
                                     </li>
-                                    <!--<li class="date-and-notes">-->
-                                    <!--    <img src="http://static.tumblr.com/h4oybik/QL1nfzwwf/icon-notes.svg">-->
-                                         <!--INSERT NUMBER OF NOTES -->
-                                    <!--</li>-->
+                                    <li class="date-and-notes">
+                                         <!--INSERT URL -->
+                                        <a id="feature-url4">
+                                            <img src="http://static.tumblr.com/h4oybik/929ng1ie5/icon-notes-black.svg">
+                                            
+                                            <!--INSERT NUMBER OF NOTES -->
+                                            <span id="feature-notes"></span>
+                                        </a>
+                                    </li>
                                 </ul>
                                 <div id="feature-caption" class="post-caption">
                                     <!-- INSERT CAPTION -->
@@ -1028,101 +1040,52 @@
         
         
         
-        {block:Posts}{block:Photo}{block:IndexPage}
-        <!--
-        <script type='text/javascript'>
-            $(function() {
-                $( ".photo-item" ).each(function( index ) {
-                    width = $(this).attr("data-width");
-                    height = $(this).attr("data-height");
-                    console.log(index + ": " + width + ' x ' + height);
-                    
-                    if ( width - height > 0 ) { 
-                        console.log(index + ": " + 'landscape');
-                        var newHeight = 360;
-                        var newWidth = width * newHeight / height;
-                        console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
-                    } else {
-                        console.log(index + ": " + 'portrait');
-                        var newWidth = 325;
-                        var newHeight = height * newWidth / width;
-                        console.log('NEW: ' + index + ': ' + newWidth + ' x ' + newHeight);
-                    }
-                    $(this).css("background-size", newWidth + "px " + newHeight + "px");
-                });
-            });
-        </script>
-        ->>
-        
+        {block:IndexPage}
         
         <!-- ---------------------------DIGIT - FEATURED POST--------------------------- -->
         <!--
-            inspired from plugin by james <at> bandit.co.nz
-            http://blog.bandit.co.nz/post/87511743/tumblr-featured-posts-javascript-plugin
+            inspired from plugin by In-Link
+            http://tumblr-in-link.googlecode.com/svn/branches/Version%202.0/js/tumblr-in-link.2.0.js
         -->
+        
         <script type='text/javascript'>
+            
             Featured = {
-                'apiNum' : 50, // how many posts to read
-                'listId' : 'featured', // the id of the div to write to
-                'tagName' : 'featured', // the name of the tag we're searching for
-                'linkAppend' : '', // html to append to the end of each linked post
+                'showArticles': 1,         // how many to show
+                'type': '',                // no limitation of types of posts
+                'tagName': 'featured',     // the name of the tag we're searching for
+                'injectData': function (data) {
+                    console.log('data',data);
+                    if (data.length > 0) {
+                        $('#featured').show();
+                        var p = data[0];
+                        
+                        var url = "url('" + p["photos"][0]["alt_sizes"][0]["url"] + "')";
+                        $('#feature-image').css("background-image", url);
+                        $('#feature-caption').html(p["caption"]);
+                        $('#feature-url1').attr("href", p["post_url"]);
+                        $('#feature-url2').attr("href", p["post_url"]);
+                        $('#feature-url3').attr("href", p["post_url"]);
+                        $('#feature-url4').attr("href", p["post_url"]);
+                        
+                        var noteCount = p["notes"] ? p["notes"].length : 0;
+                        var notePlural = noteCount === 1 ? ' Note' : ' Notes';
+                        $('#feature-notes').html(noteCount + notePlural);
 
-                'postDB' : [],
-                'listPos' : 0,
-                'doList' : function (where) {
-                    var innerDiv; var outerDiv = $('#'+where);
-                    var titles = {"link":"link-text", "photo":"photo-caption", "quote":"quote-text", "regular":"regular-title", "video":"video-caption"}
-
-                    // cycle through post database
-                    pcount = Featured.postDB.length;
-                    // console.log('pcount', pcount);
-
-                    if (pcount > 0) {
-                        $(outerDiv).show();
-                        for (i=Featured.listPos; i<pcount; i++) {
-                            p = Featured.postDB[i];
-
-                            if (p[titles[p.type]] != '') {
-                                titlestr = p[titles[p.type]].replace(/<\/?[^>]+>/gi, '');
-                            } else {
-                                titlestr = p['url'];
-                            };
-                            var url = "url('" + p["photo-url-500"] + "')";
-                            $('#feature-image').css("background-image", url);
-                            $('#feature-url1').attr("href", p["url-with-slug"]);
-                            $('#feature-url2').attr("href", p["url-with-slug"]);
-                            $('#feature-url3').attr("href", p["url-with-slug"]);
-                            $('#feature-caption').html(p["photo-caption"]);
-
-                            var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
-                            var date = monthNames[p["date-gmt"].slice(5,7)-1] + " " + p["date-gmt"].slice(8,11);
-                            $('#feature-date').html(date);
-                            
-                            
-                            // innerDiv = document.createElement('innerDiv');
-
-                            // $(innerDiv).html('<a class="'+Featured.tagName+'-'+p.type+'" href="'+p["url-with-slug"]+'">'+titlestr+Featured.linkAppend+'</a>');
-                            // console.log(p);
-                            // outerDiv.append(innerDiv);
-
-                            Featured.listPos = pcount;
-                        }
+                        var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+                        var date = monthNames[p["date"].slice(5,7)-1] + " " + p["date"].slice(8,11);
+                        $('#feature-date').html(date);
+                        
                     } else {
-                        $(outerDiv).hide();
+                        $('#featured').hide();
                     }
                 },
-                'getData' : function() {
-                    $.get('/api/read/json?num='+Featured.apiNum+'&tagged='+Featured.tagName,
-                        function(data) {
-                            eval(data);
-                            // for (i=0; i<tumblr_api_read.posts.length; i++) {
-                            //   Featured.postDB.push(tumblr_api_read.posts[i]);
-                            // }
-                            Featured.postDB.push(tumblr_api_read.posts[0]);     // ONLY SHOW THE LAST FEATURED POST
-                            Featured.doList(Featured.listId);
-                        }
-                    );
-                }
+                'getData': function () {
+                    var req = $.getJSON('http://api.tumblr.com/v2/blog/'+document.domain+'/posts?api_key=VspHunyBAE3ZhmnivmJ7F8AMZX84Ptz96XCHGCdCRyg0DLNKif&limit='+Featured.showArticles+'&reblog_info=true&notes_info=true&offset=0&type='+Featured.type+'&tag='+Featured.tagName+'&jsonp=?',
+                    function(pippo) {
+                        Featured.injectData(pippo.response.posts);
+                    });
+                },
             };
             
             $(document).ready(function(){
@@ -1132,18 +1095,36 @@
                     stop = true; 
                 {/block:TagPage}
                 
-                if (stop) { return; } else { Featured.getData(); }
+                if (stop) { return; } else { Featured.getData(); stop = true;}
             });
             
         </script>
-        {/block:IndexPage}{/block:Photo}{/block:Posts}
+        
+            
+        
+        <!-- --------------FIX THE FEATURED POST POSITION ON SCROLL UP (FOR SAFARI)-------------- -->
+        
+        <script type='text/javascript'>
+            $(window).scroll( function(){
+                var bottom_of_window = $(window).scrollTop();
+                if (bottom_of_window < 0) {
+                    $('#featured').css("position", "fixed");
+                    $('#content').css("margin-top", "500px");
+                } else {
+                    $('#featured').css("position", "inherit");
+                    $('#content').css("margin-top", "0");
+                }
+            });
+        </script>
+    
+        {/block:IndexPage}
         
         
         
                 
         {block:Posts}{block:Photo}{block:PermalinkPage}
+        
         <script type='text/javascript'>
-            // $(function() {
             (function(s) {
                 var $jo = jQuery.noConflict();
                 
@@ -1183,7 +1164,6 @@
                 {/block:PostNotes}
                 
             })(jQuery);
-            // });
         </script>
         
         
