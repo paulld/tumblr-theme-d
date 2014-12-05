@@ -34,6 +34,16 @@
                 padding: 90px 0 0;
                 font-family: 'Open Sans', sans-serif;
             }
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0,0,0,0);
+                border: 0;
+            }
             
             
             /* >>>>>>>>>>> HEADER <<<<<<<<<<< */
@@ -41,16 +51,15 @@
             .header {
                 position: fixed;
                 background-color: #488c9b;
-                background: -webkit-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:    -moz-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:     -ms-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:      -o-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:         linear-gradient( to left, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
+                background: -webkit-linear-gradient( right, #58c9a9, #488c9b);
+                background:    -moz-linear-gradient( right, #58c9a9, #488c9b);
+                background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
+                background:      -o-linear-gradient( right, #58c9a9, #488c9b);
+                background:         linear-gradient( to left, #58c9a9, #488c9b);
                 height: 90px;
                 width: 100%;
                 margin: -90px 0;
                 z-index: 1001;
-                box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
             }
             .header-inner {
                 width: 1030px;
@@ -266,10 +275,6 @@
             
             /* >>>>>>>>>>> ZOOM ON IMAGE <<<<<<<<<<< */
             
-            .photo-post {
-                transition: all 1s ease-out;
-            }
-            
             .photo-post.photo-only .block-photo {
                 width: 100%;
             }
@@ -281,11 +286,6 @@
                 cursor: default;
                 border: 1px solid #fff;
                 transition: all .35s ease-out;
-                
-                
-                
-                /**/
-                
             }
             .photo-post.photo-only .block-photo img:hover {
                 opacity: 1;
@@ -293,13 +293,6 @@
             .photo-post.photo-only .block-info {
                 display: none;
             }
-            .photo-post.photo-only .block-photo-box {
-                max-height: inherit;
-                overflow: auto;
-                border-radius: 0;
-                transition: all .35s ease-out;
-            }
-            
             
             .back-button {
                 display: none;
@@ -344,13 +337,7 @@
             .portrait .block-photo img:hover {
                 opacity: .75;
             }
-            .portrait .block-photo-box {
-                max-height: 750px;
-                width: 413px;
-                overflow: hidden;
-                border-radius: 5px;
-                transition: all .35s ease-out;
-            }
+
             .portrait .block-photo {
                 display: inline-block;
                 width: 530px;
@@ -549,7 +536,7 @@
                 font-size: 14px;
                 color: #33b8fa;
                 line-height: 19px;
-                margin: -34px 0 0 30px;
+                margin: -20px 0 0 30px;
                 cursor: pointer;
                 transition: all .35s ease-out;
                 transition:visibility 0
@@ -759,8 +746,7 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <img src="http://static.tumblr.com/h4oybik/SQJng2xrg/header-logo-3x.png">
-                        
+                        <img src="http://static.tumblr.com/h4oybik/BSGnfzwsp/header-logo.svg">
                         <h1 class="sr-only">{Title}</h1>
                         <p>{base-hostname}</p>
                     </a>
@@ -903,9 +889,7 @@
                                 </div>
                             
                                 <div class="block-photo">
-                                    <div class="block-photo-box">
-                                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
-                                    </div>
+                                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
                                 </div>
                                 
                                 <div class="block-info">
@@ -1102,19 +1086,14 @@
             {/block:TagPage}
             
             if (!stop) {
-                $('#masthead').css("box-shadow", "0px 0px 0px rgba(0,0,0,0.2)");
                 $(window).scroll( function(){
                     var bottom_of_window = $(window).scrollTop();
-                    if (bottom_of_window < 1) {
+                    if (bottom_of_window < 0) {
                         $('#featured').css("position", "fixed");
                         $('#content').css("margin-top", "500px");
-                        $('#masthead').css("box-shadow", "0px 0px 0px rgba(0,0,0,0.2)");
-                        $('.featured-inner').css("border-top","1px solid rgba(0,0,0,0.1)");
                     } else {
                         $('#featured').css("position", "inherit");
                         $('#content').css("margin-top", "0");
-                        $('#masthead').css("box-shadow", "0px 1px 2px rgba(0,0,0,0.2)");
-                        $('.featured-inner').css("border-top","0");
                     }
                 });
             }
