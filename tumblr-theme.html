@@ -8,6 +8,7 @@
         {block:Description}
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
+        <meta name="text:Google analytics ID" content="">
         
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
@@ -687,6 +688,7 @@
                 overflow: hidden;
             }
             a.featured-article {
+                color: #fff;
                 padding: 8px 12px;
                 margin-bottom: 0;
                 line-height: 1.42857143;
@@ -695,7 +697,6 @@
                 background: #57e2ad;
                 width: 151px;
                 height: 30px;
-                color: #fff;
                 text-transform: uppercase;
                 font-size: 11px;
                 line-height: 15px;
@@ -707,7 +708,7 @@
             }
             a.featured-article:hover {
                 background: rgba(88, 201, 169, .8);
-                
+                color: #fff;
             }
             .featured-info .date-and-notes, .featured-info .date-and-notes a {
                 text-decoration: none;
@@ -800,7 +801,7 @@
                                 <ul class="list-inline">           
                                     <li>
                                         <!-- INSERT URL -->
-                                        <a id="feature-url2" class="featured-article">Featured Article</a>
+                                        <a id="feature-url2" class="featured-article" href="">Featured Article</a>
                                     </li>
                                     <li class="date-and-notes">
                                         
@@ -1419,5 +1420,15 @@
         {/block:PermalinkPage}{/block:Photo}{/block:Posts}
         
         
+        {block:IfGoogleAnalyticsID}
+            <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              ga('create', '{text:Google Analytics ID}', 'tumblr.com');
+              ga('send', 'pageview');
+            </script>
+        {/block:IfGoogleAnalyticsID}
     </body>
 </html>
