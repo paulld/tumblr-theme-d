@@ -8,7 +8,7 @@
         {block:Description}
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
-        <meta name="text:Google analytics ID" content="">
+        <meta name="text:Google Analytics ID" content="">
         
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
@@ -41,12 +41,15 @@
             
             .header {
                 position: fixed;
-                background-color: #488c9b;
-                background: -webkit-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:    -moz-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:     -ms-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:      -o-linear-gradient( right, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
-                background:         linear-gradient( to left, rgba(88, 201, 169, 0.95), rgba(72, 140, 155, 0.95));
+                background: rgba(72,140,155,0.95);
+                background:    -moz-linear-gradient(left,  rgba(72,140,155,0.95) 0%, rgba(88,201,169,0.95) 100%);
+                background:        -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(72,140,155,0.95)), color-stop(100%,rgba(88,201,169,0.95)));
+                background: -webkit-linear-gradient(left,  rgba(72,140,155,0.95) 0%,rgba(88,201,169,0.95) 100%);
+                background:      -o-linear-gradient(left,  rgba(72,140,155,0.95) 0%,rgba(88,201,169,0.95) 100%);
+                background:     -ms-linear-gradient(left,  rgba(72,140,155,0.95) 0%,rgba(88,201,169,0.95) 100%);
+                background:         linear-gradient(to right,  rgba(72,140,155,0.95) 0%,rgba(88,201,169,0.95) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2488c9b', endColorstr='#f258c9a9',GradientType=1 );
+                
                 height: 90px;
                 width: 100%;
                 margin: -90px 0;
@@ -192,11 +195,13 @@
                 margin-right: 0;
             }
             .item-inner {
-                background: -webkit-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
-                background:    -moz-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
-                background:     -ms-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
-                background:      -o-linear-gradient( top, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
-                background:         linear-gradient( to bottom, rgba(62, 90, 106, .95) 40%, rgba(144, 181, 202, .5) 100%);
+                background:    -moz-linear-gradient(top,  rgba(62,90,106,0.95) 40%, rgba(144,181,202,0.5) 100%);
+                background:        -webkit-gradient(linear, left top, left bottom, color-stop(40%,rgba(62,90,106,0.95)), color-stop(100%,rgba(144,181,202,0.5)));
+                background: -webkit-linear-gradient(top,  rgba(62,90,106,0.95) 40%,rgba(144,181,202,0.5) 100%);
+                background:      -o-linear-gradient(top,  rgba(62,90,106,0.95) 40%,rgba(144,181,202,0.5) 100%);
+                background:     -ms-linear-gradient(top,  rgba(62,90,106,0.95) 40%,rgba(144,181,202,0.5) 100%);
+                background:         linear-gradient(to bottom,  rgba(62,90,106,0.95) 40%,rgba(144,181,202,0.5) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f23e5a6a', endColorstr='#8090b5ca',GradientType=0 );
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -206,11 +211,13 @@
                 transition: all .35s ease-out;
             }
             .item-inner:hover {
-                background: -webkit-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:    -moz-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:     -ms-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:      -o-linear-gradient( top, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
-                background:         linear-gradient( to bottom, rgba(47, 114, 129, .95) 0%, rgba(88, 201, 169, .8) 100%);
+                background:    -moz-linear-gradient(top,  rgba(47,114,129,0.95) 0%, rgba(88,201,169,0.8) 100%);
+                background:        -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(47,114,129,0.95)), color-stop(100%,rgba(88,201,169,0.8)));
+                background: -webkit-linear-gradient(top,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
+                background:      -o-linear-gradient(top,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
+                background:     -ms-linear-gradient(top,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
+                background:         linear-gradient(to bottom,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f22f7281', endColorstr='#cc58c9a9',GradientType=0 );
                 transition: all .35s ease;
             }
             .main-tag {
@@ -282,11 +289,6 @@
                 cursor: default;
                 border: 1px solid #fff;
                 transition: all .35s ease-out;
-                
-                
-                
-                /**/
-                
             }
             .photo-post.photo-only .block-photo img:hover {
                 opacity: 1;
@@ -566,12 +568,14 @@
                 width: 100%;
                 height: 180px;
                 margin: 0 0 60px;
-                background-color: #ccf0e6;
-                background: -webkit-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:    -moz-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:     -ms-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:      -o-linear-gradient( right, #eaf4fa, #ccf0e6);
-                background:         linear-gradient( to left, #eaf4fa, #ccf0e6);
+                background: rgb(204,240,230);
+                background: -moz-linear-gradient(left,  rgba(204,240,230,1) 0%, rgba(234,244,250,1) 100%);
+                background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(204,240,230,1)), color-stop(100%,rgba(234,244,250,1)));
+                background: -webkit-linear-gradient(left,  rgba(204,240,230,1) 0%,rgba(234,244,250,1) 100%);
+                background: -o-linear-gradient(left,  rgba(204,240,230,1) 0%,rgba(234,244,250,1) 100%);
+                background: -ms-linear-gradient(left,  rgba(204,240,230,1) 0%,rgba(234,244,250,1) 100%);
+                background: linear-gradient(to right,  rgba(204,240,230,1) 0%,rgba(234,244,250,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccf0e6', endColorstr='#eaf4fa',GradientType=1 );
             }
             .advert-inner {
                 width: 1032px;
@@ -642,17 +646,15 @@
             /* >>>>>>>>>>> FEATURED ARTICLE <<<<<<<<<<< */
             
             .featured {
-                background-color: #488c9b;
-                background: -webkit-linear-gradient( right, #58c9a9, #488c9b);
-                background:    -moz-linear-gradient( right, #58c9a9, #488c9b);
-                background:     -ms-linear-gradient( right, #58c9a9, #488c9b);
-                background:      -o-linear-gradient( right, #58c9a9, #488c9b);
-                background:         linear-gradient( to left, #58c9a9, #488c9b);
+                background: rgba(72,140,155,1);
+                background:    -moz-linear-gradient(left,  rgba(72,140,155,1) 0%, rgba(88,201,169,1) 100%);
+                background:        -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(72,140,155,1)), color-stop(100%,rgba(88,201,169,1)));
+                background: -webkit-linear-gradient(left,  rgba(72,140,155,1) 0%,rgba(88,201,169,1) 100%);
+                background:      -o-linear-gradient(left,  rgba(72,140,155,1) 0%,rgba(88,201,169,1) 100%);
+                background:     -ms-linear-gradient(left,  rgba(72,140,155,1) 0%,rgba(88,201,169,1) 100%);
+                background:         linear-gradient(to right,  rgba(72,140,155,1) 0%,rgba(88,201,169,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2488c9b', endColorstr='#f258c9a9',GradientType=1 );
                 width: 100%;
-                /*height: 460px;*/
-                /*margin: 0;*/
-                /*padding: 0;*/
-                
                 height: 1460px;
                 margin-top: -1000px;
                 padding-top: 1000px;
@@ -663,13 +665,14 @@
                 margin: 0 auto;
                 padding-top: 50px;
                 border-top: 1px solid rgba(0,0,0,.1);;
-                -moz-box-shadow:    inset 0px 1px 0px rgba(255,255,255,0.050);
-                box-shadow:         inset 0px 1px 0px rgba(255,255,255,0.050);
+                   -moz-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.050);
+                -webkit-box-shadow: inset 0px 1px 0px rgba(255,255,255,0.050);
+                        box-shadow: inset 0px 1px 0px rgba(255,255,255,0.050);
             }
             .featured .item-outer {
-                -moz-box-shadow:    0px 2px 4px 0px rgba(0,0,0,0.15);
-                -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
-                box-shadow:         0px 2px 4px 0px rgba(0,0,0,0.15);
+                    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+                 -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
+                         box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
                 transition: all .35s ease-out;
             }
             .featured .item-outer:hover {
@@ -751,6 +754,12 @@
                 text-align: center;
             }
             
+            /* >>>>>>>>>>> HIDE THE TUMBLR SHARE BUTTONS <<<<<<<<<<< */
+            
+            #tumblr_controls {
+                display:none;
+            }
+            
         </style>
         
     </head>
@@ -767,11 +776,12 @@
                     </a>
                 </div>
                 <div class="header-subscribe">
-                    <div class="input-group">
-                        <input type="text" placeholder="Email">
-                        <button type="button">Subscribe</button>
-                        <!--<a href="https://digit.co/" class="btn btn-default">Subscribe</a>-->
-                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" placeholder="Email">
+                            <button type="button">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="header-learn-text">
                     <p>
@@ -1047,7 +1057,9 @@
                 'injectData': function (data) {
                     // console.log('data',data);
                     if (data.length > 0) {
-                        $('#featured').show();
+                        $('#featured').fadeIn( 600, "linear" );
+                        //
+                        
                         var p = data[0];
                         
                         var url = "url('" + p["photos"][0]["alt_sizes"][0]["url"] + "')";
