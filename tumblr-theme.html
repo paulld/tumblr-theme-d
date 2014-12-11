@@ -201,6 +201,7 @@
             }
             .main-caption {
                 padding: 20px 10px 0;
+                text-align: center;
             }
             .main-caption p:nth-of-type(n+2) {
                 display: none;
@@ -288,7 +289,7 @@
             }
             
             
-            /* >>>>>>>>>>> SINGLE PHOTO POST <<<<<<<<<<< */
+            /* >>>>>>>>>>> SINGLE POST - PHOTO <<<<<<<<<<< */
             
             
             .block-photo img {
@@ -335,6 +336,23 @@
                 margin-bottom: 40px;
             }
 
+
+            /* >>>>>>>>>>> SINGLE POST - VIDEO <<<<<<<<<<< */
+
+            .block-video {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .block-video iframe {
+                border-radius: 15px;
+                overflow: hidden;
+                border: 1px solid rgba(17,0,0,0.10);
+            }
+
+
+            /* >>>>>>>>>>> SINGLE POST - ALL <<<<<<<<<<< */
+
             li.info-tags:nth-of-type(n+2) {
                 display: none;
             }
@@ -361,19 +379,21 @@
             .date-and-notes img:nth-of-type(2) {
                 padding-left: 18px;
             }
-            .post-caption, .post-caption h1 {
+            
+            
+            .post-caption, .post-caption h1, .text-post-box, .text-post-box h2 {
                 font-weight: 100;
                 font-size: 48px;
                 color: #3e5a6a;
                 line-height: 65px;
                 margin-bottom: 40px;
             }
-            .post-caption p:nth-of-type(n+2) {
+            .post-caption p:nth-of-type(n+2), .body-text p:nth-of-type(n+1) {
                 font-size: 18px;
                 color: #3e5a6a;
                 line-height: 30px;
             }
-            .post-caption p:nth-of-type(2) {
+            .post-caption p:nth-of-type(2), .body-text p:nth-of-type(1) {
                 margin-top: 30px;
             }
             
@@ -726,7 +746,7 @@
             <div class="header-inner">
                 <div class="header-logo">
                     <a href="{BlogURL}" title="{lang:Home}">
-                        <img src="http://static.tumblr.com/h4oybik/Shgngekkm/logo_2x.png">
+                        <img src="http://static.tumblr.com/h4oybik/6BZngel1j/header-logo.png">
                         
                         <h1 class="sr-only">{Title}</h1>
                         <p>{base-hostname}</p>
@@ -797,8 +817,8 @@
         <div id="content" class="content">
             <div class="content-inner">
                 {block:Posts}
-                    {block:Photo}
-                        {block:IndexPage}
+                    {block:IndexPage}
+                        {block:Photo}
                             <article class="item-outer photo-item" style="background-image: url({PhotoURL-HighRes});" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" >
                                 <div class="item-inner">
                                     <div class="main-tag">
@@ -818,6 +838,52 @@
                                     <a href="{Permalink}"><span class="main-link"></span></a>
                                 </div>
                             </article>
+                        {/block:Photo}
+                        
+                        {block:Video}
+                            <article class="item-outer video-item" style="background-image: url('http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png');">
+                                <div class="item-inner">
+                                    <div class="main-tag">
+                                        {block:HasTags}
+                                            {block:Tags}
+                                                <p>{Tag}</p>
+                                            {/block:Tags}
+                                        {/block:HasTags}
+                                    </div>
+                                    <div class="main-separation">
+                                    </div>
+                                    <div class="main-caption">
+                                        {block:Caption}
+                                            <a href="{Permalink}">{Caption}</a>
+                                        {/block:Caption}
+                                    </div>
+                                    <a href="{Permalink}"><span class="main-link"></span></a>
+                                </div>
+                            </article>
+                        {/block:Video}
+                        
+                        {block:Text}
+                            <article class="item-outer text-item">
+                                <div class="item-inner">
+                                    <div class="main-tag">
+                                        {block:HasTags}
+                                            {block:Tags}
+                                                <p>{Tag}</p>
+                                            {/block:Tags}
+                                        {/block:HasTags}
+                                    </div>
+                                    <div class="main-separation">
+                                    </div>
+                                    <div class="main-caption">
+                                        {block:Title}
+                                            <a href="{Permalink}">{Title}</a>
+                                        {/block:Title}
+                                    </div>
+                                    <a href="{Permalink}"><span class="main-link"></span></a>
+                                </div>
+                            </article>
+                        {/block:Text}
+                        
                             
                             {block:Post6}
                             </div>
@@ -855,11 +921,13 @@
                         <div id="content" class="content">
                             <div class="content-inner">
                             {/block:Post30}
-                            
-                        {/block:IndexPage}
+                        
+                    {/block:IndexPage}
                         
                         
-                        {block:PermalinkPage}
+                        
+                    {block:PermalinkPage}
+                        {block:Photo}
                             <article class="post photo-post portrait">
                                 <div class="back-button">
                                     <p><span class="minimize">&times;</span> Minimize Image</p>
@@ -870,6 +938,20 @@
                                         <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" id="photo" />
                                     </div>
                                 </div>
+                        {/block:Photo}
+                        
+                        {block:Video}
+                            <article class="post photo-post landscape">
+                                <div class="block-video">
+                                    <div class="block-video-box">
+                                        {Video-700}
+                                    </div>
+                                </div>
+                        {/block:Video}
+                        
+                        {block:Text}
+                            <article class="post text-post landscape">
+                        {/block:Text}
                                 
                                 <div class="block-info">
                                     <ul class="list-inline">
@@ -889,9 +971,29 @@
                                             {NoteCountWithLabel}
                                         </li>
                                     </ul>
-                                    {block:Caption}
-                                        <div class="post-caption">{Caption}</div>
-                                    {/block:Caption}
+                                    
+                                    {block:Photo}
+                                        {block:Caption}
+                                            <div class="post-caption">{Caption}</div>
+                                        {/block:Caption}
+                                    {/block:Photo}
+                                    
+                                    {block:Video}
+                                        {block:Caption}
+                                            <div class="post-caption">{Caption}</div>
+                                        {/block:Caption}
+                                    {/block:Video}
+                                    
+                                    {block:Text}
+                                        <div class="text-post-box">
+                                            {block:Title}<h2>{Title}</h2>{/block:Title}
+                                            {block:Body}
+                                                <div class="body-text">
+                                                    {Body}
+                                                </div>
+                                            {/block:Body}    
+                                        </div>
+                                    {/block:Text}
                                     
                                     <table class="table post-social">
                                         <tbody>
@@ -944,6 +1046,7 @@
                                 </div>
                                 
                             </article>
+                        
                         </div>
                     </div>
                     <div class="advert">
@@ -956,8 +1059,7 @@
                     
                     <div id="related-posts-outer"></div>
             
-                        {/block:PermalinkPage}
-                    {/block:Photo}
+                    {/block:PermalinkPage}
                 {/block:Posts}
             </div>
         </div>
@@ -1090,7 +1192,7 @@
         
         
                 
-        {block:Posts}{block:Photo}{block:PermalinkPage}
+        {block:PermalinkPage}
         
         <script type='text/javascript'>
             (function(s) {
@@ -1381,7 +1483,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
         
-        {/block:PermalinkPage}{/block:Photo}{/block:Posts}
+        {/block:PermalinkPage}
         
         
         {block:IfGoogleAnalyticsID}
