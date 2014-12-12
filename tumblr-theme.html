@@ -8,7 +8,11 @@
         {block:Description}
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {block:Hidden}
         <meta name="text:Google Analytics ID" content="">
+        {/block:Hidden}
         
         <title>
             {block:TagPage}{Tag} - {/block:TagPage} 
@@ -673,6 +677,7 @@
             }
             .featured-photo {
                 display: inline-block;
+                float: left;
                 width: 443px;
             }
             .featured-info {
@@ -753,6 +758,116 @@
             /*    display:none;*/
             /*}*/
             
+            
+            /* >>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<< */
+            /* >>>>>>>>>>> MOBILE SETTINGS <<<<<<<<<<< */
+            /* >>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<< */
+            
+            @media (max-width: 700px) {
+                
+                /* >>>>>>>>>>> INDEX <<<<<<<<<<< */
+                .header {
+                    position: inherit;
+                    margin-bottom: 0;
+                    padding: 0 5px;
+                }
+                .header-inner, .featured-inner, .content-inner, .advert-inner, .footer-inner {
+                    width: 100%;
+                }
+                .header-learn-text {
+                    display: none;
+                }
+                .header-subscribe {
+                    padding-top: 49px;
+                }
+                .featured {
+                    height: 850px;
+                    margin-top: 0;
+                    padding-top: 0;
+                }
+                .featured-inner {
+                    padding-top: 10px;
+                }
+                .featured-photo, .featured-info {
+                    display: block;
+                    width: 100%;
+                }
+                .featured-info {
+                    height: 415px;
+                    margin-bottom: 20px;
+                }
+                .featured-article {
+                    margin-right: 0;
+                }
+                .feature-caption {
+                    margin-top: 20px;
+                }
+                .featured .post-caption {
+                    font-size: 38px;
+                    text-align: center;
+                    padding: 0 10px;
+                }
+                .featured p:nth-of-type(n+2) {
+                    display: none;
+                }
+                .featured-info .list-inline {
+                    text-align: center;
+                }
+                .featured-info .list-inline li:first-child {
+                    display: block;
+                    margin-bottom: 20px;
+                }
+                
+                .item-outer {
+                    display: block;
+                    margin: 0 auto 23px;
+                }
+                .item-outer:nth-child(3n+3) {
+                    margin: 0 auto 23px;
+                }
+                
+                .advert-inner {
+                    padding: 10px 0;
+                }
+                .advert-text {
+                    font-size: 32px;
+                }
+                
+                .footer-social, .footer-terms {
+                    display: block;
+                    text-align: center;
+                    float: inherit;
+                }
+                .footer-inner {
+                    padding-top: 20px;
+                }
+                .footer-social {
+                    margin-top: 0;
+                }
+                .footer-terms {
+                    margin-top: 0;
+                }
+                
+                /* >>>>>>>>>>> PERMALINK <<<<<<<<<<< */
+                
+                .block-photo, .block-photo-box, .block-photo-box img, .block-info {
+                    width: 100%;
+                }
+                /*.block-info {*/
+                /*    max-width*/
+                /*}*/
+                .post {
+                    padding: 0 5px;
+                }
+                .block-info {
+                    margin-top: 20px;
+                }
+                .block-info ul {
+                    text-align: center;
+                }
+                
+            }
+            
         </style>
         
     </head>
@@ -786,15 +901,6 @@
                 {block:IndexPage}
                     <div id="featured" class="featured" style="display: none;">
                         <div class=featured-inner>
-                            <div class="featured-photo">
-                                <!-- INSERT BACKGROUND IMAGE -->
-                                <div id="feature-image" class="item-outer" >
-                                    <!-- INSERT URL -->
-                                    <a id="feature-url1">
-                                        <span class="main-link"></span>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="featured-info">
                                 <ul class="list-inline">           
                                     <li>
@@ -822,6 +928,15 @@
                                 </ul>
                                 <div id="feature-caption" class="post-caption">
                                     <!-- INSERT CAPTION -->
+                                </div>
+                            </div>
+                            <div class="featured-photo">
+                                <!-- INSERT BACKGROUND IMAGE -->
+                                <div id="feature-image" class="item-outer" >
+                                    <!-- INSERT URL -->
+                                    <a id="feature-url1">
+                                        <span class="main-link"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -1179,6 +1294,10 @@
         <script type='text/javascript'>
             
             var stop = false;
+            
+            if ($( window ).width() < 700) {
+                stop = true;
+            }
                 
             {block:TagPage} 
                 stop = true;
