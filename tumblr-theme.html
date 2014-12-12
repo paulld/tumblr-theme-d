@@ -1302,29 +1302,38 @@
                                         else if(post.type=='answer') text+=post['question'];
     
                                         /*Strip HTML from text*/
-                                        var StrippedText = text.replace(/(<([^>]+)>)/ig,"");
+                                        // var StrippedText = text.replace(/(<([^>]+)>)/ig,"");
+                                        
+                                        // 
     
                                         /*slice text to the desired length*/
-                                        if(StrippedText.length>config.len){ 
-                                            StrippedText=StrippedText.slice(0,config.len); StrippedText+='...';
-                                        }
+                                        // if(StrippedText.length>config.len){ 
+                                        //     StrippedText=StrippedText.slice(0,config.len); StrippedText+='...';
+                                        // }
     
                                         /*get images*/
                                         var image ='';
     
                                         /*If article, try to get the first image out of the body*/
                                         if(post.type=='text'){
-                                            var fullbody = post.body;
-                                            var fullbodyset = $jo(fullbody);
-                                            image += fullbodyset.find('img').attr('src');
+                                            image += ' ';
+                                            // var fullbody = post.body;
+                                            // var fullbodyset = $jo(fullbody);
+                                            // image += fullbodyset.find('img').attr('src');
+                                        }
+                                        
+                                        /*If video, get the PLAY BUTTON*/
+                                        else if(post.type=='video'){
+                                            console.log('IT S A VIDEO!!')
+                                            image += 'http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png';
                                         }
                                         
                                         /*If audio, get the album cover if available*/
                                         else if(post.type=='audio'){
-                                            image+=this.album_art;
+                                            image += this.album_art;
                                         }
-                                        else if(post.type=='photo'){
-                                            image+= this.photos[0]['alt_sizes'][0]['url'];
+                                        else if(post.type == 'photo'){
+                                            image += this.photos[0]['alt_sizes'][0]['url'];
                                             // /*Loop to the various photos data, and make sure to select only the first in case of a slideshow*/
                                             // $jo(this.photos[0]).each(function(i, photo) {
                                             //     /*Loop through the various photo size to get the thumbnail information*/
@@ -1352,14 +1361,15 @@
                                         else if(post.type=='photo')  image += 0
                                         else if(post.type=='answer')  image += 0;
                                 
+                                
                                         /*Manage Exceptions*/
-                                        if(image==0){image=config.imageurl; }
-                                        else if(image=='undefined'){image=config.imageurl; };
+                                        // if(image==0){image=config.imageurl; }
+                                        // else if(image=='undefined'){image=config.imageurl; };
                                 
                                         /*Set Notes*/
-                                        var note ='';
-                                        note+=post['note_count'];
-                                        if(note=='undefined'){note='0'; };
+                                        // var note ='';
+                                        // note+=post['note_count'];
+                                        // if(note=='undefined'){note='0'; };
                                 
                                         /*Set Tags*/
                                         var postTag ='';
@@ -1369,19 +1379,21 @@
                                         /*Set Captions*/
                                         var caption ='';
                                         caption+=post['caption'];
-                                        if(caption=='undefined'){caption=''; };
+                                        if(post.type=='text') {caption=post['title']}
+                                        else if(caption=='undefined'){caption=''; };
                                 
                                         /*Transfer pieces*/
                                         images.push(image);
-                                        titles.push(StrippedText);
+                                        // titles.push(StrippedText);
                                         links.push(post['post_url']); 
                                         types.push(post['type']);
-                                        notes.push(note);
+                                        // notes.push(note);
                                         postTags.push(postTag);
                                         captions.push(caption);
                                         
-                                        // console.log('new post', post);
-                                        // console.log('links', links);
+                                        console.log('new post', post);
+                                        console.log('links', links);
+                                        console.log('images', images);
                                     });
                                     
                                 }).complete(getList);
@@ -1394,10 +1406,24 @@
                                     eval(data);
                                     for (var j=0; j<tumblr_api_read.posts.length; j++) {
                                         links.push(tumblr_api_read.posts[j]["url-with-slug"]);
-                                        captions.push(tumblr_api_read.posts[j]["photo-caption"]);
-                                        images.push(tumblr_api_read.posts[j]["photo-url-1280"]);
+                                        console.log('UPTO6', tumblr_api_read.posts[j]);
+                                        if (tumblr_api_read.posts[j]["type"] === 'regular') {
+                                            captions.push(tumblr_api_read.posts[j]["regular-title"]);
+                                            images.push('');
+                                        } else if (tumblr_api_read.posts[j]["type"] === 'video') {
+                                            captions.push(tumblr_api_read.posts[j]["video-caption"]);
+                                            images.push('http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png');
+                                        } else if (tumblr_api_read.posts[j]["type"] === 'photo') {
+                                            captions.push(tumblr_api_read.posts[j]["photo-caption"]);
+                                            images.push(tumblr_api_read.posts[j]["photo-url-1280"]);
+                                        }
+                                        // captions.push(tumblr_api_read.posts[j]["photo-caption"]);
+                                        
+                                        
                                         postTags.push(tumblr_api_read.posts[j]["tags"][0]);
                                         getList();
+                                        
+                                        console.log('images form 6', images)
                                     }
                                 }
                             );
