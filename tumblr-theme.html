@@ -27,7 +27,6 @@
         <!-- Bootstrap CSS & Google Font -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-        
         <style>
             /* >>>>>>>>>>> GENERAL LAYOUT <<<<<<<<<<< */
             
@@ -122,30 +121,35 @@
             
             .content {
                 width: 100%;
-                height: 100%;
+                /* height: 100%; */
             }
             .content-inner {
-                width: 1030px;
+                width: 1048px;
                 margin: 40px auto;
             }
+            
+            .content-inner:before, .content-inner:after {
+                content: " ";
+                display: table;
+            }
+            
+            .content-inner:after {
+                clear: both;
+            }
+            
             .item-outer {
                 width: 325px;
                 height: 360px;
-                display: inline-block;
+                float: left;
                 overflow: hidden;
-                margin-right: 23px;
-                margin-bottom: 23px;
+                margin: 0 12px 24px;
                 border-radius: 5px;
                 position: relative;
                 background-position: top center;
                 background-repeat: no-repeat;
                 background-size: cover;
-                transition: all .2s ease-in-out;
             }
             
-            .item-outer:nth-child(3n+3) {
-                margin-right: 0;
-            }
             .item-inner {
                 background:    -moz-linear-gradient(top,  rgba(62,90,106,0.95) 40%, rgba(144,181,202,0.5) 100%);
                 background:        -webkit-gradient(linear, left top, left bottom, color-stop(40%,rgba(62,90,106,0.95)), color-stop(100%,rgba(144,181,202,0.5)));
@@ -745,6 +749,14 @@
                 display: none;
             }
             
+            /* Infinite Scroll */
+            #infscr-loading {
+                clear: both;
+                text-align: center;
+            }
+            #pagination {
+                display: none;
+            }
             
             /* >>>>>>>>>>> RELATED POSTS <<<<<<<<<<< */
             
@@ -763,13 +775,88 @@
             /* >>>>>>>>>>> MOBILE SETTINGS <<<<<<<<<<< */
             /* >>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<< */
             
+            @media (max-width: 1055px) and (min-device-width: 701px) {
+                
+                .header-inner {
+                    width: 708px;
+                }
+                
+                .featured-inner {
+                    width: 708px;
+                    padding-top: 66px;
+                }
+                
+                .featured-info {
+                    max-width: 485px;
+                    padding-top: 0;
+                    margin-bottom: 26px;
+                }
+                
+                .featured-photo {
+                    width: 223px;
+                }
+                
+                #feature-image {
+                    width: 200px;
+                    height: 222px;
+                }
+            }
+            
+            @media (max-width: 1055px) {
+
+                .featured {
+                    height: auto;
+                }
+                
+                .featured-inner {
+                    height: auto;
+                }
+                
+                .featured-info {
+                    margin-left: auto;
+                    margin-right: auto;
+                    height: auto;   
+                }
+                
+                .content-inner {
+                    width: 700px;
+                }
+                .advert {
+                    height: auto;
+                }
+                .advert-inner {
+                    width: 100%;
+                    padding: 20px 0;
+                }
+                .advert-text {
+                    font-size: 24px;
+                }
+
+                .footer-social, .footer-terms {
+                    display: block;
+                    text-align: center;
+                    float: inherit;
+                }
+                .footer-inner {
+                    width: auto;
+                    padding-top: 20px;
+                }
+                .footer-social {
+                    margin-top: 0;
+                }
+                .footer-terms {
+                    margin-top: 0;
+                }
+                
+            }
+            
             @media (max-width: 700px) {
                 
                 /* >>>>>>>>>>> INDEX <<<<<<<<<<< */
                 .header {
                     position: inherit;
                     margin-bottom: 0;
-                    padding: 0 5px;
+                    padding: 0 14px;
                 }
                 .header-inner, .featured-inner, .content-inner, .advert-inner, .footer-inner {
                     width: 100%;
@@ -781,19 +868,25 @@
                     padding-top: 49px;
                 }
                 .featured {
-                    height: 850px;
                     margin-top: 0;
                     padding-top: 0;
                 }
                 .featured-inner {
                     padding-top: 10px;
+                    padding-bottom: 10px;
+                    height: auto;
                 }
                 .featured-photo, .featured-info {
                     display: block;
+                    float: none;
                     width: 100%;
                 }
+                
+                .featured-photo {
+                    padding: 0 14px;
+                }
+                
                 .featured-info {
-                    height: 415px;
                     margin-bottom: 20px;
                 }
                 .featured-article {
@@ -818,39 +911,24 @@
                     margin-bottom: 20px;
                 }
                 
+                .content-inner {
+                    padding: 0 12px;
+                }
+                
                 .item-outer {
+                    float: none;
+                    max-width: 100%;
+                    max-width: 325px;
                     display: block;
-                    margin: 0 auto 23px;
+                    margin: 0 auto 23px !important;
                 }
-                .item-outer:nth-child(3n+3) {
-                    margin: 0 auto 23px;
-                }
-                
-                .advert-inner {
-                    padding: 10px 0;
-                }
-                .advert-text {
-                    font-size: 32px;
-                }
-                
-                .footer-social, .footer-terms {
-                    display: block;
-                    text-align: center;
-                    float: inherit;
-                }
-                .footer-inner {
-                    padding-top: 20px;
-                }
-                .footer-social {
-                    margin-top: 0;
-                }
-                .footer-terms {
-                    margin-top: 0;
-                }
-                
+
                 /* >>>>>>>>>>> PERMALINK <<<<<<<<<<< */
                 
-                .block-photo, .block-photo-box, .block-photo-box img, .block-info {
+                .post .block-photo, 
+                .post .block-photo-box, 
+                .post .block-photo-box img, 
+                .post .block-info {
                     width: 100%;
                 }
                 /*.block-info {*/
@@ -945,7 +1023,7 @@
             {/block:Photo}
         {/block:Posts}
         
-        <div id="content" class="content">
+        <div class="content">
             <div class="content-inner">
                 {block:Posts}
                     {block:IndexPage}
@@ -1025,38 +1103,12 @@
                                 <a href="https://digit.co/" class="btn advert-button">Learn More</a>
                             </div>
                         </div>
-                        <div id="content" class="content">
+                        <div class="content" id="subsequent-content">
                             <div class="content-inner">
                             {/block:Post6}
-                            {block:Post18}
-                            </div>
-                        </div>
-                        <div class="advert">
-                            <div class="advert-inner">
-                                <p class="advert-text">Save money without stressing about it.<p>
-                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
-                            </div>
-                        </div>
-                        <div id="content" class="content">
-                            <div class="content-inner">
-                            {/block:Post18}
-                            {block:Post30}
-                            </div>
-                        </div>
-                        <div class="advert">
-                            <div class="advert-inner">
-                                <p class="advert-text">Save money without stressing about it.<p>
-                                <a href="https://digit.co/" class="btn advert-button">Learn More</a>
-                            </div>
-                        </div>
-                        <div id="content" class="content">
-                            <div class="content-inner">
-                            {/block:Post30}
-                        
+
                     {/block:IndexPage}
-                        
-                        
-                        
+
                     {block:PermalinkPage}
                         {block:Photo}
                             <article class="post photo-post portrait">
@@ -1141,11 +1193,12 @@
                                                     <a href="https://twitter.com/share" class="twitter-share-button" data-via="hellodigit">Tweet</a>
                                                 </td>
                                                 <td>
-                                                    <div class="fb-like" data-href="{Permalink}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                                                    <div class="g-plusone" data-annotation="inline" data-width="120" data-href="{Permalink}"></div>
                                                 </td>
-                                                <td>
-                                                    <a href="//www.pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description={PlaintextCaption} - {Title}" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
-                                                </td>
+                                                <td class="hidden-xs">
+                                                   <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US </script>
+                                                    <script type="IN/Share" data-url="{Permalink}" data-counter="right"></script>
+                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -1154,19 +1207,18 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <div class="g-plusone" data-annotation="inline" data-width="120" data-href="{Permalink}"></div>
+                                                    <div class="fb-like" data-href="{Permalink}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
                                                 </td>
                                                 <td>
-                                                    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US </script>
-                                                    <script type="IN/Share" data-url="{Permalink}" data-counter="right"></script>
+<a href="//www.pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description={PlaintextCaption} - {Title}" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
                                                 </td>
-                                                <td>
+                                                <td class="hidden-xs">
                                                     <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit7.gif" alt="submit to reddit" border="0" /> </a>
                                                 </td> 
                                             </tr>
                                         </tbody>
                                     </table>
-                                    
+
                                     {block:PostNotes}
                                         <div id="notes" class="post-notes">
                                             <h2>Notes</h2>
@@ -1192,9 +1244,21 @@
             
                     {/block:PermalinkPage}
                 {/block:Posts}
+                
             </div>
         </div>
           
+       {block:Pagination}
+            <div id="pagination">
+                  {block:PreviousPage}
+                        <a href="{PreviousPage}" class="prev">Previous</a>
+                  {/block:PreviousPage}
+                  {block:NextPage}
+                        <a href="{NextPage}" class="next">Next</a>
+                  {/block:NextPage}
+            </div>
+        {/block:Pagination}
+
         
         <footer id="footer" class="footer">
             <div class="footer-inner">
@@ -1221,12 +1285,31 @@
 
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <script type="text/javascript" src="http://codes.bitshare.cm/infinitescrolling.js"></script>
+        <script src="http://cdn.jsdelivr.net/fitvids/1.1.0/jquery.fitvids.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.0b2.120519/jquery.infinitescroll.min.js"></script>
         
         
         
         {block:IndexPage}
         
+        <!-- ---------------------------DIGIT - INFINITE SCROLL--------------------------- -->
+        <script>
+            $(document).ready(function(){
+                $('#subsequent-content .content-inner').infinitescroll({
+                    navSelector  : "div#pagination",            
+                    nextSelector : "div#pagination a.next",    
+                    itemSelector : ".content-inner article.item-outer",
+                    bufferPx: 100,
+                    loading: {
+                        msgText: '',
+                        finishedMsg: '',
+                        img: 'data:image/gif;base64,R0lGODlhDgAOAOMAAMzOzOzq7Nze3PT29NTW1PTy9OTm5Pz+/NTS1Ozu7OTi5Pz6/Nza3P///wAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQICQAAACwAAAAADgAOAAAEPrDJZRhAxCzJEwJgiCRcEZ5h0Sxoi1Ct+CmWuy1M3QYc+7WqCSbG4AQyMQAjYNEkRRvTkycJJKk9xQ+h2EgiACH5BAgJAAAALAAAAAAOAA4Ag8zOzOzq7PT29OTm5NTW1PTy9Pz+/NTS1Ozu7Pz6/Nza3P///wAAAAAAAAAAAAAAAAQ+cMk0FDhkJMnRAWB4IFwRnmGxJGh7UG1bxehH13FQBCHRBhzeYdDaSEwBFgooCbwWpqXAqWrGDkwOxYY1LiIAIfkECAkAAAAsAAAAAA4ADgCDzM7M7Ors5OLk/Pr81NbU9PL01NLU7O7s5Obk/P783Nrc////AAAAAAAAAAAAAAAABEdwyYEUMAQNyY8BYGgcXBGeYbEMaGtQbStY8fnV6I2DBCoIugvipFqdBCyQgrMQpBYmwJJzC3ACoEBigQVYmYMAgaAgBDaSCAAh+QQICQAAACwAAAAADgAOAIPMzszs6uz09vTk5uTU1tT08vT8/vzU0tTs7uz8+vzc2tz///8AAAAAAAAAAAAAAAAEP3DJNBQ4ZCTJ0QFgeCBcEZ5hsSRoe1BtW8XoR9dgUJgxAQQl1wAg4LBQmgNQwjupPAOBB7VcFGxUzmR2GagkEQAh+QQICQAAACwAAAAADgAOAIPMzszs6uzk4uT8+vzU1tT08vTU0tTs7uzk5uT8/vzc2tz///8AAAAAAAAAAAAAAAAERHDJgRQwBA3JjwFgaBxcEZ5hsQxoa1CAonwtICjBRKMYtwQ1AMEHrBFyi8TuZEDEZkHBYFlTHYIg5MJU004ENINAJYkAACH5BAgJAAAALAAAAAAOAA4Ag8zOzOzq7PT29OTm5NTW1PTy9Pz+/NTS1Ozu7Pz6/Nza3P///wAAAAAAAAAAAAAAAAQ/cMk0FDhkJMnRAWB4IFwBBELwhUCxJGfJXhQgcMYMVLFkzquRobAC6o6EI3CgZGmKShei2Vv8dAHOZBBUbCQRACH5BAgJAAAALAAAAAAOAA4Ag8zOzOzq7OTi5Pz6/NTW1PTy9NTS1Ozu7OTm5Pz+/Nza3P///wAAAAAAAAAAAAAAAARIcMmBFDAEDcmPAUiSBNfBFQBAcIsFFMuQAgLrGtRsJBMxC66U4lAIAoyzpE7JTPmaSQMCmhQMPtTX4pANcEhNL2sgwBoEMEkEACH5BAgJAAAALAAAAAAOAA4Ag8zOzOzq7PT29OTm5NTW1PTy9Pz+/NTS1Ozu7Pz6/Nza3P///wAAAAAAAAAAAAAAAAREcMk0FDhkJMnRAWB4IFwRhkESAMWSnGDABQcFA5skANXdSgiA5XYoGEyXz+1GWMIOA+dJIw1tkE6ZZLXUcijKgyK3iAAAOw=='
+                    }
+                });
+            });
+        </script>
+
+
         <!-- ---------------------------DIGIT - FEATURED POST--------------------------- -->
         <!--
             inspired from plugin by In-Link
@@ -1308,12 +1391,16 @@
                 $(window).scroll( function(){
                     var bottom_of_window = $(window).scrollTop();
                     if (bottom_of_window < 1) {
-                        $('#featured').css("position", "fixed");
-                        $('#content').css("margin-top", "500px");
+                        // $('#featured').css("position", "fixed");
+                        if ($( window ).width() < 1055) {
+                            // $('#content').css("margin-top", "400px");
+                        } else {
+                            // $('#content').css("margin-top", "500px");
+                        }
                         $('#masthead').css("box-shadow", "0px 0px 0px rgba(0,0,0,0.2)");
                         $('.featured-inner').css("border-top","1px solid rgba(0,0,0,0.1)");
                     } else {
-                        $('#featured').css("position", "inherit");
+                        // $('#featured').css("position", "inherit");
                         $('#content').css("margin-top", "0");
                         $('#masthead').css("box-shadow", "0px 1px 2px rgba(0,0,0,0.2)");
                         $('.featured-inner').css("border-top","0");
@@ -1351,6 +1438,10 @@
                         $jo('#related-posts-outer').removeClass('hide');
                     });
                 }
+                
+                // https://github.com/davatron5000/FitVids.js
+                
+                $jo('.block-video-box').fitVids();
                 
                 {block:PostNotes}
                     $jo(".action").html(function () {
@@ -1459,7 +1550,7 @@
                                         
                                         /*If video, get the PLAY BUTTON*/
                                         else if(post.type=='video'){
-                                            console.log('IT S A VIDEO!!')
+                                            // console.log('IT S A VIDEO!!')
                                             image += 'http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png';
                                         }
                                         
@@ -1526,9 +1617,9 @@
                                         postTags.push(postTag);
                                         captions.push(caption);
                                         
-                                        console.log('new post', post);
-                                        console.log('links', links);
-                                        console.log('images', images);
+                                        //console.log('new post', post);
+                                        //console.log('links', links);
+                                        //console.log('images', images);
                                     });
                                     
                                 }).complete(getList);
@@ -1541,7 +1632,7 @@
                                     eval(data);
                                     for (var j=0; j<tumblr_api_read.posts.length; j++) {
                                         links.push(tumblr_api_read.posts[j]["url-with-slug"]);
-                                        console.log('UPTO6', tumblr_api_read.posts[j]);
+                                        //console.log('UPTO6', tumblr_api_read.posts[j]);
                                         if (tumblr_api_read.posts[j]["type"] === 'regular') {
                                             captions.push(tumblr_api_read.posts[j]["regular-title"]);
                                             images.push('');
@@ -1558,7 +1649,7 @@
                                         postTags.push(tumblr_api_read.posts[j]["tags"][0]);
                                         getList();
                                         
-                                        console.log('images form 6', images)
+                                        //console.log('images form 6', images)
                                     }
                                 }
                             );
@@ -1645,8 +1736,7 @@
         
         
         {/block:PermalinkPage}
-        
-        
+
         {block:IfGoogleAnalyticsID}
             <script>
               (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
