@@ -26,6 +26,7 @@
         
         <!-- Bootstrap CSS & Google Font -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         <style>
             /* >>>>>>>>>>> GENERAL LAYOUT <<<<<<<<<<< */
@@ -119,13 +120,22 @@
             
             /* >>>>>>>>>>> LIST OF POSTS <<<<<<<<<<< */
             
+            .postslist-header {
+                max-width: 1048px;
+                padding: 0 12px;
+                margin: 20px auto 0;
+                font-size: 16px;
+                text-transform: uppercase;
+                font-weight: 400;
+                color: #498E9C;
+            }
+            
             .content {
                 width: 100%;
-                /* height: 100%; */
             }
             .content-inner {
                 width: 1048px;
-                margin: 40px auto;
+                margin: 20px auto 40px;
             }
             
             .content-inner:before, .content-inner:after {
@@ -150,6 +160,10 @@
                 background-size: cover;
             }
             
+            .item-outer.video-item { /* fallback */
+                background-image: url(http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png);
+            }
+            
             .item-inner {
                 background:    -moz-linear-gradient(top,  rgba(62,90,106,0.95) 40%, rgba(144,181,202,0.5) 100%);
                 background:        -webkit-gradient(linear, left top, left bottom, color-stop(40%,rgba(62,90,106,0.95)), color-stop(100%,rgba(144,181,202,0.5)));
@@ -164,7 +178,6 @@
                 width: 100%;
                 height: 100%;
                 color: #fff;
-                /*transition: all .35s ease;*/
                 -webkit-transition: background 1s ease-out;  
                    -moz-transition: background 1s ease-out;  
                      -o-transition: background 1s ease-out;  
@@ -178,7 +191,6 @@
                 background:     -ms-linear-gradient(top,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
                 background:         linear-gradient(to bottom,  rgba(47,114,129,0.95) 0%,rgba(88,201,169,0.8) 100%);
                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f22f7281', endColorstr='#cc58c9a9',GradientType=0 );
-                /*transition: all .35s ease;*/
                 -webkit-transition: background 1s ease-out;  
                    -moz-transition: background 1s ease-out;  
                      -o-transition: background 1s ease-out;  
@@ -211,7 +223,6 @@
                 padding: 20px;
                 font-size: 32px;
                 text-align: center;
-                /*margin-top: 30px;*/
                 overflow: auto;
                 font-weight: 300;
                 text-align: center;
@@ -250,9 +261,10 @@
             
             .photo-post.photo-only .block-photo {
                 width: 100%;
+                text-align: center;
             }
             .photo-post.photo-only .block-photo img {
-                width: 100%;
+                max-width: 1048px;
                 margin: 0;
                 border-radius: 0;
                 border: 0;
@@ -304,7 +316,6 @@
             
             /* >>>>>>>>>>> SINGLE POST - PHOTO <<<<<<<<<<< */
             
-            
             .block-photo img {
                 margin: 0;
                 border-radius: 8px;
@@ -315,7 +326,7 @@
                 cursor: pointer;
                 transition: all .35s ease-out;
             }
-            .portrait .block-photo img:hover {
+            .portrait .block-photo img.clickable:hover {
                 opacity: .75;
             }
             .portrait .block-photo-box {
@@ -335,7 +346,8 @@
                 vertical-align: top;
             }
             .portrait .block-photo img {
-                width: 413px;
+                max-width: 413px;
+                min-width: 413px;
             }
             .landscape .block-photo {
                 width: 100%;
@@ -366,6 +378,10 @@
 
             /* >>>>>>>>>>> SINGLE POST - ALL <<<<<<<<<<< */
 
+            .post {
+                margin-top: 45px;
+            }
+
             li.info-tags:nth-of-type(n+2) {
                 display: none;
             }
@@ -393,7 +409,6 @@
                 padding-left: 18px;
             }
             
-            
             .post-caption, .post-caption h1, .text-post-box, .text-post-box h2 {
                 font-weight: 100;
                 font-size: 48px;
@@ -401,6 +416,7 @@
                 line-height: 65px;
                 margin-bottom: 40px;
             }
+            
             .post-caption p:nth-of-type(n+2), .body-text p:nth-of-type(n+1) {
                 font-size: 18px;
                 color: #3e5a6a;
@@ -412,11 +428,30 @@
             
             table.post-social {
                 margin: 30px 0;
+                width: auto;
             }
             table.table.post-social > tbody > tr > td {
                 border-top: 0;
                 width: 25%;
+                padding: 8px 16px 8px 0;
             }
+            
+            .btn.share, .btn.our_button, .btn.reblog {
+                padding: 4px 12px;
+                font-size: 12px;
+                min-width: 88px;
+                -moz-transition: background-color 0.2s ease-in-out, color 0.1s ease-in-out;
+                -webkit-transition: background-color 0.2s ease-in-out, color 0.1s ease-in-out;
+                transition: background-color 0.2s ease-in-out, color 0.1s ease-in-out;
+            }
+            
+            .btn i.fa {
+                font-size: 14px;
+                margin-right: 2px;
+            }
+            
+            /* custom tumblr btns */
+
             .custom-like-button {
                 position: relative;
                 display: block;
@@ -424,7 +459,7 @@
                 height: 28px;
                 cursor: pointer;
             }
-            /* class for the Tumblr Like Button iframe */
+            
             .like_button {
                 position: absolute;
                 top: 0;
@@ -441,59 +476,96 @@
                 width: 100% !important;
                 height: 100% !important;
             }
-            /* class for Our Like Button */
+
             .our_button {
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                width: 100%;
-                height: 100%;
                 z-index: 1;
-                border-radius: 3px;
                 background: rgba(227,89,89,1);
                 color: rgba(255,255,255,1);
-                font-size: 13px;
-                font-weight: 600;
-                padding: 4px;
-                text-align: center;
+                opacity: 0.5;
             }
-            .our_button img {
-                width: 13px;
-                margin-right: 5px;
-                margin-bottom: 1px;
+            
+            .our_button .d {
+                display: none;
             }
+            
             .like_button:hover + .our_button {
                 color: rgba(255,255,255,.8);
                 background: rgba(227,89,89,.8);
                 transition: all .35s ease-out;
             }
             .like_button.liked + .our_button {
-                background: rgba(227,89,89,.4);
+                background: rgba(227,89,89,1);
                 color: white;
+                opacity: 1;
             }
-            .reblog-button {
-                width: 88px;
-                height: 28px;
-                display: inline-block;
-                text-decoration: none;
-                border-radius: 3px;
+            
+            .like_button.liked + .our_button .d {
+                display: inline;
+            }
+
+            .btn.reblog {
+                background: rgba(85,190,167,0.2);
+                color: rgba(85,190,167,1);
+            }
+            .btn.reblog:hover {
                 background: rgba(85,190,167,1);
-                color: rgba(255,255,255,1);
-                font-size: 13px;
-                font-weight: 600;
-                padding: 4px;
-                text-align: center;
-                transition: all .35s ease-out;
+                color: #fff;
             }
-            .reblog-button:hover {
-                color: rgba(255,255,255,.8);
-                background: rgba(85,190,167,.8);
-            }
-             img.icon-reblog {
-                 margin-right: 5px;
-                 width: 12px;
+
+             /* custom share btns */
+             
+             .share.facebook {
+                 background: #EBF5FB;
+                 color: #3B5998;
+             }
+             .share.facebook:hover {
+                 background: #3B5998;
+                 color: #fff;
+             }
+             .share.twitter {
+                 background: #E9EBF3;
+                 color: #5EA9DD;
+             }
+             .share.twitter:hover {
+                 background: #5EA9DD;
+                 color: #fff;
+             }
+             .share.pinterest {
+                 background: #F8E6E6;
+                 color: #CB2027;
+             }
+             .share.pinterest:hover {
+                 background: #CB2027;
+                 color: #fff;
+             }
+             .share.linkedin {
+                 background: #E5EFF5;
+                 color: #1375B0;
+             }
+             .share.linkedin:hover {
+                 background: #1375B0;
+                 color: #fff;
+             }
+             .share.googleplus {
+                 background: #F9EAE9;
+                 color: #D73D32;
+             }
+             .share.googleplus:hover {
+                 background: #D73D32;
+                 color: #fff;
+             }
+             .share.reddit {
+                 background: #f0f0f0;
+                 color: #FF4500;
+             }
+             .share.reddit:hover {
+                 background: #FF4500;
+                 color: #fff;
              }
             
             .post-notes h2 {
@@ -512,7 +584,7 @@
                 line-height: 32px;
             }
             ol.notes li {
-                margin: 4px 0;
+                margin: 0;
                 display: none;
                 transition: all 2s ease;
             }
@@ -587,6 +659,7 @@
             .advert-text {
                 font-size: 36px;
                 color: #3e5a6a;
+                font-weight: 300;
             }
             .advert-button {
                 background-color: #33b8fa;
@@ -671,6 +744,7 @@
                         box-shadow: inset 0px 1px 0px rgba(255,255,255,0.050);
             }
             .featured .item-outer {
+                margin-left: 0;
                     -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
                  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
                          box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
@@ -688,9 +762,12 @@
                 display: inline-block;
                 max-width: 583px;
                 vertical-align: top;
-                padding-top: 37px;
+                padding-top: 28px;
                 height: 323px;
                 overflow: hidden;
+            }
+            .featured-info .list-inline {
+                margin-bottom: 28px;
             }
             a.featured-article {
                 color: #fff;
@@ -740,6 +817,22 @@
                 margin-bottom: 30px;
                 margin-top: 30px;
             }
+            
+            .featured .post-caption a {
+                color: #000;
+                opacity: 0.5;
+                transition: all 0.2s ease-in-out;
+            }
+
+            .featured .post-caption a:hover {
+                opacity: 0.75;
+                text-decoration: none;
+            }
+            
+            .featured .post-caption:hover {
+                text-decoration: none;
+            }
+            
             .featured p:nth-of-type(2) {
                 color: rgba(255,255,255,.5);
                 height: 90px;
@@ -818,9 +911,18 @@
                     height: auto;   
                 }
                 
+                .postslist-header {
+                    max-width: 700px;
+                }
+                
                 .content-inner {
                     width: 700px;
                 }
+                
+                .block-photo-box {
+                    margin-bottom: 20px;
+                }
+                
                 .advert {
                     height: auto;
                 }
@@ -910,6 +1012,10 @@
                     display: block;
                     margin-bottom: 20px;
                 }
+ 
+                 .postslist-header {
+                    text-align: center;
+                }
                 
                 .content-inner {
                     padding: 0 12px;
@@ -917,7 +1023,7 @@
                 
                 .item-outer {
                     float: none;
-                    max-width: 100%;
+                    width: auto;
                     max-width: 325px;
                     display: block;
                     margin: 0 auto 23px !important;
@@ -931,9 +1037,6 @@
                 .post .block-info {
                     width: 100%;
                 }
-                /*.block-info {*/
-                /*    max-width*/
-                /*}*/
                 .post {
                     padding: 0 5px;
                 }
@@ -944,6 +1047,25 @@
                     text-align: center;
                 }
                 
+            }
+            
+            @media screen and (max-width: 500px) {
+                
+                .header-inner {
+                    text-align: center;
+                }
+                
+                .header-logo {
+                    float: none;
+                }
+                
+                .header-logo img {
+                    margin-top: 18px;
+                }
+                
+                .header-subscribe {
+                    display: none;
+                }
             }
             
         </style>
@@ -1004,9 +1126,9 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <div id="feature-caption" class="post-caption">
+                                <a id="feature-caption" class="post-caption">
                                     <!-- INSERT CAPTION -->
-                                </div>
+                                </a>
                             </div>
                             <div class="featured-photo">
                                 <!-- INSERT BACKGROUND IMAGE -->
@@ -1022,7 +1144,11 @@
                 {/block:IndexPage}
             {/block:Photo}
         {/block:Posts}
-        
+
+        {block:IndexPage}
+        <h3 class="postslist-header">Recent Posts</h3>
+        {/block:IndexPage}
+
         <div class="content">
             <div class="content-inner">
                 {block:Posts}
@@ -1050,7 +1176,7 @@
                         {/block:Photo}
                         
                         {block:Video}
-                            <article class="item-outer video-item" style="background-image: url('http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png');">
+                            <article class="item-outer video-item" {block:VideoThumbnail}style="background-image: url('{VideoThumbnailURL}');"{/block:VideoThumbnail}>
                                 <div class="item-inner">
                                     <div class="main-tag">
                                         {block:HasTags}
@@ -1184,36 +1310,35 @@
                                                 <td>
                                                     <div class="custom-like-button">
                                                       {LikeButton}
-                                                      <span class="our_button">
-                                                        <img src="http://static.tumblr.com/h4oybik/fOgnfzwxt/icon-like.svg" class="post-social-icon"> Like
+                                                      <span class="our_button btn">
+                                                        <i class="fa fa-heart"></i> Like<span class="d">d</span>
                                                       </span>
                                                     </div>        
                                                 </td>
                                                 <td>
-                                                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="hellodigit">Tweet</a>
+                                                    <a href="https://twitter.com/intent/tweet?url={permalink}" class="btn share twitter"><i class="fa fa-twitter"></i> Tweet</a>
                                                 </td>
                                                 <td>
-                                                    <div class="g-plusone" data-annotation="inline" data-width="120" data-href="{Permalink}"></div>
+                                                    <a href="https://plus.google.com/share?url={permalink}" class="btn share googleplus"><i class="fa fa-google-plus"></i> Post</a>
                                                 </td>
                                                 <td class="hidden-xs">
-                                                   <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US </script>
-                                                    <script type="IN/Share" data-url="{Permalink}" data-counter="right"></script>
+                                                   <a href="http://www.linkedin.com/shareArticle?mini=true&url={permalink}&title={Title}" class="btn share linkedin"><i class="fa fa-linkedin"></i> Share</a>
                                                  </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <a href="{ReblogURL}" target="_blank" class="btn reblog-button">
-                                                        <img src="http://static.tumblr.com/h4oybik/kMnnfzwyk/icon-reblog.svg" class="icon-reblog"> Reblog 
+                                                    <a href="{ReblogURL}" target="_blank" class="btn reblog">
+                                                        <i class="fa fa-refresh"></i> Reblog 
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <div class="fb-like" data-href="{Permalink}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                                                    <a href="http://www.facebook.com/sharer.php?u={permalink}" class="btn share facebook"><i class="fa fa-facebook"></i> Share</a>
                                                 </td>
                                                 <td>
-<a href="//www.pinterest.com/pin/create/button/?url={Permalink}&media={PhotoURL-HighRes}&description={PlaintextCaption} - {Title}" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
+                                                    <a href="http://pinterest.com/pin/create/button/?url={permalink}&media={PhotoURL-HighRes}" class="btn share pinterest"><i class="fa fa-pinterest"></i> Pin</a>
                                                 </td>
                                                 <td class="hidden-xs">
-                                                    <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"> <img src="//www.redditstatic.com/spreddit7.gif" alt="submit to reddit" border="0" /> </a>
+                                                    <a href="http://reddit.com/submit?url={permalink}" class="btn share reddit"><i class="fa fa-reddit"></i> Link</a>
                                                 </td> 
                                             </tr>
                                         </tbody>
@@ -1240,7 +1365,9 @@
                         </div>
                     </div>
                     
-                    <div id="related-posts-outer"></div>
+                    <div id="related-posts-outer">
+                        <h3 class="postslist-header">Related Posts</h3>
+                    </div>
             
                     {/block:PermalinkPage}
                 {/block:Posts}
@@ -1323,16 +1450,18 @@
                 'type': '',                // no limitation of types of posts
                 'tagName': 'featured',     // the name of the tag we're searching for
                 'injectData': function (data) {
-                    // console.log('data',data);
-                    if (data.length > 0) {
+
+                    if (data.length > 0 && $(window).width() > 500){
                         $('#featured').fadeIn( 600, "linear" );
-                        //
-                        
+
+                        console.log(data);
+
                         var p = data[0];
                         
-                        var url = "url('" + p["photos"][0]["alt_sizes"][0]["url"] + "')";
+                        var featuredImg = (p['type'] === 'video') ? p['thumbnail_url'] : p["photos"][0]["alt_sizes"][0]["url"];
+                        var url = "url('" + featuredImg + "')";
                         $('#feature-image').css("background-image", url);
-                        $('#feature-caption').html(p["caption"]);
+                        $('#feature-caption').html(p["caption"]).attr('href', p["post_url"]);
                         $('#feature-url1').attr("href", p["post_url"]);
                         $('#feature-url2').attr("href", p["post_url"]);
                         $('#feature-url3').attr("href", p["post_url"]);
@@ -1422,11 +1551,10 @@
                 
                 var width = $jo('#photo').attr("data-width");
                 var height = $jo('#photo').attr("data-height");
-                // console.log(width, ' x ', height);
                 if ( width - height > 0 ) {
-                    // console.log('CHANGE TO LANDSCAPE');
                     $jo('.photo-post').removeClass('portrait').addClass('landscape');
-                } else {
+                } else if (height > 750) {
+                    $jo('#photo').addClass('clickable');
                     $jo('#photo').click(function() {
                         $jo('.photo-post').addClass('photo-only');
                         $jo('.advert').addClass('hide');
@@ -1440,8 +1568,24 @@
                 }
                 
                 // https://github.com/davatron5000/FitVids.js
-                
                 $jo('.block-video-box').fitVids();
+                
+                // share button popups
+                $jo('a.share').click(function(e){
+                    var width  = 575,
+                        height = 400,
+                        left   = ($jo(window).width()  - width)  / 2,
+                        top    = ($jo(window).height() - height) / 2,
+                        url    = this.href,
+                        opts   = 'status=1' +
+                                 ',width='  + width  +
+                                 ',height=' + height +
+                                 ',top='    + top    +
+                                 ',left='   + left;
+                    window.open(url, 'Share', opts);
+
+                    return false;
+                });
                 
                 {block:PostNotes}
                     $jo(".action").html(function () {
@@ -1527,57 +1671,25 @@
                                         else if(post.type=='audio') text+=post['caption'];
                                         else if(post.type=='answer') text+=post['question'];
     
-                                        /*Strip HTML from text*/
-                                        // var StrippedText = text.replace(/(<([^>]+)>)/ig,"");
-                                        
-                                        // 
-    
-                                        /*slice text to the desired length*/
-                                        // if(StrippedText.length>config.len){ 
-                                        //     StrippedText=StrippedText.slice(0,config.len); StrippedText+='...';
-                                        // }
-    
                                         /*get images*/
                                         var image ='';
     
                                         /*If article, try to get the first image out of the body*/
                                         if(post.type=='text'){
                                             image += ' ';
-                                            // var fullbody = post.body;
-                                            // var fullbodyset = $jo(fullbody);
-                                            // image += fullbodyset.find('img').attr('src');
                                         }
-                                        
-                                        /*If video, get the PLAY BUTTON*/
+
+                                        /*If video, get the THUMBNAIL*/
                                         else if(post.type=='video'){
-                                            // console.log('IT S A VIDEO!!')
                                             image += 'http://static.tumblr.com/h4oybik/LmYngey8i/video-button.png';
                                         }
-                                        
+
                                         /*If audio, get the album cover if available*/
                                         else if(post.type=='audio'){
                                             image += this.album_art;
                                         }
                                         else if(post.type == 'photo'){
                                             image += this.photos[0]['alt_sizes'][0]['url'];
-                                            // /*Loop to the various photos data, and make sure to select only the first in case of a slideshow*/
-                                            // $jo(this.photos[0]).each(function(i, photo) {
-                                            //     /*Loop through the various photo size to get the thumbnail information*/
-                                            //     $jo(this.alt_sizes).each(function(i, alt_size) {
-                                            //         if(config.size=='75') {
-                                            //             if(alt_size.width=='75') {image+=alt_size['url'];}
-                                            //         }
-                                            //         if(config.size=='100') {
-                                            //             if(alt_size.width=='100') {image+=alt_size['url'];}
-                                            //         }
-                                            //         if(config.size=='250') {
-                                            //             if(alt_size.width=='250') {image+=alt_size['url'];}
-                                            //         }
-                                            //         if(config.size=='500') {
-                                            //             if(alt_size.width=='500') {image+=alt_size['url'];}
-                                            //         }
-                                            //     });  
-                                            // });
                                         }
                                     
                                         /*For other types, use the standard image*/
@@ -1586,16 +1698,6 @@
                                         else if(post.type=='quote')  image += 0
                                         else if(post.type=='photo')  image += 0
                                         else if(post.type=='answer')  image += 0;
-                                
-                                
-                                        /*Manage Exceptions*/
-                                        // if(image==0){image=config.imageurl; }
-                                        // else if(image=='undefined'){image=config.imageurl; };
-                                
-                                        /*Set Notes*/
-                                        // var note ='';
-                                        // note+=post['note_count'];
-                                        // if(note=='undefined'){note='0'; };
                                 
                                         /*Set Tags*/
                                         var postTag ='';
@@ -1616,10 +1718,6 @@
                                         // notes.push(note);
                                         postTags.push(postTag);
                                         captions.push(caption);
-                                        
-                                        //console.log('new post', post);
-                                        //console.log('links', links);
-                                        //console.log('images', images);
                                     });
                                     
                                 }).complete(getList);
@@ -1632,7 +1730,6 @@
                                     eval(data);
                                     for (var j=0; j<tumblr_api_read.posts.length; j++) {
                                         links.push(tumblr_api_read.posts[j]["url-with-slug"]);
-                                        //console.log('UPTO6', tumblr_api_read.posts[j]);
                                         if (tumblr_api_read.posts[j]["type"] === 'regular') {
                                             captions.push(tumblr_api_read.posts[j]["regular-title"]);
                                             images.push('');
@@ -1643,13 +1740,9 @@
                                             captions.push(tumblr_api_read.posts[j]["photo-caption"]);
                                             images.push(tumblr_api_read.posts[j]["photo-url-1280"]);
                                         }
-                                        // captions.push(tumblr_api_read.posts[j]["photo-caption"]);
-                                        
                                         
                                         postTags.push(tumblr_api_read.posts[j]["tags"][0]);
                                         getList();
-                                        
-                                        //console.log('images form 6', images)
                                     }
                                 }
                             );
@@ -1704,7 +1797,6 @@
                             case 2: msg+='tumblr problem'; break;
                         }
                         $jo("#loading").html(msg);
-                        ////////////////
                     }
                     
                     function hideall(){
@@ -1718,22 +1810,7 @@
         
         
         <!-- ---------------------------SOCIAL MEDIA BUTTONS--------------------------- -->
-        <!-- Facebook share button -->
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-         <!--Twitter share button -->
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-         <!--Pinterest share button -->
-        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
-         <!--G+ share button -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        
+
         
         {/block:PermalinkPage}
 
